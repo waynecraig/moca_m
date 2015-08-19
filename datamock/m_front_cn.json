@@ -1,0 +1,51 @@
+[
+    {
+        "body": "<p>\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\uff0c\u6b63\u662f\u610f\u5728\u5411\u4eba\u4eec\u8868\u660e\uff1a\u5b81\u590f\u4f5c\u4e3a\u4e2d\u56fd\u8fde\u63a5\u4e16\u754c\u4ee5\u53ca\u5176\u4ed6\u56fd\u5bb6\u6216\u6c11\u65cf\u7684\u7ebd\u5e26\uff0c\u8ba9\u6c9f\u901a\u4e0e\u4ea4\u6d41\u6210\u4e3a\u521b\u9020\u65b0\u6587\u660e\u7684\u8d44\u6e90\u3002</p>",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/124125116111.jpg?itok=yKVpXPVu\" width=\"480\" height=\"384\" alt=\"\" />",
+        "nid": "32",
+        "node_title": "\u6587\u660e\u7684\u7ef4\u5ea6\u2014\u2014\u5168\u7403\u5316\u80cc\u666f\u4e0b\u7684\u6587\u5316\u4ea4\u6d41",
+        "node_type": "exhibition_theme"
+    },
+    {
+        "body": "<p>\u5c55\u51fa\u7684\u4f5c\u54c1\u4e3a\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u7ecf\u5178\u6536\u85cf\uff0c\u65e8\u5728\u7814\u7a76\u5c55\u793a18\u300119\u4e16\u7eaa\u4e2d\u56fd\u65e9\u671f\u6cb9\u753b\u5728\u6280\u6cd5\u3001\u5185\u5bb9\u3001\u8868\u73b0\u65b9\u5f0f\u7684\u6f14\u8fdb\uff0c\u5448\u73b0\u51fa\u4e1c\u897f\u65b9\u6587\u660e\u78b0\u649e\u3001\u501f\u9274\u3001\u878d\u5408\u7684\u5386\u53f2\u753b\u5377\u3002</p>\n",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/QQ2F00~1_0.JPG?itok=uhJ42H_C\" width=\"480\" height=\"330\" alt=\"\" />",
+        "nid": "26",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u201c\u89c6\u89c9\u7684\u8c03\u9002\u201d\u2014\u2014 \u4e2d\u56fd\u65e9\u671f\u6d0b\u98ce\u753b\u5c55",
+        "node_type": "exhibition"
+    },
+    {
+        "body": "<p>\u5c55\u89c8\u901a\u8fc7\u9986\u85cf\u8001\u5730\u56fe\u4e2d\u6240\u5448\u73b0\u51fa\u6765\u7684\u4e2d\u897f\u65b9\u4ea4\u6d41\u8def\u7ebf\u56fe\uff0c\u4ece\u800c\u52fe\u52d2\u51fa\u4e00\u79cd\u5730\u7406\u4e0a\u7684\u56fd\u9645\u5316\u8bed\u5883\u53ca\u5176\u53d8\u5316\u3002</p>",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/1.jpg?itok=Heb1NLtD\" width=\"480\" height=\"341\" alt=\"\" />",
+        "nid": "27",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u201c\u7586\u57df\u7684\u8f6e\u5ed3\u201d\u2014\u2014 \u5386\u53f2\u5178\u85cf\u5730\u56fe\u5c55",
+        "node_type": "exhibition"
+    },
+    {
+        "body": "<p>\u672c\u5c55\u89c8\u4ee5\u5f53\u4ee3\u827a\u672f\u4f5c\u54c1\u4e3a\u4e3b\u4f53,\u897f\u90e8\u4e0e\u4f0a\u65af\u5170\u6587\u5316\u4e3a\u9532\u5165\u70b9\uff0c\u5c55\u793a\u4e2d\u56fd\u897f\u90e8\u53ca\u963f\u62c9\u4f2f\u56fd\u5bb6\u5f53\u4ee3\u827a\u672f\u5bb6\u7684\u4f5c\u54c1\u82e5\u5e72\u3002</p>",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/%E9%81%93%E5%92%8C%E9%97%A8%20%E4%B8%8A%E6%B9%96%E7%BE%8E%E6%9C%AF%E9%A6%86-4.jpg?itok=xyrIWT5D\" width=\"480\" height=\"293\" alt=\"\" />",
+        "nid": "29",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u201c\u4e1c\u897f\u98ce\u4e4b\u95f4\u201d\u2014\u2014 \u4e2d\u56fd\u4e0e\u4f0a\u65af\u5170\u7684\u5f53\u4ee3\u827a\u672f",
+        "node_type": "exhibition"
+    },
+    {
+        "body": "<p>\u4ee52015\u5e74\u4e2d\u963f\u535a\u89c8\u4f1a\u4e3b\u5bbe\u56fd\u7ea6\u65e6\u4e3a\u4e3b\u8981\u9080\u7ea6\u5c55\u89c8\u8303\u56f4\uff0c\u4ee5\u4e1c\u65b9\u89c6\u89c9\u5ba1\u7f8e\u6765\u8be0\u91ca\u7ea6\u65e6\u7684\u4f0a\u65af\u5170\u7f8e\u5b66\uff0c\u9080\u7ea6\u7ea6\u65e6\u7684\u5f53\u4ee3\u827a\u672f\u5bb6\u53c2\u5c55\u3002</p>\n",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/?q=sites/default/files/styles/large/public/exhibition/Fadi%20Daoud%E3%80%8ADervish%E3%80%8B%20109%C3%97%20153%E5%B8%83%E9%9D%A2%E4%B8%99%E7%83%AF%E7%94%BB%20%202014_2.jpg&amp;itok=55plpFbV\" width=\"480\" height=\"358\" alt=\"\" />",
+        "nid": "293",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u975e\u5e38\u7ea6\u65e6\u2014\u2014\u7ea6\u65e6\u5f53\u4ee3\u827a\u672f\u5c55",
+        "node_type": "exhibition"
+    },
+    {
+        "body": "<p>\u9080\u8bf7\u56fd\u9645\u5f53\u4ee3\u827a\u672f\u5bb6\u4ee5\u5e73\u9762\u3001\u96d5\u5851\u3001\u88c5\u7f6e\u5f62\u5f0f\uff0c\u5c55\u793a\u5f53\u4ee3\u827a\u672f\u5bb6\u8fd0\u7528\u4f20\u7edf\u6c11\u4fd7\u5143\u7d20\u8f6c\u6362\u6210\u521b\u4f5c\u7684\u5de7\u601d\u8fc7\u7a0b\uff0c\u5e76\u53d1\u5c55\u4e3a\u591a\u5143\u5316\u7684\u6587\u5316\u8bed\u5f59\uff0c\u5ef6\u5c55\u4e86\u4f20\u7edf\u6587\u5316\u7684\u5185\u6db5\u610f\u4e49\u4e0e\u4ef7\u503c\u3002</p>\n",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/QQ%E5%9B%BE%E7%89%8720140930112732_0.jpg?itok=HPPqkeBU\" width=\"480\" height=\"284\" alt=\"\" />",
+        "nid": "30",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u201c\u975e\u5e38\u6c11\u4fd7\u201d\u2014\u2014 \u5f53\u4ee3\u827a\u672f\u4e2d\u7684\u4f20\u7edf\u5143\u7d20\u8f6c\u6362",
+        "node_type": "exhibition"
+    },
+    {
+        "body": "<p>\u7531\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u4e3b\u529e\u7684\u513f\u7ae5\u4e92\u52a8\u827a\u672f\u5c55\u4e3b\u9898\u4e3a\u201c\u5a03\u5a03\u5916\u4f20\u2014\u955c\u5c4b\u9b54\u5e7b\u5e08\u201d\u3002</p>",
+        "field_image": "<img typeof=\"foaf:Image\" src=\"http://moca-yinchuan.com/admin/sites/default/files/styles/large/public/exhibition/%E5%86%85%E9%83%A8%E6%95%88%E6%9E%9C-%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84_2.jpg?itok=hvREEkgV\" width=\"480\" height=\"360\" alt=\"\" />",
+        "nid": "28",
+        "node_title": "\u94f6\u5ddd\u5f53\u4ee3\u7f8e\u672f\u9986\u5f00\u9986\u5c55\u201c\u6587\u660e\u7684\u7ef4\u5ea6\u201d\u4e4b\u201c\u5a03\u5a03\u5916\u4f20\u201d\u2014\u2014 \u955c\u5c4b\u9b54\u5e7b\u5e08",
+        "node_type": "exhibition"
+    }
+]

@@ -1,0 +1,80 @@
+.slider
+	width: 100%
+	position: relative
+	background-color: #ccc
+	.img-view, .text-view
+		width: 100%
+		overflow: hidden
+	.img-view
+		.img-con
+			position: relative
+			width: 100%
+			padding-bottom: 75%
+		.img-item
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			display: none
+			background-size: cover
+			background-position: center
+			padding-bottom: 75%
+		.img-item.current, .img-item.prev, .img-item.next
+			display: block
+		.img-item.prev
+			left: -100%
+		.img-item.next
+			left: 100%
+		.img-item.current
+			z-index: 1
+
+	.text-view
+		background-color: rgba(0,0,0,0.5)
+		color: white
+		z-index: 1
+		height: 60px
+		position: absolute
+		bottom: 0
+		left: 0
+		div
+			z-index: 0
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			padding-top: 20px
+			opacity: 0
+			display: none\9
+			font-size: 14px
+			line-height: 25px
+		div.current
+			opacity: 1
+			z-index: 1
+			display: block\9
+		h3
+			text-align: center
+			font-size: 18px
+			line-height: 40px
+			font-weight: bold
+			height: 40px
+			text-overflow: ellipsis
+
+	.nav-view
+		z-index: 2
+		position: absolute
+		width: 100%
+		height: 10px
+		bottom: 60px - 15px
+		text-align: center
+		p
+			display: inline-block
+			width: 10px
+			height: 10px
+			border-radius: 50%
+			cursor: pointer
+			background-color: white
+			margin: 5px
+		p.current
+			background-color: red
+
