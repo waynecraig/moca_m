@@ -1,0 +1,42 @@
+.menu
+	position: fixed
+	width: 100%
+	height: 100%
+	top: 0
+	left: -100%
+	z-index: 20
+	background: rgba(0,0,0,0)
+	transition: all 0.5s
+	ul
+		position: fixed
+		width: 300px
+		top: -50%
+		transition: top 0.5s
+		left: 50%
+		margin-top: -210px
+		margin-left: -150px
+		background: #fff
+		border-radius: 10px
+		li
+			list-style: none
+			line-height: 60px
+			border-bottom: solid 1px rgba(0,0,0,0.1)
+			a
+				display: block
+				height: 100%
+				text-decoration: none
+				color: #3b4043
+				font-size: 13px
+				.menu-head, .menu-tail
+					display: inline-block
+					width: 60px
+					text-align: center
+				.menu-tail
+					float: right
+				.menu-tail.active
+					color: #00bbb3
+.menu.open
+	background: rgba(0,0,0,0.8)
+	left: 0
+	ul
+		top: 50%

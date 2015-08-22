@@ -4,6 +4,7 @@ var Request = require('./request');
 var Header = require('./header');
 var Slider = require('./slider');
 var Entry = require('./entry');
+var Footer = require('./footer');
 
 var Index = React.createClass({
 
@@ -11,48 +12,46 @@ var Index = React.createClass({
 		return {
 			sliderData: [],
 			entries: [{
-				name: '参观指南',
-				icon: require('../img/0074-compass.svg'),
-				link: './visitorguide.html',
-				color: '#1cb6b6'
-			},{
-				name: '公共教育',
-				icon: require('../img/0034-library.svg'),
-				link: './education.html',
-				color: '#95c11f'
+				name: '展览',
+				icon: require('../img/nav_01.png'),
+				link: './exhibition.html'
 			},{
 				name: '研究典藏',
-				icon: require('../img/0033-books.svg'),
-				link: './collection.html',
-				color: '#513528'
+				icon: require('../img/nav_02.png'),
+				link: './collection.html'
 			},{
-				name: '关于我们',
-				icon: require('../img/0115-users.svg'),
-				link: './about.html',
-				color: '#f29200'
-			}],
-			entriesHeight: 0
+				name: '公共教育',
+				icon: require('../img/nav_03.png'),
+				link: './education.html'
+			},{
+				name: '关于美术馆',
+				icon: require('../img/nav_04.png'),
+				link: './about.html'
+			},{
+				name: '参观指南',
+				icon: require('../img/nav_05.png'),
+				link: './visitorGuide.html'
+			}]
 		};
 	},
 
 	render: function() {
-		var entriesStyle = {height: this.state.entriesHeight + 'px'};
 		return (
 			<div>
 				<Header/>
 				<Slider data={this.state.sliderData}></Slider>
-				<div className="entries" ref="entries" style={entriesStyle}>
+				<div className="entries" ref="entries">
 					{this.state.entries.map(function(item, i){
 						return (
 						<Entry key={i} 
 							name={item.name} 
 							icon={item.icon} 
 							link={item.link} 
-							color={item.color}
 						/>
 						)
 					})}
 				</div>
+				<Footer/>
 			</div>
 		)
 	},
@@ -63,10 +62,6 @@ var Index = React.createClass({
 			self.setState({sliderData: self.parseFrontData(data)});
 		}, function(err) {
 			console.log('get front data error', err);
-		});
-		this.adjustEntriesHeight();
-		window.addEventListener('resize', function(){
-			self.adjustEntriesHeight();
 		});
 	},
 
@@ -80,16 +75,8 @@ var Index = React.createClass({
 				id: item.nid
 			};
 		});
-	},
-
-	adjustEntriesHeight: function() {
-		var conHeight = this.getDOMNode().clientHeight,
-			bodyHeight = document.body.clientHeight,
-			currentHeight = React.findDOMNode(this.refs.entries).clientHeight,
-			targetHeight = bodyHeight - conHeight + currentHeight;
-		console.log(conHeight, bodyHeight, currentHeight, targetHeight);
-		this.setState({entriesHeight: targetHeight});
 	}
+
 });
 
 var index = <Index/>;

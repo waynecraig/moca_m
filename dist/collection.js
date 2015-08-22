@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./js/";
+/******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -44,108 +44,85 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(169);
+	__webpack_require__(1);
 	var React = __webpack_require__(5);
 	var Request = __webpack_require__(161);
 	var Header = __webpack_require__(162);
-	var Slider = __webpack_require__(171);
-	var Entry = __webpack_require__(166);
+	var Nav = __webpack_require__(169);
 
-	var Index = React.createClass({displayName: "Index",
+	var Collection = React.createClass({displayName: "Collection",
 
 		getInitialState: function() {
 			return {
-				sliderData: [],
-				entries: [{
-					name: '参观指南',
-					icon: __webpack_require__(174),
-					link: './visitorguide.html',
-					color: '#1cb6b6'
+				mainNav: [{
+					name: '典藏',
+					callback: function(){}
 				},{
-					name: '公共教育',
-					icon: __webpack_require__(175),
-					link: './education.html',
-					color: '#95c11f'
+					name: '出版物',
+					callback: function(){}
 				},{
-					name: '研究典藏',
-					icon: __webpack_require__(176),
-					link: './collection.html',
-					color: '#513528'
-				},{
-					name: '关于我们',
-					icon: __webpack_require__(177),
-					link: './about.html',
-					color: '#f29200'
-				}],
-				entriesHeight: 0
-			};
+					name: '学术交流',
+					callback: function(){}
+				}]
+			}
 		},
 
 		render: function() {
-			var entriesStyle = {height: this.state.entriesHeight + 'px'};
 			return (
 				React.createElement("div", null, 
 					React.createElement(Header, null), 
-					React.createElement(Slider, {data: this.state.sliderData}), 
-					React.createElement("div", {className: "entries", ref: "entries", style: entriesStyle}, 
-						this.state.entries.map(function(item, i){
-							return (
-							React.createElement(Entry, {key: i, 
-								name: item.name, 
-								icon: item.icon, 
-								link: item.link, 
-								color: item.color}
-							)
-							)
-						})
-					)
+					React.createElement(Nav, {data: this.state.mainNav})
 				)
 			)
-		},
-
-		componentDidMount: function() {
-			var self = this;
-			Request.get('m_front_cn.json', function(data) {
-				self.setState({sliderData: self.parseFrontData(data)});
-			}, function(err) {
-				console.log('get front data error', err);
-			});
-			this.adjustEntriesHeight();
-			window.addEventListener('resize', function(){
-				self.adjustEntriesHeight();
-			});
-		},
-
-		parseFrontData: function(responseText) {
-			return JSON.parse(responseText).map(function(item){
-				return {
-					title: item.node_title,
-					text: item.body.replace(/^<[^>]*>$/, ''),
-					imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
-					type: item.node_type,
-					id: item.nid
-				};
-			});
-		},
-
-		adjustEntriesHeight: function() {
-			var conHeight = this.getDOMNode().clientHeight,
-				bodyHeight = document.body.clientHeight,
-				currentHeight = React.findDOMNode(this.refs.entries).clientHeight,
-				targetHeight = bodyHeight - conHeight + currentHeight;
-			console.log(conHeight, bodyHeight, currentHeight, targetHeight);
-			this.setState({entriesHeight: targetHeight});
 		}
+
 	});
 
-	var index = React.createElement(Index, null);
-	React.render(index, document.body);
-
+	var collection = React.createElement(Collection, null);
+	React.render(collection, document.body);
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(2);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./collection.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./collection.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\n@font-face {\n  font-family: 'IcoMoon-Free';\n  src: url(" + __webpack_require__(175) + ") format(\"truetype\");\n  font-weight: normal;\n  font-style: normal; }\n\n.icon {\n  font-family: 'IcoMoon-Free';\n  speak: none;\n  font-style: normal;\n  font-weight: normal;\n  font-variant: normal;\n  text-transform: none;\n  line-height: 1;\n  /* Enable Ligatures ================ */\n  -webkit-font-feature-settings: \"liga\";\n  -moz-font-feature-settings: \"liga=1\";\n  -moz-font-feature-settings: \"liga\";\n  -ms-font-feature-settings: \"liga\" 1;\n  -o-font-feature-settings: \"liga\";\n  font-feature-settings: \"liga\";\n  /* Better Font Rendering =========== */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-home:before {\n  content: \"\\E900\"; }\n\n.icon-home2:before {\n  content: \"\\E901\"; }\n\n.icon-home3:before {\n  content: \"\\E902\"; }\n\n.icon-office:before {\n  content: \"\\E903\"; }\n\n.icon-newspaper:before {\n  content: \"\\E904\"; }\n\n.icon-pencil:before {\n  content: \"\\E905\"; }\n\n.icon-pencil2:before {\n  content: \"\\E906\"; }\n\n.icon-quill:before {\n  content: \"\\E907\"; }\n\n.icon-pen:before {\n  content: \"\\E908\"; }\n\n.icon-blog:before {\n  content: \"\\E909\"; }\n\n.icon-eyedropper:before {\n  content: \"\\E90A\"; }\n\n.icon-droplet:before {\n  content: \"\\E90B\"; }\n\n.icon-paint-format:before {\n  content: \"\\E90C\"; }\n\n.icon-image:before {\n  content: \"\\E90D\"; }\n\n.icon-images:before {\n  content: \"\\E90E\"; }\n\n.icon-camera:before {\n  content: \"\\E90F\"; }\n\n.icon-headphones:before {\n  content: \"\\E910\"; }\n\n.icon-music:before {\n  content: \"\\E911\"; }\n\n.icon-play:before {\n  content: \"\\E912\"; }\n\n.icon-film:before {\n  content: \"\\E913\"; }\n\n.icon-video-camera:before {\n  content: \"\\E914\"; }\n\n.icon-dice:before {\n  content: \"\\E915\"; }\n\n.icon-pacman:before {\n  content: \"\\E916\"; }\n\n.icon-spades:before {\n  content: \"\\E917\"; }\n\n.icon-clubs:before {\n  content: \"\\E918\"; }\n\n.icon-diamonds:before {\n  content: \"\\E919\"; }\n\n.icon-bullhorn:before {\n  content: \"\\E91A\"; }\n\n.icon-connection:before {\n  content: \"\\E91B\"; }\n\n.icon-podcast:before {\n  content: \"\\E91C\"; }\n\n.icon-feed:before {\n  content: \"\\E91D\"; }\n\n.icon-mic:before {\n  content: \"\\E91E\"; }\n\n.icon-book:before {\n  content: \"\\E91F\"; }\n\n.icon-books:before {\n  content: \"\\E920\"; }\n\n.icon-library:before {\n  content: \"\\E921\"; }\n\n.icon-file-text:before {\n  content: \"\\E922\"; }\n\n.icon-profile:before {\n  content: \"\\E923\"; }\n\n.icon-file-empty:before {\n  content: \"\\E924\"; }\n\n.icon-files-empty:before {\n  content: \"\\E925\"; }\n\n.icon-file-text2:before {\n  content: \"\\E926\"; }\n\n.icon-file-picture:before {\n  content: \"\\E927\"; }\n\n.icon-file-music:before {\n  content: \"\\E928\"; }\n\n.icon-file-play:before {\n  content: \"\\E929\"; }\n\n.icon-file-video:before {\n  content: \"\\E92A\"; }\n\n.icon-file-zip:before {\n  content: \"\\E92B\"; }\n\n.icon-copy:before {\n  content: \"\\E92C\"; }\n\n.icon-paste:before {\n  content: \"\\E92D\"; }\n\n.icon-stack:before {\n  content: \"\\E92E\"; }\n\n.icon-folder:before {\n  content: \"\\E92F\"; }\n\n.icon-folder-open:before {\n  content: \"\\E930\"; }\n\n.icon-folder-plus:before {\n  content: \"\\E931\"; }\n\n.icon-folder-minus:before {\n  content: \"\\E932\"; }\n\n.icon-folder-download:before {\n  content: \"\\E933\"; }\n\n.icon-folder-upload:before {\n  content: \"\\E934\"; }\n\n.icon-price-tag:before {\n  content: \"\\E935\"; }\n\n.icon-price-tags:before {\n  content: \"\\E936\"; }\n\n.icon-barcode:before {\n  content: \"\\E937\"; }\n\n.icon-qrcode:before {\n  content: \"\\E938\"; }\n\n.icon-ticket:before {\n  content: \"\\E939\"; }\n\n.icon-cart:before {\n  content: \"\\E93A\"; }\n\n.icon-coin-dollar:before {\n  content: \"\\E93B\"; }\n\n.icon-coin-euro:before {\n  content: \"\\E93C\"; }\n\n.icon-coin-pound:before {\n  content: \"\\E93D\"; }\n\n.icon-coin-yen:before {\n  content: \"\\E93E\"; }\n\n.icon-credit-card:before {\n  content: \"\\E93F\"; }\n\n.icon-calculator:before {\n  content: \"\\E940\"; }\n\n.icon-lifebuoy:before {\n  content: \"\\E941\"; }\n\n.icon-phone:before {\n  content: \"\\E942\"; }\n\n.icon-phone-hang-up:before {\n  content: \"\\E943\"; }\n\n.icon-address-book:before {\n  content: \"\\E944\"; }\n\n.icon-envelop:before {\n  content: \"\\E945\"; }\n\n.icon-pushpin:before {\n  content: \"\\E946\"; }\n\n.icon-location:before {\n  content: \"\\E947\"; }\n\n.icon-location2:before {\n  content: \"\\E948\"; }\n\n.icon-compass:before {\n  content: \"\\E949\"; }\n\n.icon-compass2:before {\n  content: \"\\E94A\"; }\n\n.icon-map:before {\n  content: \"\\E94B\"; }\n\n.icon-map2:before {\n  content: \"\\E94C\"; }\n\n.icon-history:before {\n  content: \"\\E94D\"; }\n\n.icon-clock:before {\n  content: \"\\E94E\"; }\n\n.icon-clock2:before {\n  content: \"\\E94F\"; }\n\n.icon-alarm:before {\n  content: \"\\E950\"; }\n\n.icon-bell:before {\n  content: \"\\E951\"; }\n\n.icon-stopwatch:before {\n  content: \"\\E952\"; }\n\n.icon-calendar:before {\n  content: \"\\E953\"; }\n\n.icon-printer:before {\n  content: \"\\E954\"; }\n\n.icon-keyboard:before {\n  content: \"\\E955\"; }\n\n.icon-display:before {\n  content: \"\\E956\"; }\n\n.icon-laptop:before {\n  content: \"\\E957\"; }\n\n.icon-mobile:before {\n  content: \"\\E958\"; }\n\n.icon-mobile2:before {\n  content: \"\\E959\"; }\n\n.icon-tablet:before {\n  content: \"\\E95A\"; }\n\n.icon-tv:before {\n  content: \"\\E95B\"; }\n\n.icon-drawer:before {\n  content: \"\\E95C\"; }\n\n.icon-drawer2:before {\n  content: \"\\E95D\"; }\n\n.icon-box-add:before {\n  content: \"\\E95E\"; }\n\n.icon-box-remove:before {\n  content: \"\\E95F\"; }\n\n.icon-download:before {\n  content: \"\\E960\"; }\n\n.icon-upload:before {\n  content: \"\\E961\"; }\n\n.icon-floppy-disk:before {\n  content: \"\\E962\"; }\n\n.icon-drive:before {\n  content: \"\\E963\"; }\n\n.icon-database:before {\n  content: \"\\E964\"; }\n\n.icon-undo:before {\n  content: \"\\E965\"; }\n\n.icon-redo:before {\n  content: \"\\E966\"; }\n\n.icon-undo2:before {\n  content: \"\\E967\"; }\n\n.icon-redo2:before {\n  content: \"\\E968\"; }\n\n.icon-forward:before {\n  content: \"\\E969\"; }\n\n.icon-reply:before {\n  content: \"\\E96A\"; }\n\n.icon-bubble:before {\n  content: \"\\E96B\"; }\n\n.icon-bubbles:before {\n  content: \"\\E96C\"; }\n\n.icon-bubbles2:before {\n  content: \"\\E96D\"; }\n\n.icon-bubble2:before {\n  content: \"\\E96E\"; }\n\n.icon-bubbles3:before {\n  content: \"\\E96F\"; }\n\n.icon-bubbles4:before {\n  content: \"\\E970\"; }\n\n.icon-user:before {\n  content: \"\\E971\"; }\n\n.icon-users:before {\n  content: \"\\E972\"; }\n\n.icon-user-plus:before {\n  content: \"\\E973\"; }\n\n.icon-user-minus:before {\n  content: \"\\E974\"; }\n\n.icon-user-check:before {\n  content: \"\\E975\"; }\n\n.icon-user-tie:before {\n  content: \"\\E976\"; }\n\n.icon-quotes-left:before {\n  content: \"\\E977\"; }\n\n.icon-quotes-right:before {\n  content: \"\\E978\"; }\n\n.icon-hour-glass:before {\n  content: \"\\E979\"; }\n\n.icon-spinner:before {\n  content: \"\\E97A\"; }\n\n.icon-spinner2:before {\n  content: \"\\E97B\"; }\n\n.icon-spinner3:before {\n  content: \"\\E97C\"; }\n\n.icon-spinner4:before {\n  content: \"\\E97D\"; }\n\n.icon-spinner5:before {\n  content: \"\\E97E\"; }\n\n.icon-spinner6:before {\n  content: \"\\E97F\"; }\n\n.icon-spinner7:before {\n  content: \"\\E980\"; }\n\n.icon-spinner8:before {\n  content: \"\\E981\"; }\n\n.icon-spinner9:before {\n  content: \"\\E982\"; }\n\n.icon-spinner10:before {\n  content: \"\\E983\"; }\n\n.icon-spinner11:before {\n  content: \"\\E984\"; }\n\n.icon-binoculars:before {\n  content: \"\\E985\"; }\n\n.icon-search:before {\n  content: \"\\E986\"; }\n\n.icon-zoom-in:before {\n  content: \"\\E987\"; }\n\n.icon-zoom-out:before {\n  content: \"\\E988\"; }\n\n.icon-enlarge:before {\n  content: \"\\E989\"; }\n\n.icon-shrink:before {\n  content: \"\\E98A\"; }\n\n.icon-enlarge2:before {\n  content: \"\\E98B\"; }\n\n.icon-shrink2:before {\n  content: \"\\E98C\"; }\n\n.icon-key:before {\n  content: \"\\E98D\"; }\n\n.icon-key2:before {\n  content: \"\\E98E\"; }\n\n.icon-lock:before {\n  content: \"\\E98F\"; }\n\n.icon-unlocked:before {\n  content: \"\\E990\"; }\n\n.icon-wrench:before {\n  content: \"\\E991\"; }\n\n.icon-equalizer:before {\n  content: \"\\E992\"; }\n\n.icon-equalizer2:before {\n  content: \"\\E993\"; }\n\n.icon-cog:before {\n  content: \"\\E994\"; }\n\n.icon-cogs:before {\n  content: \"\\E995\"; }\n\n.icon-hammer:before {\n  content: \"\\E996\"; }\n\n.icon-magic-wand:before {\n  content: \"\\E997\"; }\n\n.icon-aid-kit:before {\n  content: \"\\E998\"; }\n\n.icon-bug:before {\n  content: \"\\E999\"; }\n\n.icon-pie-chart:before {\n  content: \"\\E99A\"; }\n\n.icon-stats-dots:before {\n  content: \"\\E99B\"; }\n\n.icon-stats-bars:before {\n  content: \"\\E99C\"; }\n\n.icon-stats-bars2:before {\n  content: \"\\E99D\"; }\n\n.icon-trophy:before {\n  content: \"\\E99E\"; }\n\n.icon-gift:before {\n  content: \"\\E99F\"; }\n\n.icon-glass:before {\n  content: \"\\E9A0\"; }\n\n.icon-glass2:before {\n  content: \"\\E9A1\"; }\n\n.icon-mug:before {\n  content: \"\\E9A2\"; }\n\n.icon-spoon-knife:before {\n  content: \"\\E9A3\"; }\n\n.icon-leaf:before {\n  content: \"\\E9A4\"; }\n\n.icon-rocket:before {\n  content: \"\\E9A5\"; }\n\n.icon-meter:before {\n  content: \"\\E9A6\"; }\n\n.icon-meter2:before {\n  content: \"\\E9A7\"; }\n\n.icon-hammer2:before {\n  content: \"\\E9A8\"; }\n\n.icon-fire:before {\n  content: \"\\E9A9\"; }\n\n.icon-lab:before {\n  content: \"\\E9AA\"; }\n\n.icon-magnet:before {\n  content: \"\\E9AB\"; }\n\n.icon-bin:before {\n  content: \"\\E9AC\"; }\n\n.icon-bin2:before {\n  content: \"\\E9AD\"; }\n\n.icon-briefcase:before {\n  content: \"\\E9AE\"; }\n\n.icon-airplane:before {\n  content: \"\\E9AF\"; }\n\n.icon-truck:before {\n  content: \"\\E9B0\"; }\n\n.icon-road:before {\n  content: \"\\E9B1\"; }\n\n.icon-accessibility:before {\n  content: \"\\E9B2\"; }\n\n.icon-target:before {\n  content: \"\\E9B3\"; }\n\n.icon-shield:before {\n  content: \"\\E9B4\"; }\n\n.icon-power:before {\n  content: \"\\E9B5\"; }\n\n.icon-switch:before {\n  content: \"\\E9B6\"; }\n\n.icon-power-cord:before {\n  content: \"\\E9B7\"; }\n\n.icon-clipboard:before {\n  content: \"\\E9B8\"; }\n\n.icon-list-numbered:before {\n  content: \"\\E9B9\"; }\n\n.icon-list:before {\n  content: \"\\E9BA\"; }\n\n.icon-list2:before {\n  content: \"\\E9BB\"; }\n\n.icon-tree:before {\n  content: \"\\E9BC\"; }\n\n.icon-menu:before {\n  content: \"\\E9BD\"; }\n\n.icon-menu2:before {\n  content: \"\\E9BE\"; }\n\n.icon-menu3:before {\n  content: \"\\E9BF\"; }\n\n.icon-menu4:before {\n  content: \"\\E9C0\"; }\n\n.icon-cloud:before {\n  content: \"\\E9C1\"; }\n\n.icon-cloud-download:before {\n  content: \"\\E9C2\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\E9C3\"; }\n\n.icon-cloud-check:before {\n  content: \"\\E9C4\"; }\n\n.icon-download2:before {\n  content: \"\\E9C5\"; }\n\n.icon-upload2:before {\n  content: \"\\E9C6\"; }\n\n.icon-download3:before {\n  content: \"\\E9C7\"; }\n\n.icon-upload3:before {\n  content: \"\\E9C8\"; }\n\n.icon-sphere:before {\n  content: \"\\E9C9\"; }\n\n.icon-earth:before {\n  content: \"\\E9CA\"; }\n\n.icon-link:before {\n  content: \"\\E9CB\"; }\n\n.icon-flag:before {\n  content: \"\\E9CC\"; }\n\n.icon-attachment:before {\n  content: \"\\E9CD\"; }\n\n.icon-eye:before {\n  content: \"\\E9CE\"; }\n\n.icon-eye-plus:before {\n  content: \"\\E9CF\"; }\n\n.icon-eye-minus:before {\n  content: \"\\E9D0\"; }\n\n.icon-eye-blocked:before {\n  content: \"\\E9D1\"; }\n\n.icon-bookmark:before {\n  content: \"\\E9D2\"; }\n\n.icon-bookmarks:before {\n  content: \"\\E9D3\"; }\n\n.icon-sun:before {\n  content: \"\\E9D4\"; }\n\n.icon-contrast:before {\n  content: \"\\E9D5\"; }\n\n.icon-brightness-contrast:before {\n  content: \"\\E9D6\"; }\n\n.icon-star-empty:before {\n  content: \"\\E9D7\"; }\n\n.icon-star-half:before {\n  content: \"\\E9D8\"; }\n\n.icon-star-full:before {\n  content: \"\\E9D9\"; }\n\n.icon-heart:before {\n  content: \"\\E9DA\"; }\n\n.icon-heart-broken:before {\n  content: \"\\E9DB\"; }\n\n.icon-man:before {\n  content: \"\\E9DC\"; }\n\n.icon-woman:before {\n  content: \"\\E9DD\"; }\n\n.icon-man-woman:before {\n  content: \"\\E9DE\"; }\n\n.icon-happy:before {\n  content: \"\\E9DF\"; }\n\n.icon-happy2:before {\n  content: \"\\E9E0\"; }\n\n.icon-smile:before {\n  content: \"\\E9E1\"; }\n\n.icon-smile2:before {\n  content: \"\\E9E2\"; }\n\n.icon-tongue:before {\n  content: \"\\E9E3\"; }\n\n.icon-tongue2:before {\n  content: \"\\E9E4\"; }\n\n.icon-sad:before {\n  content: \"\\E9E5\"; }\n\n.icon-sad2:before {\n  content: \"\\E9E6\"; }\n\n.icon-wink:before {\n  content: \"\\E9E7\"; }\n\n.icon-wink2:before {\n  content: \"\\E9E8\"; }\n\n.icon-grin:before {\n  content: \"\\E9E9\"; }\n\n.icon-grin2:before {\n  content: \"\\E9EA\"; }\n\n.icon-cool:before {\n  content: \"\\E9EB\"; }\n\n.icon-cool2:before {\n  content: \"\\E9EC\"; }\n\n.icon-angry:before {\n  content: \"\\E9ED\"; }\n\n.icon-angry2:before {\n  content: \"\\E9EE\"; }\n\n.icon-evil:before {\n  content: \"\\E9EF\"; }\n\n.icon-evil2:before {\n  content: \"\\E9F0\"; }\n\n.icon-shocked:before {\n  content: \"\\E9F1\"; }\n\n.icon-shocked2:before {\n  content: \"\\E9F2\"; }\n\n.icon-baffled:before {\n  content: \"\\E9F3\"; }\n\n.icon-baffled2:before {\n  content: \"\\E9F4\"; }\n\n.icon-confused:before {\n  content: \"\\E9F5\"; }\n\n.icon-confused2:before {\n  content: \"\\E9F6\"; }\n\n.icon-neutral:before {\n  content: \"\\E9F7\"; }\n\n.icon-neutral2:before {\n  content: \"\\E9F8\"; }\n\n.icon-hipster:before {\n  content: \"\\E9F9\"; }\n\n.icon-hipster2:before {\n  content: \"\\E9FA\"; }\n\n.icon-wondering:before {\n  content: \"\\E9FB\"; }\n\n.icon-wondering2:before {\n  content: \"\\E9FC\"; }\n\n.icon-sleepy:before {\n  content: \"\\E9FD\"; }\n\n.icon-sleepy2:before {\n  content: \"\\E9FE\"; }\n\n.icon-frustrated:before {\n  content: \"\\E9FF\"; }\n\n.icon-frustrated2:before {\n  content: \"\\EA00\"; }\n\n.icon-crying:before {\n  content: \"\\EA01\"; }\n\n.icon-crying2:before {\n  content: \"\\EA02\"; }\n\n.icon-point-up:before {\n  content: \"\\EA03\"; }\n\n.icon-point-right:before {\n  content: \"\\EA04\"; }\n\n.icon-point-down:before {\n  content: \"\\EA05\"; }\n\n.icon-point-left:before {\n  content: \"\\EA06\"; }\n\n.icon-warning:before {\n  content: \"\\EA07\"; }\n\n.icon-notification:before {\n  content: \"\\EA08\"; }\n\n.icon-question:before {\n  content: \"\\EA09\"; }\n\n.icon-plus:before {\n  content: \"\\EA0A\"; }\n\n.icon-minus:before {\n  content: \"\\EA0B\"; }\n\n.icon-info:before {\n  content: \"\\EA0C\"; }\n\n.icon-cancel-circle:before {\n  content: \"\\EA0D\"; }\n\n.icon-blocked:before {\n  content: \"\\EA0E\"; }\n\n.icon-cross:before {\n  content: \"\\EA0F\"; }\n\n.icon-checkmark:before {\n  content: \"\\EA10\"; }\n\n.icon-checkmark2:before {\n  content: \"\\EA11\"; }\n\n.icon-spell-check:before {\n  content: \"\\EA12\"; }\n\n.icon-enter:before {\n  content: \"\\EA13\"; }\n\n.icon-exit:before {\n  content: \"\\EA14\"; }\n\n.icon-play2:before {\n  content: \"\\EA15\"; }\n\n.icon-pause:before {\n  content: \"\\EA16\"; }\n\n.icon-stop:before {\n  content: \"\\EA17\"; }\n\n.icon-previous:before {\n  content: \"\\EA18\"; }\n\n.icon-next:before {\n  content: \"\\EA19\"; }\n\n.icon-backward:before {\n  content: \"\\EA1A\"; }\n\n.icon-forward2:before {\n  content: \"\\EA1B\"; }\n\n.icon-play3:before {\n  content: \"\\EA1C\"; }\n\n.icon-pause2:before {\n  content: \"\\EA1D\"; }\n\n.icon-stop2:before {\n  content: \"\\EA1E\"; }\n\n.icon-backward2:before {\n  content: \"\\EA1F\"; }\n\n.icon-forward3:before {\n  content: \"\\EA20\"; }\n\n.icon-first:before {\n  content: \"\\EA21\"; }\n\n.icon-last:before {\n  content: \"\\EA22\"; }\n\n.icon-previous2:before {\n  content: \"\\EA23\"; }\n\n.icon-next2:before {\n  content: \"\\EA24\"; }\n\n.icon-eject:before {\n  content: \"\\EA25\"; }\n\n.icon-volume-high:before {\n  content: \"\\EA26\"; }\n\n.icon-volume-medium:before {\n  content: \"\\EA27\"; }\n\n.icon-volume-low:before {\n  content: \"\\EA28\"; }\n\n.icon-volume-mute:before {\n  content: \"\\EA29\"; }\n\n.icon-volume-mute2:before {\n  content: \"\\EA2A\"; }\n\n.icon-volume-increase:before {\n  content: \"\\EA2B\"; }\n\n.icon-volume-decrease:before {\n  content: \"\\EA2C\"; }\n\n.icon-loop:before {\n  content: \"\\EA2D\"; }\n\n.icon-loop2:before {\n  content: \"\\EA2E\"; }\n\n.icon-infinite:before {\n  content: \"\\EA2F\"; }\n\n.icon-shuffle:before {\n  content: \"\\EA30\"; }\n\n.icon-arrow-up-left:before {\n  content: \"\\EA31\"; }\n\n.icon-arrow-up:before {\n  content: \"\\EA32\"; }\n\n.icon-arrow-up-right:before {\n  content: \"\\EA33\"; }\n\n.icon-arrow-right:before {\n  content: \"\\EA34\"; }\n\n.icon-arrow-down-right:before {\n  content: \"\\EA35\"; }\n\n.icon-arrow-down:before {\n  content: \"\\EA36\"; }\n\n.icon-arrow-down-left:before {\n  content: \"\\EA37\"; }\n\n.icon-arrow-left:before {\n  content: \"\\EA38\"; }\n\n.icon-arrow-up-left2:before {\n  content: \"\\EA39\"; }\n\n.icon-arrow-up2:before {\n  content: \"\\EA3A\"; }\n\n.icon-arrow-up-right2:before {\n  content: \"\\EA3B\"; }\n\n.icon-arrow-right2:before {\n  content: \"\\EA3C\"; }\n\n.icon-arrow-down-right2:before {\n  content: \"\\EA3D\"; }\n\n.icon-arrow-down2:before {\n  content: \"\\EA3E\"; }\n\n.icon-arrow-down-left2:before {\n  content: \"\\EA3F\"; }\n\n.icon-arrow-left2:before {\n  content: \"\\EA40\"; }\n\n.icon-circle-up:before {\n  content: \"\\EA41\"; }\n\n.icon-circle-right:before {\n  content: \"\\EA42\"; }\n\n.icon-circle-down:before {\n  content: \"\\EA43\"; }\n\n.icon-circle-left:before {\n  content: \"\\EA44\"; }\n\n.icon-tab:before {\n  content: \"\\EA45\"; }\n\n.icon-move-up:before {\n  content: \"\\EA46\"; }\n\n.icon-move-down:before {\n  content: \"\\EA47\"; }\n\n.icon-sort-alpha-asc:before {\n  content: \"\\EA48\"; }\n\n.icon-sort-alpha-desc:before {\n  content: \"\\EA49\"; }\n\n.icon-sort-numeric-asc:before {\n  content: \"\\EA4A\"; }\n\n.icon-sort-numberic-desc:before {\n  content: \"\\EA4B\"; }\n\n.icon-sort-amount-asc:before {\n  content: \"\\EA4C\"; }\n\n.icon-sort-amount-desc:before {\n  content: \"\\EA4D\"; }\n\n.icon-command:before {\n  content: \"\\EA4E\"; }\n\n.icon-shift:before {\n  content: \"\\EA4F\"; }\n\n.icon-ctrl:before {\n  content: \"\\EA50\"; }\n\n.icon-opt:before {\n  content: \"\\EA51\"; }\n\n.icon-checkbox-checked:before {\n  content: \"\\EA52\"; }\n\n.icon-checkbox-unchecked:before {\n  content: \"\\EA53\"; }\n\n.icon-radio-checked:before {\n  content: \"\\EA54\"; }\n\n.icon-radio-checked2:before {\n  content: \"\\EA55\"; }\n\n.icon-radio-unchecked:before {\n  content: \"\\EA56\"; }\n\n.icon-crop:before {\n  content: \"\\EA57\"; }\n\n.icon-make-group:before {\n  content: \"\\EA58\"; }\n\n.icon-ungroup:before {\n  content: \"\\EA59\"; }\n\n.icon-scissors:before {\n  content: \"\\EA5A\"; }\n\n.icon-filter:before {\n  content: \"\\EA5B\"; }\n\n.icon-font:before {\n  content: \"\\EA5C\"; }\n\n.icon-ligature:before {\n  content: \"\\EA5D\"; }\n\n.icon-ligature2:before {\n  content: \"\\EA5E\"; }\n\n.icon-text-height:before {\n  content: \"\\EA5F\"; }\n\n.icon-text-width:before {\n  content: \"\\EA60\"; }\n\n.icon-font-size:before {\n  content: \"\\EA61\"; }\n\n.icon-bold:before {\n  content: \"\\EA62\"; }\n\n.icon-underline:before {\n  content: \"\\EA63\"; }\n\n.icon-italic:before {\n  content: \"\\EA64\"; }\n\n.icon-strikethrough:before {\n  content: \"\\EA65\"; }\n\n.icon-omega:before {\n  content: \"\\EA66\"; }\n\n.icon-sigma:before {\n  content: \"\\EA67\"; }\n\n.icon-page-break:before {\n  content: \"\\EA68\"; }\n\n.icon-superscript:before {\n  content: \"\\EA69\"; }\n\n.icon-subscript:before {\n  content: \"\\EA6A\"; }\n\n.icon-superscript2:before {\n  content: \"\\EA6B\"; }\n\n.icon-subscript2:before {\n  content: \"\\EA6C\"; }\n\n.icon-text-color:before {\n  content: \"\\EA6D\"; }\n\n.icon-pagebreak:before {\n  content: \"\\EA6E\"; }\n\n.icon-clear-formatting:before {\n  content: \"\\EA6F\"; }\n\n.icon-table:before {\n  content: \"\\EA70\"; }\n\n.icon-table2:before {\n  content: \"\\EA71\"; }\n\n.icon-insert-template:before {\n  content: \"\\EA72\"; }\n\n.icon-pilcrow:before {\n  content: \"\\EA73\"; }\n\n.icon-ltr:before {\n  content: \"\\EA74\"; }\n\n.icon-rtl:before {\n  content: \"\\EA75\"; }\n\n.icon-section:before {\n  content: \"\\EA76\"; }\n\n.icon-paragraph-left:before {\n  content: \"\\EA77\"; }\n\n.icon-paragraph-center:before {\n  content: \"\\EA78\"; }\n\n.icon-paragraph-right:before {\n  content: \"\\EA79\"; }\n\n.icon-paragraph-justify:before {\n  content: \"\\EA7A\"; }\n\n.icon-indent-increase:before {\n  content: \"\\EA7B\"; }\n\n.icon-indent-decrease:before {\n  content: \"\\EA7C\"; }\n\n.icon-share:before {\n  content: \"\\EA7D\"; }\n\n.icon-new-tab:before {\n  content: \"\\EA7E\"; }\n\n.icon-embed:before {\n  content: \"\\EA7F\"; }\n\n.icon-embed2:before {\n  content: \"\\EA80\"; }\n\n.icon-terminal:before {\n  content: \"\\EA81\"; }\n\n.icon-share2:before {\n  content: \"\\EA82\"; }\n\n.icon-mail:before {\n  content: \"\\EA83\"; }\n\n.icon-mail2:before {\n  content: \"\\EA84\"; }\n\n.icon-mail3:before {\n  content: \"\\EA85\"; }\n\n.icon-mail4:before {\n  content: \"\\EA86\"; }\n\n.icon-google:before {\n  content: \"\\EA87\"; }\n\n.icon-google-plus:before {\n  content: \"\\EA88\"; }\n\n.icon-google-plus2:before {\n  content: \"\\EA89\"; }\n\n.icon-google-plus3:before {\n  content: \"\\EA8A\"; }\n\n.icon-google-drive:before {\n  content: \"\\EA8B\"; }\n\n.icon-facebook:before {\n  content: \"\\EA8C\"; }\n\n.icon-facebook2:before {\n  content: \"\\EA8D\"; }\n\n.icon-facebook3:before {\n  content: \"\\EA8E\"; }\n\n.icon-ello:before {\n  content: \"\\EA8F\"; }\n\n.icon-instagram:before {\n  content: \"\\EA90\"; }\n\n.icon-twitter:before {\n  content: \"\\EA91\"; }\n\n.icon-twitter2:before {\n  content: \"\\EA92\"; }\n\n.icon-twitter3:before {\n  content: \"\\EA93\"; }\n\n.icon-feed2:before {\n  content: \"\\EA94\"; }\n\n.icon-feed3:before {\n  content: \"\\EA95\"; }\n\n.icon-feed4:before {\n  content: \"\\EA96\"; }\n\n.icon-youtube:before {\n  content: \"\\EA97\"; }\n\n.icon-youtube2:before {\n  content: \"\\EA98\"; }\n\n.icon-youtube3:before {\n  content: \"\\EA99\"; }\n\n.icon-youtube4:before {\n  content: \"\\EA9A\"; }\n\n.icon-twitch:before {\n  content: \"\\EA9B\"; }\n\n.icon-vimeo:before {\n  content: \"\\EA9C\"; }\n\n.icon-vimeo2:before {\n  content: \"\\EA9D\"; }\n\n.icon-vimeo3:before {\n  content: \"\\EA9E\"; }\n\n.icon-lanyrd:before {\n  content: \"\\EA9F\"; }\n\n.icon-flickr:before {\n  content: \"\\EAA0\"; }\n\n.icon-flickr2:before {\n  content: \"\\EAA1\"; }\n\n.icon-flickr3:before {\n  content: \"\\EAA2\"; }\n\n.icon-flickr4:before {\n  content: \"\\EAA3\"; }\n\n.icon-picassa:before {\n  content: \"\\EAA4\"; }\n\n.icon-picassa2:before {\n  content: \"\\EAA5\"; }\n\n.icon-dribbble:before {\n  content: \"\\EAA6\"; }\n\n.icon-dribbble2:before {\n  content: \"\\EAA7\"; }\n\n.icon-dribbble3:before {\n  content: \"\\EAA8\"; }\n\n.icon-forrst:before {\n  content: \"\\EAA9\"; }\n\n.icon-forrst2:before {\n  content: \"\\EAAA\"; }\n\n.icon-deviantart:before {\n  content: \"\\EAAB\"; }\n\n.icon-deviantart2:before {\n  content: \"\\EAAC\"; }\n\n.icon-steam:before {\n  content: \"\\EAAD\"; }\n\n.icon-steam2:before {\n  content: \"\\EAAE\"; }\n\n.icon-dropbox:before {\n  content: \"\\EAAF\"; }\n\n.icon-onedrive:before {\n  content: \"\\EAB0\"; }\n\n.icon-github:before {\n  content: \"\\EAB1\"; }\n\n.icon-github2:before {\n  content: \"\\EAB2\"; }\n\n.icon-github3:before {\n  content: \"\\EAB3\"; }\n\n.icon-github4:before {\n  content: \"\\EAB4\"; }\n\n.icon-github5:before {\n  content: \"\\EAB5\"; }\n\n.icon-wordpress:before {\n  content: \"\\EAB6\"; }\n\n.icon-wordpress2:before {\n  content: \"\\EAB7\"; }\n\n.icon-joomla:before {\n  content: \"\\EAB8\"; }\n\n.icon-blogger:before {\n  content: \"\\EAB9\"; }\n\n.icon-blogger2:before {\n  content: \"\\EABA\"; }\n\n.icon-tumblr:before {\n  content: \"\\EABB\"; }\n\n.icon-tumblr2:before {\n  content: \"\\EABC\"; }\n\n.icon-yahoo:before {\n  content: \"\\EABD\"; }\n\n.icon-tux:before {\n  content: \"\\EABE\"; }\n\n.icon-apple:before {\n  content: \"\\EABF\"; }\n\n.icon-finder:before {\n  content: \"\\EAC0\"; }\n\n.icon-android:before {\n  content: \"\\EAC1\"; }\n\n.icon-windows:before {\n  content: \"\\EAC2\"; }\n\n.icon-windows8:before {\n  content: \"\\EAC3\"; }\n\n.icon-soundcloud:before {\n  content: \"\\EAC4\"; }\n\n.icon-soundcloud2:before {\n  content: \"\\EAC5\"; }\n\n.icon-skype:before {\n  content: \"\\EAC6\"; }\n\n.icon-reddit:before {\n  content: \"\\EAC7\"; }\n\n.icon-linkedin:before {\n  content: \"\\EAC8\"; }\n\n.icon-linkedin2:before {\n  content: \"\\EAC9\"; }\n\n.icon-lastfm:before {\n  content: \"\\EACA\"; }\n\n.icon-lastfm2:before {\n  content: \"\\EACB\"; }\n\n.icon-delicious:before {\n  content: \"\\EACC\"; }\n\n.icon-stumbleupon:before {\n  content: \"\\EACD\"; }\n\n.icon-stumbleupon2:before {\n  content: \"\\EACE\"; }\n\n.icon-stackoverflow:before {\n  content: \"\\EACF\"; }\n\n.icon-pinterest:before {\n  content: \"\\EAD0\"; }\n\n.icon-pinterest2:before {\n  content: \"\\EAD1\"; }\n\n.icon-xing:before {\n  content: \"\\EAD2\"; }\n\n.icon-xing2:before {\n  content: \"\\EAD3\"; }\n\n.icon-flattr:before {\n  content: \"\\EAD4\"; }\n\n.icon-foursquare:before {\n  content: \"\\EAD5\"; }\n\n.icon-paypal:before {\n  content: \"\\EAD6\"; }\n\n.icon-paypal2:before {\n  content: \"\\EAD7\"; }\n\n.icon-paypal3:before {\n  content: \"\\EAD8\"; }\n\n.icon-yelp:before {\n  content: \"\\EAD9\"; }\n\n.icon-file-pdf:before {\n  content: \"\\EADA\"; }\n\n.icon-file-openoffice:before {\n  content: \"\\EADB\"; }\n\n.icon-file-word:before {\n  content: \"\\EADC\"; }\n\n.icon-file-excel:before {\n  content: \"\\EADD\"; }\n\n.icon-libreoffice:before {\n  content: \"\\EADE\"; }\n\n.icon-html5:before {\n  content: \"\\EADF\"; }\n\n.icon-html52:before {\n  content: \"\\EAE0\"; }\n\n.icon-css3:before {\n  content: \"\\EAE1\"; }\n\n.icon-git:before {\n  content: \"\\EAE2\"; }\n\n.icon-svg:before {\n  content: \"\\EAE3\"; }\n\n.icon-codepen:before {\n  content: \"\\EAE4\"; }\n\n.icon-chrome:before {\n  content: \"\\EAE5\"; }\n\n.icon-firefox:before {\n  content: \"\\EAE6\"; }\n\n.icon-IE:before {\n  content: \"\\EAE7\"; }\n\n.icon-opera:before {\n  content: \"\\EAE8\"; }\n\n.icon-safari:before {\n  content: \"\\EAE9\"; }\n\n.icon-IcoMoon:before {\n  content: \"\\EAEA\"; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 3 */
 /***/ function(module, exports) {
 
@@ -20841,15 +20818,32 @@
 
 	__webpack_require__(163);
 	var React = __webpack_require__(5);
+	var Menu = __webpack_require__(165);
 
 	var Header = React.createClass({displayName: "Header",
+
+		getInitialState: function() {
+			return {
+				isMenuOpen: false
+			};
+		},
+
+		openMenu: function() {
+			this.setState({isMenuOpen: true});
+		},
+
+		closeMenu: function() {
+			this.setState({isMenuOpen: false});
+		},
 
 		render: function(){
 			return (
 				React.createElement("div", {className: "header"}, 
-					React.createElement("a", {herf: "./index.html"}, 
-						React.createElement("img", {className: "logo", src: "./img/logo.png"})
-					)
+					React.createElement("a", {href: "./index.html"}, 
+						React.createElement("img", {className: "logo", src: __webpack_require__(168)})
+					), 
+					React.createElement("span", {className: "icon icon-menu menu-trigger", onClick: this.openMenu}), 
+					React.createElement(Menu, {isOpen: this.state.isMenuOpen, onClick: this.closeMenu})
 				)
 			)
 		}
@@ -20894,362 +20888,179 @@
 
 
 	// module
-	exports.push([module.id, ".header {\n  height: 70px; }\n  .header .logo {\n    height: 70px;\n    margin-left: 15px; }\n", ""]);
+	exports.push([module.id, ".header {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 10;\n  background: rgba(255, 255, 255, 0.8);\n  width: 100%;\n  height: 70px; }\n  .header .logo {\n    height: 70px;\n    margin-left: 15px; }\n  .header .menu-trigger {\n    display: inline-block;\n    width: 80px;\n    text-align: center;\n    line-height: 70px;\n    float: right; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 165 */,
-/* 166 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(167);
+	__webpack_require__(166);
 	var React = __webpack_require__(5);
 
-	var Entry = React.createClass({displayName: "Entry",
+	var Menu = React.createClass({displayName: "Menu",
 
 		propTypes: {
-			name: React.PropTypes.string.isRequired,
-			icon: React.PropTypes.string.isRequired,
-			link: React.PropTypes.string.isRequired,
-			color: React.PropTypes.string.isRequired
+			data: React.PropTypes.array.isRequired,
+			isOpen: React.PropTypes.bool.isRequired,
+			onClick: React.PropTypes.func
 		},
 
-		getInitialState: function() {
-			return {
-				isAdded: false
-			};
+		getDefaultProps: function() {
+			var url = location.href,
+				noFrontPage = false,
+				data = [{
+					name: '首页',
+					iconClass: 'icon-home',
+					url: 'index.html'
+				},{
+					name: '展览',
+					iconClass: '',
+					url: 'exhibition.html'
+				},{
+					name: '研究典藏',
+					iconClass: '',
+					url: 'collection.html'
+				},{
+					name: '公共教育',
+					iconClass: '',
+					url: 'education.html'
+				},{
+					name: '关于美术馆',
+					iconClass: '',
+					url: 'about.html'
+				},{
+					name: '参数指南',
+					iconClass: '',
+					url: 'visitorGuide.html'
+				},{
+					name: '联系方式',
+					iconClass: '',
+					url: 'contact.html'
+				}].map(function(item){
+					if (url.indexOf(item.url) !== -1) {
+						item.tailClass = 'active';
+						noFrontPage = true;
+					} else {
+						item.tailClass = '';
+					}
+					return item;
+				});
+			if (!noFrontPage) {
+				data[0].tailClass = 'active';
+			}
+			return {data: data};
 		},
 
-		render: function() {
-			var entryStyle = {
-				backgroundColor: this.props.color
-			};
+		render: function(){
 			return (
-			React.createElement("a", {href: this.props.link}, 
-				React.createElement("div", {className: this.state.isAdded ? "entry added" : "entry", style: entryStyle}, 
-					React.createElement("img", {className: "icon", src: this.props.icon}), 
-					React.createElement("p", {className: "name"}, this.props.name)
+				React.createElement("div", {className: this.props.isOpen ? "menu open" : "menu", onClick: this.props.onClick}, 
+					React.createElement("ul", null, 
+						 this.props.data.map(function(item) {
+							return (
+								React.createElement("li", null, 
+									React.createElement("a", {href: item.url}, 
+										React.createElement("span", {className: "menu-head icon " + item.iconClass}), 
+										React.createElement("span", null, item.name), 
+										React.createElement("span", {className: "menu-tail " + item.tailClass}, "●")
+									)
+								)
+							)
+						})
+					)
 				)
 			)
-			)
-		},
-
-		componentDidMount: function() {
-			this.setState({isAdded: true});
 		}
 
 	});
 
-	module.exports = Entry;
+	module.exports = Menu;
 
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(167);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./menu.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./menu.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ },
 /* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	exports = module.exports = __webpack_require__(3)();
+	// imports
 
-	// load the styles
-	var content = __webpack_require__(168);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+
+	// module
+	exports.push([module.id, ".menu {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: -100%;\n  z-index: 20;\n  background: transparent;\n  transition: all 0.5s; }\n  .menu ul {\n    position: fixed;\n    width: 300px;\n    top: -50%;\n    transition: top 0.5s;\n    left: 50%;\n    margin-top: -210px;\n    margin-left: -150px;\n    background: #fff;\n    border-radius: 10px; }\n    .menu ul li {\n      list-style: none;\n      line-height: 60px;\n      border-bottom: solid 1px rgba(0, 0, 0, 0.1); }\n      .menu ul li a {\n        display: block;\n        height: 100%;\n        text-decoration: none;\n        color: #3b4043;\n        font-size: 13px; }\n        .menu ul li a .menu-head, .menu ul li a .menu-tail {\n          display: inline-block;\n          width: 60px;\n          text-align: center; }\n        .menu ul li a .menu-tail {\n          float: right; }\n        .menu ul li a .menu-tail.active {\n          color: #00bbb3; }\n\n.menu.open {\n  background: rgba(0, 0, 0, 0.8);\n  left: 0; }\n  .menu.open ul {\n    top: 50%; }\n", ""]);
+
+	// exports
+
 
 /***/ },
 /* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".entry {\n  display: inline-block;\n  width: 25%;\n  height: 0px;\n  overflow: hidden;\n  opacity: 0;\n  text-align: center;\n  font-size: 14px;\n  transition: all 0.5s;\n  color: #000; }\n  .entry .icon {\n    height: 40px;\n    margin: 20px auto; }\n\n.entry.added {\n  height: 100%;\n  opacity: 1; }\n", ""]);
-
-	// exports
-
+	module.exports = __webpack_require__.p + "f74f15bc9c84b5302ca644dabc169fb0.png"
 
 /***/ },
 /* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(170);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 170 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\nhtml, body {\n  height: 100%; }\n\n.entries {\n  width: 100%;\n  font-size: 0; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(172);
 	var React = __webpack_require__(5);
 
-	var Slider = React.createClass({displayName: "Slider",
+	var Nav = React.createClass({displayName: "Nav",
 
 		propTypes: {
-			data: React.PropTypes.array.isRequired,
-			showImage: React.PropTypes.bool,
-			showNav: React.PropTypes.bool,
-			showText: React.PropTypes.bool
+			data: React.PropTypes.array.isRequired
 		},
-
-		getDefaultProps: function() {
-			return {
-				showImage: true,
-				showNav: true,
-				showText: true
-			};
-		},
-
-		getInitialState: function() {
-			return {
-				index: 0,
-				offset: 0,
-				step: 0,
-				slideTime: 30,
-				triggerLimit: 0.1,
-				startX: -1
-			};
-		},
-
-		getNextIndex: function () {
-			return (this.state.index + 1 + this.props.data.length) % this.props.data.length;
-		},
-
-		getPrevIndex: function () {
-			return (this.state.index - 1 + this.props.data.length) % this.props.data.length;
-		},
-
-		onImgTouchStart: function(e) {
-			if (this.props.data.length > 1) {
-				e.preventDefault();
-				this.setState({startX: e.touches[0].clientX});
-			}
-		},
-		onImgTouchMove: function(e) {
-			if (this.state.startX >= 0) {
-				if (this.props.data.length <= 1) return; 
-				var offset = e.touches[0].clientX - this.state.startX;
-				this.setState({offset: offset});
-			}
-		},
-		onImgTouchEnd: function() {
-			var width = this.getDOMNode().clientWidth,
-				limit = width * this.state.triggerLimit,
-				speed = Math.round(width / this.state.slideTime),
-				offsetAbs = Math.abs(this.state.offset);
-			if (offsetAbs >= limit) {
-				var step = this.state.offset / offsetAbs * speed;
-			} else {
-				var step = -this.state.offset / offsetAbs * speed;
-			}
-			this.setState({step: step, startX : -1});
-		},
-
-		onNavClick: function(i){
-			if (this.state.offset === 0) {
-				this.setState({index: i});
-			}
-		},
-
-		resolveSliding: function() {
-			var offset = this.state.offset + this.state.step,
-				width = this.getDOMNode().clientWidth,
-				speed = Math.round(width / this.state.slideTime),
-				index = this.state.index,
-				step = this.state.step;
-			if (offset > -speed && offset < speed) {
-				offset = 0;
-				step = 0;
-			} else if (offset >= width) {
-				offset = 0;
-				step = 0;
-				index = this.getPrevIndex();
-			} else if (offset <= -width) {
-				offset = 0;
-				step = 0;
-				index = this.getNextIndex();
-			}
-			this.setState({offset: offset, index: index, step: step});
-		},
-
-		componentDidUpdate: function() {
-			if (this.state.step && this.state.startX < 0) {
-				requestAnimationFrame(this.resolveSliding);
-			}
-		},
-
+		
 		render: function() {
-			var self = this,
-				imgConStyle = {left: this.state.offset + 'px'};
 			return (
-			React.createElement("div", {className: "slider"}, 
-				 this.props.showImage && 
-				React.createElement("div", {className: "img-view"}, 
-					React.createElement("div", {className: "img-con", 
-						style: imgConStyle, 
-						onTouchStart: this.onImgTouchStart, 
-						onTouchMove: this.onImgTouchMove, 
-						onTouchEnd: this.onImgTouchEnd}, 
-						
-						 this.props.data.map(function(item, i) {
-							var additionClass = '';
-							if (self.state.index === i) {
-								additionClass = ' current';
-							} else if (self.props.data.length <= 1) {
-								additionClass = '';
-							} else if (self.state.offset > 0 && self.getPrevIndex() === i) {
-								additionClass = ' prev';
-							} else if (self.state.offset < 0 && self.getNextIndex() === i) {
-								additionClass = ' next';
-							}
-							var imgStyle = {backgroundImage: 'url(' + item.imgurl + ')'};
-							return (React.createElement("div", {style: imgStyle, key: i, 
-								className: 'img-item'+additionClass}));
-						})
-					)
-				), 
-				
-
-				 this.props.showNav && 
-				React.createElement("div", {className: "nav-view"}, 
-					 this.props.data.map(function(item, i) {
-						return (React.createElement("p", {key: i, onClick: function(){self.onNavClick(i);}, 
-							className: i === self.state.index ? 'current' : ''}))
-					})
-				), 
-				
-
-				 this.props.showText &&
-				React.createElement("div", {className: "text-view"}, 
-					 this.props.data.map(function(item, i) {
-						return (
-						React.createElement("div", {key: i, className: i === self.state.index ? 'current' : ''}, 
-							React.createElement("h3", null, item.title)
-						)
-						);
+				React.createElement("ul", {className: "nav"}, 
+					this.props.data.map(function(item, i){
+						return React.createElement("li", {key: i, onClick: item.callback}, item.name)
 					})
 				)
-				
 			)
-			);
 		}
 	});
 
-	module.exports = Slider;
+	module.exports = Nav;
 
 
 /***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(173);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".slider {\n  width: 100%;\n  position: relative;\n  background-color: #ccc; }\n  .slider .img-view, .slider .text-view {\n    width: 100%;\n    overflow: hidden; }\n  .slider .img-view .img-con {\n    position: relative;\n    width: 100%;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    display: none;\n    background-size: cover;\n    background-position: center;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item.current, .slider .img-view .img-item.prev, .slider .img-view .img-item.next {\n    display: block; }\n  .slider .img-view .img-item.prev {\n    left: -100%; }\n  .slider .img-view .img-item.next {\n    left: 100%; }\n  .slider .img-view .img-item.current {\n    z-index: 1; }\n  .slider .text-view {\n    background-color: rgba(0, 0, 0, 0.5);\n    color: white;\n    z-index: 1;\n    height: 60px;\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n    .slider .text-view div {\n      z-index: 0;\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      padding-top: 20px;\n      opacity: 0;\n      display: none\\9;\n      font-size: 14px;\n      line-height: 25px; }\n    .slider .text-view div.current {\n      opacity: 1;\n      z-index: 1;\n      display: block\\9; }\n    .slider .text-view h3 {\n      text-align: center;\n      font-size: 18px;\n      line-height: 40px;\n      font-weight: bold;\n      height: 40px;\n      text-overflow: ellipsis; }\n  .slider .nav-view {\n    z-index: 2;\n    position: absolute;\n    width: 100%;\n    height: 10px;\n    bottom: 45px;\n    text-align: center; }\n    .slider .nav-view p {\n      display: inline-block;\n      width: 10px;\n      height: 10px;\n      border-radius: 50%;\n      cursor: pointer;\n      background-color: white;\n      margin: 5px; }\n    .slider .nav-view p.current {\n      background-color: red; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "bb0760330155d03e4cc20ce0726d2249.svg"
-
-/***/ },
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
 /* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "58deed201288a72c992c153e4996c8a0.svg"
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "0d94bf8f2dcef4e1cbea93cd67852db9.svg"
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "3148954baea835396247a67d0a7da529.svg"
+	module.exports = __webpack_require__.p + "da4e35165f52e544a8f1f37937ca9ad5.ttf"
 
 /***/ }
 /******/ ]);

@@ -1,12 +1,34 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var pages = ['index', 'collection'];
+
+var entry = pages.map(function(item){
+	var obj = {};
+	obj[item] = './js/' + item + '.js';
+	return obj;
+}).reduce(function(previous, current){
+	for (var key in current) {
+		previous[key] = current[key];
+	}
+	return previous;
+});
+
+var htmls = pages.map(function(item){
+	return [new HtmlWebpackPlugin({
+		name: item,
+		filename: item + '.html',
+		template: './template.html'
+	})];
+}).reduce(function(previous, current){
+	return previous.concat(current);
+});
+
 module.exports = {
-	entry: {
-		index: "./js-src/index.js",
-		collection: "./js-src/collection.js"
-	},
+	entry: entry,
 	output: {
-		filename: "[name].bundle.js",
-		path: "./js/",
-		publicPath: "./js/"
+		filename: "[name].js",
+		path: "./dist/",
+		publicPath: "./"
 	},
 	module: {
 		loaders: [
@@ -24,7 +46,14 @@ module.exports = {
 					'file?hash=sha512&digest=hex&name=[hash].[ext]',
 					'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
 				]
+			},
+			{
+				test: /\.ttf$/i,
+				loaders: [
+					'file?hash=sha512&digest=hex&name=[hash].[ext]'
+				]
 			}
 		]
-	}
+	},
+	plugins: htmls
 }
