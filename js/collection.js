@@ -3,6 +3,7 @@ var React = require('react');
 var Request = require('./request');
 var Header = require('./header');
 var Nav = require('./nav');
+var Footer = require('./footer');
 
 var Collection = React.createClass({
 
@@ -26,6 +27,7 @@ var Collection = React.createClass({
 			<div>
 				<Header/>
 				<Nav data={this.state.mainNav}/>
+				<Footer/>
 			</div>
 		)
 	}
