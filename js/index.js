@@ -1,38 +1,16 @@
 require('../sass/index.sass');
 var React = require('react');
-var Request = require('./request');
-var Header = require('./header');
-var Slider = require('./slider');
-var Entry = require('./entry');
-var Footer = require('./footer');
+var Header = require('./components/header');
+var Slider = require('./components/slider');
+var Entry = require('./components/entry');
+var Footer = require('./components/footer');
+var FrontStore = require('./stores/frontStore');
+var FrontAction = require('./actions/frontAction');
 
 var Index = React.createClass({
 
 	getInitialState: function() {
-		return {
-			sliderData: [],
-			entries: [{
-				name: '展览',
-				icon: require('../img/nav_01.png'),
-				link: './exhibition.html'
-			},{
-				name: '研究典藏',
-				icon: require('../img/nav_02.png'),
-				link: './collection.html'
-			},{
-				name: '公共教育',
-				icon: require('../img/nav_03.png'),
-				link: './education.html'
-			},{
-				name: '关于美术馆',
-				icon: require('../img/nav_04.png'),
-				link: './about.html'
-			},{
-				name: '参观指南',
-				icon: require('../img/nav_05.png'),
-				link: './visitorGuide.html'
-			}]
-		};
+		return FrontStore.getData();
 	},
 
 	render: function() {
@@ -57,28 +35,19 @@ var Index = React.createClass({
 	},
 
 	componentDidMount: function() {
-		var self = this;
-		Request.get('m_front_cn.json', function(data) {
-			self.setState({sliderData: self.parseFrontData(data)});
-		}, function(err) {
-			console.log('get front data error', err);
-		});
+		FrontStore.addChangeListener(this._onChange);
 	},
 
-	parseFrontData: function(responseText) {
-		return JSON.parse(responseText).map(function(item){
-			return {
-				title: item.node_title,
-				text: item.body.replace(/^<[^>]*>$/, ''),
-				imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
-				type: item.node_type,
-				id: item.nid
-			};
-		});
+	componentWillUnmount: function() {
+		FrontStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function() {
+		this.setState(FrontStore.getData());
 	}
 
 });
 
 var index = <Index/>;
 React.render(index, document.body);
-
+FrontAction.fetch();

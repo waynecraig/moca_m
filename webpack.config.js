@@ -1,6 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var pages = ['index', 'collection'];
+var pages = ['index', 'collection', 'exhibition'];
 
 var entry = pages.map(function(item){
 	var obj = {};

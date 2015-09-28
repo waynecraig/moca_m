@@ -1,4 +1,4 @@
-require('../sass/header.sass');
+require('../../sass/header.sass');
 var React = require('react');
 var Menu = require('./menu');
 
@@ -22,7 +22,7 @@ var Header = React.createClass({
 		return (
 			<div className="header">
 				<a href="./index.html">
-					<img className="logo" src={require('../img/logo.png')}/>
+					<img className="logo" src={require('../../img/logo.png')}/>
 				</a>
 				<span className="icon icon-menu menu-trigger" onClick={this.openMenu}></span>
 				<Menu isOpen={this.state.isMenuOpen} onClick={this.closeMenu}/>

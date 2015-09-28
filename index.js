@@ -3,8 +3,13 @@ var http = require('http');
 
 var app = express();
 
-app.use('/', express.static('./dist/'));
-app.use('/datamock/', express.static('./datamock/'));
+app.use('/mo/', express.static('./dist/'));
+app.get('/admin', function(req, res) {
+	var q = req.query.q;
+	http.get('http://moca-yinchuan.com/admin/?q=' + q, function(oriRes) {
+		oriRes.pipe(res);
+	});
+});
 
 var port = 8045;
 app.listen(port, function(){

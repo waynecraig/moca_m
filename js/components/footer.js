@@ -1,4 +1,4 @@
-require('../sass/footer.sass');
+require('../../sass/footer.sass');
 var React = require('react');
 
 var Footer = React.createClass({

@@ -1,4 +1,4 @@
-require('../sass/slider.sass');
+require('../../sass/slider.sass');
 var React = require('react');
 
 var Slider = React.createClass({

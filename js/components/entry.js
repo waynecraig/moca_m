@@ -1,4 +1,4 @@
-require('../sass/entry.sass');
+require('../../sass/entry.sass');
 var React = require('react');
 
 var Entry = React.createClass({

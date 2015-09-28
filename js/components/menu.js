@@ -1,4 +1,4 @@
-require('../sass/menu.sass');
+require('../../sass/menu.sass');
 var React = require('react');
 
 var Menu = React.createClass({
@@ -59,9 +59,9 @@ var Menu = React.createClass({
 		return (
 			<div className={this.props.isOpen ? "menu open" : "menu"} onClick={this.props.onClick}>
 				<ul>
-					{ this.props.data.map(function(item) {
+					{ this.props.data.map(function(item, i) {
 						return (
-							<li>
+							<li key={i}>
 								<a href={item.url}>
 									<span className={"menu-head icon " + item.iconClass}></span>
 									<span>{item.name}</span>

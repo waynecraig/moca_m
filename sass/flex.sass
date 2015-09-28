@@ -1,0 +1,58 @@
+=display-flex()
+	display: -webkit-flex
+	display: flex
+=display-inline-flex()
+	display: -webkit-inline-flex
+	display: -inline-flex
+
+// 容器的6个属性
+=flex-direction($v)
+	// row | row-re$verse | column | column-re$verse
+	-webkit-flex-direction: $v
+	flex-direction: $v
+=flex-wrap($v)
+	// nowrap | wrap | wrap-re$verse
+	-webkit-flex-wrap: $v
+	flex-wrap: $v
+=flex-flow($v)
+	// <flex-direction> || <flex-wrap>
+	-webkit-flex-flow: $v
+	flex-flow: $v
+=justify-content($v)
+	// flex-start | flex-end | center | space-between | space-around
+	-webkit-justify-content: $v
+	justify-content: $v
+=align-items($v)
+	// flex-start | flex-end | center | baseline | stretch
+	-webkit-align-items: $v
+	align-items: $v
+=align-content($v)
+	// flex-start | flex-end | center | space-between | space-around | stretch
+	-webkit-align-content: $v
+	align-content: $v
+
+// 项目的6个属性
+=order($v)
+	// 项目的排列顺序。数值越小，排列越靠前，默认为0
+	-webkit-order: $v
+	order: $v
+=flex-grow($v)
+	// 项目的放大比例，默认为0
+	-webkit-flex-grow: $v
+	flex-grow: $v
+=flex-shrink($v)
+	// 项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+	-webkit-flex-shrink: $v
+	flex-shrink: $v
+=flex-basis($v)
+	// 定义了在分配多余空间之前，项目占据的主轴空间
+	-webkit-flex-basis: $v
+	flex-basis: $v
+=flex($v)
+	// flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。
+	-webkit-flex: $v
+	flex: $v
+=align-self($v)
+	// 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
+	-webkit-align-self: $v
+	align-self: $v
