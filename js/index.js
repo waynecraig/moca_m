@@ -17,7 +17,7 @@ var Index = React.createClass({
 		return (
 			<div>
 				<Header/>
-				<Slider data={this.state.sliderData}></Slider>
+				<Slider data={this.state.sliderData} updateItem={this.updateItem}/>
 				<div className="entries" ref="entries">
 					{this.state.entries.map(function(item, i){
 						return (
@@ -44,10 +44,16 @@ var Index = React.createClass({
 
 	_onChange: function() {
 		this.setState(FrontStore.getData());
+	},
+
+	updateItem: function(item) {
+		if (!item._detail) {
+			FrontAction.fetchDetail(item.id);
+		}
 	}
 
 });
 
 var index = <Index/>;
 React.render(index, document.body);
-FrontAction.fetch();
+FrontAction.fetchList();

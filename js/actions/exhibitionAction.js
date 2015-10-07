@@ -1,21 +1,20 @@
 var AppDispatcher = require('../dispatcher/appDispatcher');
 var MocaConstants = require('../constants/mocaConstants');
 
-var FrontAction = {
-
+var ExhibitionAction = {
+	
 	fetchList: function() {
 		AppDispatcher.handleViewAction({
-			actionType: MocaConstants.FRONT_FETCH_LIST
+			actionType: MocaConstants.EXHIBITION_FETCH_LIST
 		});
 	},
 
 	fetchDetail: function(id) {
 		AppDispatcher.handleViewAction({
-			actionType: MocaConstants.FRONT_FETCH_DETAIL,
+			actionType: MocaConstants.EXHIBITION_FETCH_DETAIL,
 			id: id
 		});
 	}
-
 };
 
-module.exports = FrontAction;
+module.exports = ExhibitionAction;

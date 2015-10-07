@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 var MocaConstants = require('../constants/mocaConstants');
 var assign = require('object-assign');
 var Request = require('./request');
+var NodeParser = require('../stores/nodeParser');
 
 var CHANGE_EVENT = 'change';
 
@@ -31,19 +32,34 @@ var _frontData = {
 	}]
 };
 
-function fetch() {
-	return Request.getData('m_front_cn.json').then(parse);
+function fetchList() {
+	return Request.getData('m_front_cn.json').then(parseList);
 }
 
-function parse(data) {
+function fetchDetail(id) {
+	return Request.getData('node/' + id + '.json').then(parseDetail);
+}
+
+function parseList(data) {
 	_frontData.sliderData = data.map(function(item){
 		return {
 			title: item.node_title,
 			text: item.body.replace(/^<[^>]*>$/, ''),
-			imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
+			imgurl: encodeURI(/src="([^"]*)"/.exec(item.field_image)[1]),
 			type: item.node_type,
 			id: item.nid
 		};
+	});
+	return true;
+}
+
+function parseDetail(data) {
+	var col = NodeParser.parse(data, ['imgurl']);
+	_frontData.sliderData.map(function(item, i){
+		if(item.id === data.nid) {
+			item.imgurl = col.imgurl;
+			item._detail = true;
+		}
 	});
 	return true;
 }
@@ -71,10 +87,17 @@ var FrontStore = assign({}, EventEmitter.prototype, {
 		
 		switch(action.actionType) {
 
-			case MocaConstants.FRONT_FETCH:
-				fetch().then(function(){
+			case MocaConstants.FRONT_FETCH_LIST:
+				fetchList().then(function(){
 					FrontStore.emitChange();
 				});
+				break;
+
+			case MocaConstants.FRONT_FETCH_DETAIL:
+				fetchDetail(action.id).then(function(){
+					FrontStore.emitChange();
+				});
+				break;
 		
 		}
 

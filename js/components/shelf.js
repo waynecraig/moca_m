@@ -6,7 +6,8 @@ var Shelf = React.createClass({
 
 	propTypes: {
 		index: React.PropTypes.array.isRequired,
-		data: React.PropTypes.object.isRequired
+		data: React.PropTypes.object.isRequired,
+		updateItem: React.PropTypes.func
 	},
 
 	getInitialState: function() {
@@ -32,8 +33,21 @@ var Shelf = React.createClass({
 		this.setState({detailIndex: index, showDetail: true});
 	},
 
+	handleImgurlError: function(e) {
+		var el = e.target;
+		var id = parseInt(el.getAttribute('data-id'));
+		var item = this.props.data[id];
+		this.updateItem(item);
+	},
+
 	closeDetail: function() {
 		this.setState({showDetail: false});
+	},
+
+	updateItem: function(item) {
+		if (this.props.updateItem) {
+			this.props.updateItem(item);
+		}
 	},
 
 	render: function() {
@@ -82,7 +96,12 @@ var Shelf = React.createClass({
 						};
 						return (
 							<li key={i}>
-								<div style={style} data-index={i} onClick={self.handleItemClick}/>
+								<div style={style} data-index={i} onClick={self.handleItemClick}>
+									{!obj._detail && function(){
+										return <img className='hide' src={obj.imgurl} data-id={obj.id}
+											onError={self.handleImgurlError}/>
+									}()}
+								</div>
 							</li>
 						)
 					})}
@@ -96,7 +115,8 @@ var Shelf = React.createClass({
 							<Gallery 
 								data={galleryData} 
 								initIndex={self.state.detailIndex}
-								handleClose={self.closeDetail}/>
+								handleClose={self.closeDetail}
+								handleRender={self.updateItem}/>
 						)
 					}
 				}()}

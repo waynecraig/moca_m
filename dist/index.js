@@ -44,14 +44,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(196);
+	__webpack_require__(1);
 	var React = __webpack_require__(6);
 	var Header = __webpack_require__(162);
-	var Slider = __webpack_require__(198);
-	var Entry = __webpack_require__(193);
-	var Footer = __webpack_require__(184);
-	var FrontStore = __webpack_require__(201);
-	var FrontAction = __webpack_require__(207);
+	var Slider = __webpack_require__(169);
+	var Entry = __webpack_require__(172);
+	var Footer = __webpack_require__(175);
+	var FrontStore = __webpack_require__(178);
+	var FrontAction = __webpack_require__(194);
 
 	var Index = React.createClass({displayName: "Index",
 
@@ -63,7 +63,7 @@
 			return (
 				React.createElement("div", null, 
 					React.createElement(Header, null), 
-					React.createElement(Slider, {data: this.state.sliderData}), 
+					React.createElement(Slider, {data: this.state.sliderData, updateItem: this.updateItem}), 
 					React.createElement("div", {className: "entries", ref: "entries"}, 
 						this.state.entries.map(function(item, i){
 							return (
@@ -90,18 +90,62 @@
 
 		_onChange: function() {
 			this.setState(FrontStore.getData());
+		},
+
+		updateItem: function(item) {
+			if (!item._detail) {
+				FrontAction.fetchDetail(item.id);
+			}
 		}
 
 	});
 
 	var index = React.createElement(Index, null);
 	React.render(index, document.body);
-	FrontAction.fetch();
+	FrontAction.fetchList();
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(2);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\n.hide {\n  display: none; }\n\n@font-face {\n  font-family: 'IcoMoon-Free';\n  src: url(" + __webpack_require__(4) + ") format(\"truetype\");\n  font-weight: normal;\n  font-style: normal; }\n\n.icon {\n  font-family: 'IcoMoon-Free';\n  speak: none;\n  font-style: normal;\n  font-weight: normal;\n  font-variant: normal;\n  text-transform: none;\n  line-height: 1;\n  /* Enable Ligatures ================ */\n  -webkit-font-feature-settings: \"liga\";\n  -moz-font-feature-settings: \"liga=1\";\n  -moz-font-feature-settings: \"liga\";\n  -ms-font-feature-settings: \"liga\" 1;\n  -o-font-feature-settings: \"liga\";\n  font-feature-settings: \"liga\";\n  /* Better Font Rendering =========== */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-home:before {\n  content: \"\\E900\"; }\n\n.icon-home2:before {\n  content: \"\\E901\"; }\n\n.icon-home3:before {\n  content: \"\\E902\"; }\n\n.icon-office:before {\n  content: \"\\E903\"; }\n\n.icon-newspaper:before {\n  content: \"\\E904\"; }\n\n.icon-pencil:before {\n  content: \"\\E905\"; }\n\n.icon-pencil2:before {\n  content: \"\\E906\"; }\n\n.icon-quill:before {\n  content: \"\\E907\"; }\n\n.icon-pen:before {\n  content: \"\\E908\"; }\n\n.icon-blog:before {\n  content: \"\\E909\"; }\n\n.icon-eyedropper:before {\n  content: \"\\E90A\"; }\n\n.icon-droplet:before {\n  content: \"\\E90B\"; }\n\n.icon-paint-format:before {\n  content: \"\\E90C\"; }\n\n.icon-image:before {\n  content: \"\\E90D\"; }\n\n.icon-images:before {\n  content: \"\\E90E\"; }\n\n.icon-camera:before {\n  content: \"\\E90F\"; }\n\n.icon-headphones:before {\n  content: \"\\E910\"; }\n\n.icon-music:before {\n  content: \"\\E911\"; }\n\n.icon-play:before {\n  content: \"\\E912\"; }\n\n.icon-film:before {\n  content: \"\\E913\"; }\n\n.icon-video-camera:before {\n  content: \"\\E914\"; }\n\n.icon-dice:before {\n  content: \"\\E915\"; }\n\n.icon-pacman:before {\n  content: \"\\E916\"; }\n\n.icon-spades:before {\n  content: \"\\E917\"; }\n\n.icon-clubs:before {\n  content: \"\\E918\"; }\n\n.icon-diamonds:before {\n  content: \"\\E919\"; }\n\n.icon-bullhorn:before {\n  content: \"\\E91A\"; }\n\n.icon-connection:before {\n  content: \"\\E91B\"; }\n\n.icon-podcast:before {\n  content: \"\\E91C\"; }\n\n.icon-feed:before {\n  content: \"\\E91D\"; }\n\n.icon-mic:before {\n  content: \"\\E91E\"; }\n\n.icon-book:before {\n  content: \"\\E91F\"; }\n\n.icon-books:before {\n  content: \"\\E920\"; }\n\n.icon-library:before {\n  content: \"\\E921\"; }\n\n.icon-file-text:before {\n  content: \"\\E922\"; }\n\n.icon-profile:before {\n  content: \"\\E923\"; }\n\n.icon-file-empty:before {\n  content: \"\\E924\"; }\n\n.icon-files-empty:before {\n  content: \"\\E925\"; }\n\n.icon-file-text2:before {\n  content: \"\\E926\"; }\n\n.icon-file-picture:before {\n  content: \"\\E927\"; }\n\n.icon-file-music:before {\n  content: \"\\E928\"; }\n\n.icon-file-play:before {\n  content: \"\\E929\"; }\n\n.icon-file-video:before {\n  content: \"\\E92A\"; }\n\n.icon-file-zip:before {\n  content: \"\\E92B\"; }\n\n.icon-copy:before {\n  content: \"\\E92C\"; }\n\n.icon-paste:before {\n  content: \"\\E92D\"; }\n\n.icon-stack:before {\n  content: \"\\E92E\"; }\n\n.icon-folder:before {\n  content: \"\\E92F\"; }\n\n.icon-folder-open:before {\n  content: \"\\E930\"; }\n\n.icon-folder-plus:before {\n  content: \"\\E931\"; }\n\n.icon-folder-minus:before {\n  content: \"\\E932\"; }\n\n.icon-folder-download:before {\n  content: \"\\E933\"; }\n\n.icon-folder-upload:before {\n  content: \"\\E934\"; }\n\n.icon-price-tag:before {\n  content: \"\\E935\"; }\n\n.icon-price-tags:before {\n  content: \"\\E936\"; }\n\n.icon-barcode:before {\n  content: \"\\E937\"; }\n\n.icon-qrcode:before {\n  content: \"\\E938\"; }\n\n.icon-ticket:before {\n  content: \"\\E939\"; }\n\n.icon-cart:before {\n  content: \"\\E93A\"; }\n\n.icon-coin-dollar:before {\n  content: \"\\E93B\"; }\n\n.icon-coin-euro:before {\n  content: \"\\E93C\"; }\n\n.icon-coin-pound:before {\n  content: \"\\E93D\"; }\n\n.icon-coin-yen:before {\n  content: \"\\E93E\"; }\n\n.icon-credit-card:before {\n  content: \"\\E93F\"; }\n\n.icon-calculator:before {\n  content: \"\\E940\"; }\n\n.icon-lifebuoy:before {\n  content: \"\\E941\"; }\n\n.icon-phone:before {\n  content: \"\\E942\"; }\n\n.icon-phone-hang-up:before {\n  content: \"\\E943\"; }\n\n.icon-address-book:before {\n  content: \"\\E944\"; }\n\n.icon-envelop:before {\n  content: \"\\E945\"; }\n\n.icon-pushpin:before {\n  content: \"\\E946\"; }\n\n.icon-location:before {\n  content: \"\\E947\"; }\n\n.icon-location2:before {\n  content: \"\\E948\"; }\n\n.icon-compass:before {\n  content: \"\\E949\"; }\n\n.icon-compass2:before {\n  content: \"\\E94A\"; }\n\n.icon-map:before {\n  content: \"\\E94B\"; }\n\n.icon-map2:before {\n  content: \"\\E94C\"; }\n\n.icon-history:before {\n  content: \"\\E94D\"; }\n\n.icon-clock:before {\n  content: \"\\E94E\"; }\n\n.icon-clock2:before {\n  content: \"\\E94F\"; }\n\n.icon-alarm:before {\n  content: \"\\E950\"; }\n\n.icon-bell:before {\n  content: \"\\E951\"; }\n\n.icon-stopwatch:before {\n  content: \"\\E952\"; }\n\n.icon-calendar:before {\n  content: \"\\E953\"; }\n\n.icon-printer:before {\n  content: \"\\E954\"; }\n\n.icon-keyboard:before {\n  content: \"\\E955\"; }\n\n.icon-display:before {\n  content: \"\\E956\"; }\n\n.icon-laptop:before {\n  content: \"\\E957\"; }\n\n.icon-mobile:before {\n  content: \"\\E958\"; }\n\n.icon-mobile2:before {\n  content: \"\\E959\"; }\n\n.icon-tablet:before {\n  content: \"\\E95A\"; }\n\n.icon-tv:before {\n  content: \"\\E95B\"; }\n\n.icon-drawer:before {\n  content: \"\\E95C\"; }\n\n.icon-drawer2:before {\n  content: \"\\E95D\"; }\n\n.icon-box-add:before {\n  content: \"\\E95E\"; }\n\n.icon-box-remove:before {\n  content: \"\\E95F\"; }\n\n.icon-download:before {\n  content: \"\\E960\"; }\n\n.icon-upload:before {\n  content: \"\\E961\"; }\n\n.icon-floppy-disk:before {\n  content: \"\\E962\"; }\n\n.icon-drive:before {\n  content: \"\\E963\"; }\n\n.icon-database:before {\n  content: \"\\E964\"; }\n\n.icon-undo:before {\n  content: \"\\E965\"; }\n\n.icon-redo:before {\n  content: \"\\E966\"; }\n\n.icon-undo2:before {\n  content: \"\\E967\"; }\n\n.icon-redo2:before {\n  content: \"\\E968\"; }\n\n.icon-forward:before {\n  content: \"\\E969\"; }\n\n.icon-reply:before {\n  content: \"\\E96A\"; }\n\n.icon-bubble:before {\n  content: \"\\E96B\"; }\n\n.icon-bubbles:before {\n  content: \"\\E96C\"; }\n\n.icon-bubbles2:before {\n  content: \"\\E96D\"; }\n\n.icon-bubble2:before {\n  content: \"\\E96E\"; }\n\n.icon-bubbles3:before {\n  content: \"\\E96F\"; }\n\n.icon-bubbles4:before {\n  content: \"\\E970\"; }\n\n.icon-user:before {\n  content: \"\\E971\"; }\n\n.icon-users:before {\n  content: \"\\E972\"; }\n\n.icon-user-plus:before {\n  content: \"\\E973\"; }\n\n.icon-user-minus:before {\n  content: \"\\E974\"; }\n\n.icon-user-check:before {\n  content: \"\\E975\"; }\n\n.icon-user-tie:before {\n  content: \"\\E976\"; }\n\n.icon-quotes-left:before {\n  content: \"\\E977\"; }\n\n.icon-quotes-right:before {\n  content: \"\\E978\"; }\n\n.icon-hour-glass:before {\n  content: \"\\E979\"; }\n\n.icon-spinner:before {\n  content: \"\\E97A\"; }\n\n.icon-spinner2:before {\n  content: \"\\E97B\"; }\n\n.icon-spinner3:before {\n  content: \"\\E97C\"; }\n\n.icon-spinner4:before {\n  content: \"\\E97D\"; }\n\n.icon-spinner5:before {\n  content: \"\\E97E\"; }\n\n.icon-spinner6:before {\n  content: \"\\E97F\"; }\n\n.icon-spinner7:before {\n  content: \"\\E980\"; }\n\n.icon-spinner8:before {\n  content: \"\\E981\"; }\n\n.icon-spinner9:before {\n  content: \"\\E982\"; }\n\n.icon-spinner10:before {\n  content: \"\\E983\"; }\n\n.icon-spinner11:before {\n  content: \"\\E984\"; }\n\n.icon-binoculars:before {\n  content: \"\\E985\"; }\n\n.icon-search:before {\n  content: \"\\E986\"; }\n\n.icon-zoom-in:before {\n  content: \"\\E987\"; }\n\n.icon-zoom-out:before {\n  content: \"\\E988\"; }\n\n.icon-enlarge:before {\n  content: \"\\E989\"; }\n\n.icon-shrink:before {\n  content: \"\\E98A\"; }\n\n.icon-enlarge2:before {\n  content: \"\\E98B\"; }\n\n.icon-shrink2:before {\n  content: \"\\E98C\"; }\n\n.icon-key:before {\n  content: \"\\E98D\"; }\n\n.icon-key2:before {\n  content: \"\\E98E\"; }\n\n.icon-lock:before {\n  content: \"\\E98F\"; }\n\n.icon-unlocked:before {\n  content: \"\\E990\"; }\n\n.icon-wrench:before {\n  content: \"\\E991\"; }\n\n.icon-equalizer:before {\n  content: \"\\E992\"; }\n\n.icon-equalizer2:before {\n  content: \"\\E993\"; }\n\n.icon-cog:before {\n  content: \"\\E994\"; }\n\n.icon-cogs:before {\n  content: \"\\E995\"; }\n\n.icon-hammer:before {\n  content: \"\\E996\"; }\n\n.icon-magic-wand:before {\n  content: \"\\E997\"; }\n\n.icon-aid-kit:before {\n  content: \"\\E998\"; }\n\n.icon-bug:before {\n  content: \"\\E999\"; }\n\n.icon-pie-chart:before {\n  content: \"\\E99A\"; }\n\n.icon-stats-dots:before {\n  content: \"\\E99B\"; }\n\n.icon-stats-bars:before {\n  content: \"\\E99C\"; }\n\n.icon-stats-bars2:before {\n  content: \"\\E99D\"; }\n\n.icon-trophy:before {\n  content: \"\\E99E\"; }\n\n.icon-gift:before {\n  content: \"\\E99F\"; }\n\n.icon-glass:before {\n  content: \"\\E9A0\"; }\n\n.icon-glass2:before {\n  content: \"\\E9A1\"; }\n\n.icon-mug:before {\n  content: \"\\E9A2\"; }\n\n.icon-spoon-knife:before {\n  content: \"\\E9A3\"; }\n\n.icon-leaf:before {\n  content: \"\\E9A4\"; }\n\n.icon-rocket:before {\n  content: \"\\E9A5\"; }\n\n.icon-meter:before {\n  content: \"\\E9A6\"; }\n\n.icon-meter2:before {\n  content: \"\\E9A7\"; }\n\n.icon-hammer2:before {\n  content: \"\\E9A8\"; }\n\n.icon-fire:before {\n  content: \"\\E9A9\"; }\n\n.icon-lab:before {\n  content: \"\\E9AA\"; }\n\n.icon-magnet:before {\n  content: \"\\E9AB\"; }\n\n.icon-bin:before {\n  content: \"\\E9AC\"; }\n\n.icon-bin2:before {\n  content: \"\\E9AD\"; }\n\n.icon-briefcase:before {\n  content: \"\\E9AE\"; }\n\n.icon-airplane:before {\n  content: \"\\E9AF\"; }\n\n.icon-truck:before {\n  content: \"\\E9B0\"; }\n\n.icon-road:before {\n  content: \"\\E9B1\"; }\n\n.icon-accessibility:before {\n  content: \"\\E9B2\"; }\n\n.icon-target:before {\n  content: \"\\E9B3\"; }\n\n.icon-shield:before {\n  content: \"\\E9B4\"; }\n\n.icon-power:before {\n  content: \"\\E9B5\"; }\n\n.icon-switch:before {\n  content: \"\\E9B6\"; }\n\n.icon-power-cord:before {\n  content: \"\\E9B7\"; }\n\n.icon-clipboard:before {\n  content: \"\\E9B8\"; }\n\n.icon-list-numbered:before {\n  content: \"\\E9B9\"; }\n\n.icon-list:before {\n  content: \"\\E9BA\"; }\n\n.icon-list2:before {\n  content: \"\\E9BB\"; }\n\n.icon-tree:before {\n  content: \"\\E9BC\"; }\n\n.icon-menu:before {\n  content: \"\\E9BD\"; }\n\n.icon-menu2:before {\n  content: \"\\E9BE\"; }\n\n.icon-menu3:before {\n  content: \"\\E9BF\"; }\n\n.icon-menu4:before {\n  content: \"\\E9C0\"; }\n\n.icon-cloud:before {\n  content: \"\\E9C1\"; }\n\n.icon-cloud-download:before {\n  content: \"\\E9C2\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\E9C3\"; }\n\n.icon-cloud-check:before {\n  content: \"\\E9C4\"; }\n\n.icon-download2:before {\n  content: \"\\E9C5\"; }\n\n.icon-upload2:before {\n  content: \"\\E9C6\"; }\n\n.icon-download3:before {\n  content: \"\\E9C7\"; }\n\n.icon-upload3:before {\n  content: \"\\E9C8\"; }\n\n.icon-sphere:before {\n  content: \"\\E9C9\"; }\n\n.icon-earth:before {\n  content: \"\\E9CA\"; }\n\n.icon-link:before {\n  content: \"\\E9CB\"; }\n\n.icon-flag:before {\n  content: \"\\E9CC\"; }\n\n.icon-attachment:before {\n  content: \"\\E9CD\"; }\n\n.icon-eye:before {\n  content: \"\\E9CE\"; }\n\n.icon-eye-plus:before {\n  content: \"\\E9CF\"; }\n\n.icon-eye-minus:before {\n  content: \"\\E9D0\"; }\n\n.icon-eye-blocked:before {\n  content: \"\\E9D1\"; }\n\n.icon-bookmark:before {\n  content: \"\\E9D2\"; }\n\n.icon-bookmarks:before {\n  content: \"\\E9D3\"; }\n\n.icon-sun:before {\n  content: \"\\E9D4\"; }\n\n.icon-contrast:before {\n  content: \"\\E9D5\"; }\n\n.icon-brightness-contrast:before {\n  content: \"\\E9D6\"; }\n\n.icon-star-empty:before {\n  content: \"\\E9D7\"; }\n\n.icon-star-half:before {\n  content: \"\\E9D8\"; }\n\n.icon-star-full:before {\n  content: \"\\E9D9\"; }\n\n.icon-heart:before {\n  content: \"\\E9DA\"; }\n\n.icon-heart-broken:before {\n  content: \"\\E9DB\"; }\n\n.icon-man:before {\n  content: \"\\E9DC\"; }\n\n.icon-woman:before {\n  content: \"\\E9DD\"; }\n\n.icon-man-woman:before {\n  content: \"\\E9DE\"; }\n\n.icon-happy:before {\n  content: \"\\E9DF\"; }\n\n.icon-happy2:before {\n  content: \"\\E9E0\"; }\n\n.icon-smile:before {\n  content: \"\\E9E1\"; }\n\n.icon-smile2:before {\n  content: \"\\E9E2\"; }\n\n.icon-tongue:before {\n  content: \"\\E9E3\"; }\n\n.icon-tongue2:before {\n  content: \"\\E9E4\"; }\n\n.icon-sad:before {\n  content: \"\\E9E5\"; }\n\n.icon-sad2:before {\n  content: \"\\E9E6\"; }\n\n.icon-wink:before {\n  content: \"\\E9E7\"; }\n\n.icon-wink2:before {\n  content: \"\\E9E8\"; }\n\n.icon-grin:before {\n  content: \"\\E9E9\"; }\n\n.icon-grin2:before {\n  content: \"\\E9EA\"; }\n\n.icon-cool:before {\n  content: \"\\E9EB\"; }\n\n.icon-cool2:before {\n  content: \"\\E9EC\"; }\n\n.icon-angry:before {\n  content: \"\\E9ED\"; }\n\n.icon-angry2:before {\n  content: \"\\E9EE\"; }\n\n.icon-evil:before {\n  content: \"\\E9EF\"; }\n\n.icon-evil2:before {\n  content: \"\\E9F0\"; }\n\n.icon-shocked:before {\n  content: \"\\E9F1\"; }\n\n.icon-shocked2:before {\n  content: \"\\E9F2\"; }\n\n.icon-baffled:before {\n  content: \"\\E9F3\"; }\n\n.icon-baffled2:before {\n  content: \"\\E9F4\"; }\n\n.icon-confused:before {\n  content: \"\\E9F5\"; }\n\n.icon-confused2:before {\n  content: \"\\E9F6\"; }\n\n.icon-neutral:before {\n  content: \"\\E9F7\"; }\n\n.icon-neutral2:before {\n  content: \"\\E9F8\"; }\n\n.icon-hipster:before {\n  content: \"\\E9F9\"; }\n\n.icon-hipster2:before {\n  content: \"\\E9FA\"; }\n\n.icon-wondering:before {\n  content: \"\\E9FB\"; }\n\n.icon-wondering2:before {\n  content: \"\\E9FC\"; }\n\n.icon-sleepy:before {\n  content: \"\\E9FD\"; }\n\n.icon-sleepy2:before {\n  content: \"\\E9FE\"; }\n\n.icon-frustrated:before {\n  content: \"\\E9FF\"; }\n\n.icon-frustrated2:before {\n  content: \"\\EA00\"; }\n\n.icon-crying:before {\n  content: \"\\EA01\"; }\n\n.icon-crying2:before {\n  content: \"\\EA02\"; }\n\n.icon-point-up:before {\n  content: \"\\EA03\"; }\n\n.icon-point-right:before {\n  content: \"\\EA04\"; }\n\n.icon-point-down:before {\n  content: \"\\EA05\"; }\n\n.icon-point-left:before {\n  content: \"\\EA06\"; }\n\n.icon-warning:before {\n  content: \"\\EA07\"; }\n\n.icon-notification:before {\n  content: \"\\EA08\"; }\n\n.icon-question:before {\n  content: \"\\EA09\"; }\n\n.icon-plus:before {\n  content: \"\\EA0A\"; }\n\n.icon-minus:before {\n  content: \"\\EA0B\"; }\n\n.icon-info:before {\n  content: \"\\EA0C\"; }\n\n.icon-cancel-circle:before {\n  content: \"\\EA0D\"; }\n\n.icon-blocked:before {\n  content: \"\\EA0E\"; }\n\n.icon-cross:before {\n  content: \"\\EA0F\"; }\n\n.icon-checkmark:before {\n  content: \"\\EA10\"; }\n\n.icon-checkmark2:before {\n  content: \"\\EA11\"; }\n\n.icon-spell-check:before {\n  content: \"\\EA12\"; }\n\n.icon-enter:before {\n  content: \"\\EA13\"; }\n\n.icon-exit:before {\n  content: \"\\EA14\"; }\n\n.icon-play2:before {\n  content: \"\\EA15\"; }\n\n.icon-pause:before {\n  content: \"\\EA16\"; }\n\n.icon-stop:before {\n  content: \"\\EA17\"; }\n\n.icon-previous:before {\n  content: \"\\EA18\"; }\n\n.icon-next:before {\n  content: \"\\EA19\"; }\n\n.icon-backward:before {\n  content: \"\\EA1A\"; }\n\n.icon-forward2:before {\n  content: \"\\EA1B\"; }\n\n.icon-play3:before {\n  content: \"\\EA1C\"; }\n\n.icon-pause2:before {\n  content: \"\\EA1D\"; }\n\n.icon-stop2:before {\n  content: \"\\EA1E\"; }\n\n.icon-backward2:before {\n  content: \"\\EA1F\"; }\n\n.icon-forward3:before {\n  content: \"\\EA20\"; }\n\n.icon-first:before {\n  content: \"\\EA21\"; }\n\n.icon-last:before {\n  content: \"\\EA22\"; }\n\n.icon-previous2:before {\n  content: \"\\EA23\"; }\n\n.icon-next2:before {\n  content: \"\\EA24\"; }\n\n.icon-eject:before {\n  content: \"\\EA25\"; }\n\n.icon-volume-high:before {\n  content: \"\\EA26\"; }\n\n.icon-volume-medium:before {\n  content: \"\\EA27\"; }\n\n.icon-volume-low:before {\n  content: \"\\EA28\"; }\n\n.icon-volume-mute:before {\n  content: \"\\EA29\"; }\n\n.icon-volume-mute2:before {\n  content: \"\\EA2A\"; }\n\n.icon-volume-increase:before {\n  content: \"\\EA2B\"; }\n\n.icon-volume-decrease:before {\n  content: \"\\EA2C\"; }\n\n.icon-loop:before {\n  content: \"\\EA2D\"; }\n\n.icon-loop2:before {\n  content: \"\\EA2E\"; }\n\n.icon-infinite:before {\n  content: \"\\EA2F\"; }\n\n.icon-shuffle:before {\n  content: \"\\EA30\"; }\n\n.icon-arrow-up-left:before {\n  content: \"\\EA31\"; }\n\n.icon-arrow-up:before {\n  content: \"\\EA32\"; }\n\n.icon-arrow-up-right:before {\n  content: \"\\EA33\"; }\n\n.icon-arrow-right:before {\n  content: \"\\EA34\"; }\n\n.icon-arrow-down-right:before {\n  content: \"\\EA35\"; }\n\n.icon-arrow-down:before {\n  content: \"\\EA36\"; }\n\n.icon-arrow-down-left:before {\n  content: \"\\EA37\"; }\n\n.icon-arrow-left:before {\n  content: \"\\EA38\"; }\n\n.icon-arrow-up-left2:before {\n  content: \"\\EA39\"; }\n\n.icon-arrow-up2:before {\n  content: \"\\EA3A\"; }\n\n.icon-arrow-up-right2:before {\n  content: \"\\EA3B\"; }\n\n.icon-arrow-right2:before {\n  content: \"\\EA3C\"; }\n\n.icon-arrow-down-right2:before {\n  content: \"\\EA3D\"; }\n\n.icon-arrow-down2:before {\n  content: \"\\EA3E\"; }\n\n.icon-arrow-down-left2:before {\n  content: \"\\EA3F\"; }\n\n.icon-arrow-left2:before {\n  content: \"\\EA40\"; }\n\n.icon-circle-up:before {\n  content: \"\\EA41\"; }\n\n.icon-circle-right:before {\n  content: \"\\EA42\"; }\n\n.icon-circle-down:before {\n  content: \"\\EA43\"; }\n\n.icon-circle-left:before {\n  content: \"\\EA44\"; }\n\n.icon-tab:before {\n  content: \"\\EA45\"; }\n\n.icon-move-up:before {\n  content: \"\\EA46\"; }\n\n.icon-move-down:before {\n  content: \"\\EA47\"; }\n\n.icon-sort-alpha-asc:before {\n  content: \"\\EA48\"; }\n\n.icon-sort-alpha-desc:before {\n  content: \"\\EA49\"; }\n\n.icon-sort-numeric-asc:before {\n  content: \"\\EA4A\"; }\n\n.icon-sort-numberic-desc:before {\n  content: \"\\EA4B\"; }\n\n.icon-sort-amount-asc:before {\n  content: \"\\EA4C\"; }\n\n.icon-sort-amount-desc:before {\n  content: \"\\EA4D\"; }\n\n.icon-command:before {\n  content: \"\\EA4E\"; }\n\n.icon-shift:before {\n  content: \"\\EA4F\"; }\n\n.icon-ctrl:before {\n  content: \"\\EA50\"; }\n\n.icon-opt:before {\n  content: \"\\EA51\"; }\n\n.icon-checkbox-checked:before {\n  content: \"\\EA52\"; }\n\n.icon-checkbox-unchecked:before {\n  content: \"\\EA53\"; }\n\n.icon-radio-checked:before {\n  content: \"\\EA54\"; }\n\n.icon-radio-checked2:before {\n  content: \"\\EA55\"; }\n\n.icon-radio-unchecked:before {\n  content: \"\\EA56\"; }\n\n.icon-crop:before {\n  content: \"\\EA57\"; }\n\n.icon-make-group:before {\n  content: \"\\EA58\"; }\n\n.icon-ungroup:before {\n  content: \"\\EA59\"; }\n\n.icon-scissors:before {\n  content: \"\\EA5A\"; }\n\n.icon-filter:before {\n  content: \"\\EA5B\"; }\n\n.icon-font:before {\n  content: \"\\EA5C\"; }\n\n.icon-ligature:before {\n  content: \"\\EA5D\"; }\n\n.icon-ligature2:before {\n  content: \"\\EA5E\"; }\n\n.icon-text-height:before {\n  content: \"\\EA5F\"; }\n\n.icon-text-width:before {\n  content: \"\\EA60\"; }\n\n.icon-font-size:before {\n  content: \"\\EA61\"; }\n\n.icon-bold:before {\n  content: \"\\EA62\"; }\n\n.icon-underline:before {\n  content: \"\\EA63\"; }\n\n.icon-italic:before {\n  content: \"\\EA64\"; }\n\n.icon-strikethrough:before {\n  content: \"\\EA65\"; }\n\n.icon-omega:before {\n  content: \"\\EA66\"; }\n\n.icon-sigma:before {\n  content: \"\\EA67\"; }\n\n.icon-page-break:before {\n  content: \"\\EA68\"; }\n\n.icon-superscript:before {\n  content: \"\\EA69\"; }\n\n.icon-subscript:before {\n  content: \"\\EA6A\"; }\n\n.icon-superscript2:before {\n  content: \"\\EA6B\"; }\n\n.icon-subscript2:before {\n  content: \"\\EA6C\"; }\n\n.icon-text-color:before {\n  content: \"\\EA6D\"; }\n\n.icon-pagebreak:before {\n  content: \"\\EA6E\"; }\n\n.icon-clear-formatting:before {\n  content: \"\\EA6F\"; }\n\n.icon-table:before {\n  content: \"\\EA70\"; }\n\n.icon-table2:before {\n  content: \"\\EA71\"; }\n\n.icon-insert-template:before {\n  content: \"\\EA72\"; }\n\n.icon-pilcrow:before {\n  content: \"\\EA73\"; }\n\n.icon-ltr:before {\n  content: \"\\EA74\"; }\n\n.icon-rtl:before {\n  content: \"\\EA75\"; }\n\n.icon-section:before {\n  content: \"\\EA76\"; }\n\n.icon-paragraph-left:before {\n  content: \"\\EA77\"; }\n\n.icon-paragraph-center:before {\n  content: \"\\EA78\"; }\n\n.icon-paragraph-right:before {\n  content: \"\\EA79\"; }\n\n.icon-paragraph-justify:before {\n  content: \"\\EA7A\"; }\n\n.icon-indent-increase:before {\n  content: \"\\EA7B\"; }\n\n.icon-indent-decrease:before {\n  content: \"\\EA7C\"; }\n\n.icon-share:before {\n  content: \"\\EA7D\"; }\n\n.icon-new-tab:before {\n  content: \"\\EA7E\"; }\n\n.icon-embed:before {\n  content: \"\\EA7F\"; }\n\n.icon-embed2:before {\n  content: \"\\EA80\"; }\n\n.icon-terminal:before {\n  content: \"\\EA81\"; }\n\n.icon-share2:before {\n  content: \"\\EA82\"; }\n\n.icon-mail:before {\n  content: \"\\EA83\"; }\n\n.icon-mail2:before {\n  content: \"\\EA84\"; }\n\n.icon-mail3:before {\n  content: \"\\EA85\"; }\n\n.icon-mail4:before {\n  content: \"\\EA86\"; }\n\n.icon-google:before {\n  content: \"\\EA87\"; }\n\n.icon-google-plus:before {\n  content: \"\\EA88\"; }\n\n.icon-google-plus2:before {\n  content: \"\\EA89\"; }\n\n.icon-google-plus3:before {\n  content: \"\\EA8A\"; }\n\n.icon-google-drive:before {\n  content: \"\\EA8B\"; }\n\n.icon-facebook:before {\n  content: \"\\EA8C\"; }\n\n.icon-facebook2:before {\n  content: \"\\EA8D\"; }\n\n.icon-facebook3:before {\n  content: \"\\EA8E\"; }\n\n.icon-ello:before {\n  content: \"\\EA8F\"; }\n\n.icon-instagram:before {\n  content: \"\\EA90\"; }\n\n.icon-twitter:before {\n  content: \"\\EA91\"; }\n\n.icon-twitter2:before {\n  content: \"\\EA92\"; }\n\n.icon-twitter3:before {\n  content: \"\\EA93\"; }\n\n.icon-feed2:before {\n  content: \"\\EA94\"; }\n\n.icon-feed3:before {\n  content: \"\\EA95\"; }\n\n.icon-feed4:before {\n  content: \"\\EA96\"; }\n\n.icon-youtube:before {\n  content: \"\\EA97\"; }\n\n.icon-youtube2:before {\n  content: \"\\EA98\"; }\n\n.icon-youtube3:before {\n  content: \"\\EA99\"; }\n\n.icon-youtube4:before {\n  content: \"\\EA9A\"; }\n\n.icon-twitch:before {\n  content: \"\\EA9B\"; }\n\n.icon-vimeo:before {\n  content: \"\\EA9C\"; }\n\n.icon-vimeo2:before {\n  content: \"\\EA9D\"; }\n\n.icon-vimeo3:before {\n  content: \"\\EA9E\"; }\n\n.icon-lanyrd:before {\n  content: \"\\EA9F\"; }\n\n.icon-flickr:before {\n  content: \"\\EAA0\"; }\n\n.icon-flickr2:before {\n  content: \"\\EAA1\"; }\n\n.icon-flickr3:before {\n  content: \"\\EAA2\"; }\n\n.icon-flickr4:before {\n  content: \"\\EAA3\"; }\n\n.icon-picassa:before {\n  content: \"\\EAA4\"; }\n\n.icon-picassa2:before {\n  content: \"\\EAA5\"; }\n\n.icon-dribbble:before {\n  content: \"\\EAA6\"; }\n\n.icon-dribbble2:before {\n  content: \"\\EAA7\"; }\n\n.icon-dribbble3:before {\n  content: \"\\EAA8\"; }\n\n.icon-forrst:before {\n  content: \"\\EAA9\"; }\n\n.icon-forrst2:before {\n  content: \"\\EAAA\"; }\n\n.icon-deviantart:before {\n  content: \"\\EAAB\"; }\n\n.icon-deviantart2:before {\n  content: \"\\EAAC\"; }\n\n.icon-steam:before {\n  content: \"\\EAAD\"; }\n\n.icon-steam2:before {\n  content: \"\\EAAE\"; }\n\n.icon-dropbox:before {\n  content: \"\\EAAF\"; }\n\n.icon-onedrive:before {\n  content: \"\\EAB0\"; }\n\n.icon-github:before {\n  content: \"\\EAB1\"; }\n\n.icon-github2:before {\n  content: \"\\EAB2\"; }\n\n.icon-github3:before {\n  content: \"\\EAB3\"; }\n\n.icon-github4:before {\n  content: \"\\EAB4\"; }\n\n.icon-github5:before {\n  content: \"\\EAB5\"; }\n\n.icon-wordpress:before {\n  content: \"\\EAB6\"; }\n\n.icon-wordpress2:before {\n  content: \"\\EAB7\"; }\n\n.icon-joomla:before {\n  content: \"\\EAB8\"; }\n\n.icon-blogger:before {\n  content: \"\\EAB9\"; }\n\n.icon-blogger2:before {\n  content: \"\\EABA\"; }\n\n.icon-tumblr:before {\n  content: \"\\EABB\"; }\n\n.icon-tumblr2:before {\n  content: \"\\EABC\"; }\n\n.icon-yahoo:before {\n  content: \"\\EABD\"; }\n\n.icon-tux:before {\n  content: \"\\EABE\"; }\n\n.icon-apple:before {\n  content: \"\\EABF\"; }\n\n.icon-finder:before {\n  content: \"\\EAC0\"; }\n\n.icon-android:before {\n  content: \"\\EAC1\"; }\n\n.icon-windows:before {\n  content: \"\\EAC2\"; }\n\n.icon-windows8:before {\n  content: \"\\EAC3\"; }\n\n.icon-soundcloud:before {\n  content: \"\\EAC4\"; }\n\n.icon-soundcloud2:before {\n  content: \"\\EAC5\"; }\n\n.icon-skype:before {\n  content: \"\\EAC6\"; }\n\n.icon-reddit:before {\n  content: \"\\EAC7\"; }\n\n.icon-linkedin:before {\n  content: \"\\EAC8\"; }\n\n.icon-linkedin2:before {\n  content: \"\\EAC9\"; }\n\n.icon-lastfm:before {\n  content: \"\\EACA\"; }\n\n.icon-lastfm2:before {\n  content: \"\\EACB\"; }\n\n.icon-delicious:before {\n  content: \"\\EACC\"; }\n\n.icon-stumbleupon:before {\n  content: \"\\EACD\"; }\n\n.icon-stumbleupon2:before {\n  content: \"\\EACE\"; }\n\n.icon-stackoverflow:before {\n  content: \"\\EACF\"; }\n\n.icon-pinterest:before {\n  content: \"\\EAD0\"; }\n\n.icon-pinterest2:before {\n  content: \"\\EAD1\"; }\n\n.icon-xing:before {\n  content: \"\\EAD2\"; }\n\n.icon-xing2:before {\n  content: \"\\EAD3\"; }\n\n.icon-flattr:before {\n  content: \"\\EAD4\"; }\n\n.icon-foursquare:before {\n  content: \"\\EAD5\"; }\n\n.icon-paypal:before {\n  content: \"\\EAD6\"; }\n\n.icon-paypal2:before {\n  content: \"\\EAD7\"; }\n\n.icon-paypal3:before {\n  content: \"\\EAD8\"; }\n\n.icon-yelp:before {\n  content: \"\\EAD9\"; }\n\n.icon-file-pdf:before {\n  content: \"\\EADA\"; }\n\n.icon-file-openoffice:before {\n  content: \"\\EADB\"; }\n\n.icon-file-word:before {\n  content: \"\\EADC\"; }\n\n.icon-file-excel:before {\n  content: \"\\EADD\"; }\n\n.icon-libreoffice:before {\n  content: \"\\EADE\"; }\n\n.icon-html5:before {\n  content: \"\\EADF\"; }\n\n.icon-html52:before {\n  content: \"\\EAE0\"; }\n\n.icon-css3:before {\n  content: \"\\EAE1\"; }\n\n.icon-git:before {\n  content: \"\\EAE2\"; }\n\n.icon-svg:before {\n  content: \"\\EAE3\"; }\n\n.icon-codepen:before {\n  content: \"\\EAE4\"; }\n\n.icon-chrome:before {\n  content: \"\\EAE5\"; }\n\n.icon-firefox:before {\n  content: \"\\EAE6\"; }\n\n.icon-IE:before {\n  content: \"\\EAE7\"; }\n\n.icon-opera:before {\n  content: \"\\EAE8\"; }\n\n.icon-safari:before {\n  content: \"\\EAE9\"; }\n\n.icon-IcoMoon:before {\n  content: \"\\EAEA\"; }\n\n.slider {\n  margin-top: 70px; }\n\n.entries {\n  width: 100%; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 3 */
 /***/ function(module, exports) {
 
@@ -421,15 +465,15 @@
 	var ReactContext = __webpack_require__(17);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(16);
-	var ReactElementValidator = __webpack_require__(35);
+	var ReactElementValidator = __webpack_require__(37);
 	var ReactDOM = __webpack_require__(45);
 	var ReactDOMTextComponent = __webpack_require__(47);
 	var ReactDefaultInjection = __webpack_require__(96);
-	var ReactInstanceHandles = __webpack_require__(25);
+	var ReactInstanceHandles = __webpack_require__(24);
 	var ReactMount = __webpack_require__(72);
-	var ReactPerf = __webpack_require__(31);
+	var ReactPerf = __webpack_require__(33);
 	var ReactPropTypes = __webpack_require__(127);
-	var ReactReconciler = __webpack_require__(32);
+	var ReactReconciler = __webpack_require__(34);
 	var ReactServerRendering = __webpack_require__(159);
 
 	var assign = __webpack_require__(18);
@@ -2160,9 +2204,9 @@
 
 	var ReactElement = __webpack_require__(16);
 	var ReactFragment = __webpack_require__(15);
-	var ReactInstanceHandles = __webpack_require__(25);
+	var ReactInstanceHandles = __webpack_require__(24);
 
-	var getIteratorFn = __webpack_require__(24);
+	var getIteratorFn = __webpack_require__(26);
 	var invariant = __webpack_require__(12);
 	var warning = __webpack_require__(20);
 
@@ -2399,54 +2443,6 @@
 
 /***/ },
 /* 24 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule getIteratorFn
-	 * @typechecks static-only
-	 */
-
-	'use strict';
-
-	/* global Symbol */
-	var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-	var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-	/**
-	 * Returns the iterator method function contained on the iterable object.
-	 *
-	 * Be sure to invoke the function with the iterable as context:
-	 *
-	 *     var iteratorFn = getIteratorFn(myIterable);
-	 *     if (iteratorFn) {
-	 *       var iterator = iteratorFn.call(myIterable);
-	 *       ...
-	 *     }
-	 *
-	 * @param {?object} maybeIterable
-	 * @return {?function}
-	 */
-	function getIteratorFn(maybeIterable) {
-	  var iteratorFn = maybeIterable && (
-	    (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL])
-	  );
-	  if (typeof iteratorFn === 'function') {
-	    return iteratorFn;
-	  }
-	}
-
-	module.exports = getIteratorFn;
-
-
-/***/ },
-/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2463,7 +2459,7 @@
 
 	'use strict';
 
-	var ReactRootIndex = __webpack_require__(26);
+	var ReactRootIndex = __webpack_require__(25);
 
 	var invariant = __webpack_require__(12);
 
@@ -2785,7 +2781,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports) {
 
 	/**
@@ -2817,6 +2813,54 @@
 	};
 
 	module.exports = ReactRootIndex;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule getIteratorFn
+	 * @typechecks static-only
+	 */
+
+	'use strict';
+
+	/* global Symbol */
+	var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+	var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+	/**
+	 * Returns the iterator method function contained on the iterable object.
+	 *
+	 * Be sure to invoke the function with the iterable as context:
+	 *
+	 *     var iteratorFn = getIteratorFn(myIterable);
+	 *     if (iteratorFn) {
+	 *       var iterator = iteratorFn.call(myIterable);
+	 *       ...
+	 *     }
+	 *
+	 * @param {?object} maybeIterable
+	 * @return {?function}
+	 */
+	function getIteratorFn(maybeIterable) {
+	  var iteratorFn = maybeIterable && (
+	    (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL])
+	  );
+	  if (typeof iteratorFn === 'function') {
+	    return iteratorFn;
+	  }
+	}
+
+	module.exports = getIteratorFn;
 
 
 /***/ },
@@ -2993,11 +3037,11 @@
 
 	'use strict';
 
-	var ReactLifeCycle = __webpack_require__(40);
+	var ReactLifeCycle = __webpack_require__(29);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(16);
-	var ReactInstanceMap = __webpack_require__(41);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactInstanceMap = __webpack_require__(30);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 	var invariant = __webpack_require__(12);
@@ -3280,6 +3324,100 @@
 
 /***/ },
 /* 29 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactLifeCycle
+	 */
+
+	'use strict';
+
+	/**
+	 * This module manages the bookkeeping when a component is in the process
+	 * of being mounted or being unmounted. This is used as a way to enforce
+	 * invariants (or warnings) when it is not recommended to call
+	 * setState/forceUpdate.
+	 *
+	 * currentlyMountingInstance: During the construction phase, it is not possible
+	 * to trigger an update since the instance is not fully mounted yet. However, we
+	 * currently allow this as a convenience for mutating the initial state.
+	 *
+	 * currentlyUnmountingInstance: During the unmounting phase, the instance is
+	 * still mounted and can therefore schedule an update. However, this is not
+	 * recommended and probably an error since it's about to be unmounted.
+	 * Therefore we still want to trigger in an error for that case.
+	 */
+
+	var ReactLifeCycle = {
+	  currentlyMountingInstance: null,
+	  currentlyUnmountingInstance: null
+	};
+
+	module.exports = ReactLifeCycle;
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactInstanceMap
+	 */
+
+	'use strict';
+
+	/**
+	 * `ReactInstanceMap` maintains a mapping from a public facing stateful
+	 * instance (key) and the internal representation (value). This allows public
+	 * methods to accept the user facing instance as an argument and map them back
+	 * to internal methods.
+	 */
+
+	// TODO: Replace this with ES6: var ReactInstanceMap = new Map();
+	var ReactInstanceMap = {
+
+	  /**
+	   * This API should be called `delete` but we'd have to make sure to always
+	   * transform these to strings for IE support. When this transform is fully
+	   * supported we can rename it.
+	   */
+	  remove: function(key) {
+	    key._reactInternalInstance = undefined;
+	  },
+
+	  get: function(key) {
+	    return key._reactInternalInstance;
+	  },
+
+	  has: function(key) {
+	    return key._reactInternalInstance !== undefined;
+	  },
+
+	  set: function(key, value) {
+	    key._reactInternalInstance = value;
+	  }
+
+	};
+
+	module.exports = ReactInstanceMap;
+
+
+/***/ },
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3295,12 +3433,12 @@
 
 	'use strict';
 
-	var CallbackQueue = __webpack_require__(30);
+	var CallbackQueue = __webpack_require__(32);
 	var PooledClass = __webpack_require__(14);
 	var ReactCurrentOwner = __webpack_require__(22);
-	var ReactPerf = __webpack_require__(31);
-	var ReactReconciler = __webpack_require__(32);
-	var Transaction = __webpack_require__(39);
+	var ReactPerf = __webpack_require__(33);
+	var ReactReconciler = __webpack_require__(34);
+	var Transaction = __webpack_require__(41);
 
 	var assign = __webpack_require__(18);
 	var invariant = __webpack_require__(12);
@@ -3564,7 +3702,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3667,7 +3805,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3774,7 +3912,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3790,8 +3928,8 @@
 
 	'use strict';
 
-	var ReactRef = __webpack_require__(33);
-	var ReactElementValidator = __webpack_require__(35);
+	var ReactRef = __webpack_require__(35);
+	var ReactElementValidator = __webpack_require__(37);
 
 	/**
 	 * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -3901,7 +4039,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3917,7 +4055,7 @@
 
 	'use strict';
 
-	var ReactOwner = __webpack_require__(34);
+	var ReactOwner = __webpack_require__(36);
 
 	var ReactRef = {};
 
@@ -3976,7 +4114,7 @@
 
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4091,7 +4229,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4116,12 +4254,12 @@
 
 	var ReactElement = __webpack_require__(16);
 	var ReactFragment = __webpack_require__(15);
-	var ReactPropTypeLocations = __webpack_require__(36);
-	var ReactPropTypeLocationNames = __webpack_require__(37);
+	var ReactPropTypeLocations = __webpack_require__(38);
+	var ReactPropTypeLocationNames = __webpack_require__(39);
 	var ReactCurrentOwner = __webpack_require__(22);
-	var ReactNativeComponent = __webpack_require__(38);
+	var ReactNativeComponent = __webpack_require__(40);
 
-	var getIteratorFn = __webpack_require__(24);
+	var getIteratorFn = __webpack_require__(26);
 	var invariant = __webpack_require__(12);
 	var warning = __webpack_require__(20);
 
@@ -4559,7 +4697,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4587,7 +4725,7 @@
 
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4618,7 +4756,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4728,7 +4866,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4972,100 +5110,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 40 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule ReactLifeCycle
-	 */
-
-	'use strict';
-
-	/**
-	 * This module manages the bookkeeping when a component is in the process
-	 * of being mounted or being unmounted. This is used as a way to enforce
-	 * invariants (or warnings) when it is not recommended to call
-	 * setState/forceUpdate.
-	 *
-	 * currentlyMountingInstance: During the construction phase, it is not possible
-	 * to trigger an update since the instance is not fully mounted yet. However, we
-	 * currently allow this as a convenience for mutating the initial state.
-	 *
-	 * currentlyUnmountingInstance: During the unmounting phase, the instance is
-	 * still mounted and can therefore schedule an update. However, this is not
-	 * recommended and probably an error since it's about to be unmounted.
-	 * Therefore we still want to trigger in an error for that case.
-	 */
-
-	var ReactLifeCycle = {
-	  currentlyMountingInstance: null,
-	  currentlyUnmountingInstance: null
-	};
-
-	module.exports = ReactLifeCycle;
-
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule ReactInstanceMap
-	 */
-
-	'use strict';
-
-	/**
-	 * `ReactInstanceMap` maintains a mapping from a public facing stateful
-	 * instance (key) and the internal representation (value). This allows public
-	 * methods to accept the user facing instance as an argument and map them back
-	 * to internal methods.
-	 */
-
-	// TODO: Replace this with ES6: var ReactInstanceMap = new Map();
-	var ReactInstanceMap = {
-
-	  /**
-	   * This API should be called `delete` but we'd have to make sure to always
-	   * transform these to strings for IE support. When this transform is fully
-	   * supported we can rename it.
-	   */
-	  remove: function(key) {
-	    key._reactInternalInstance = undefined;
-	  },
-
-	  get: function(key) {
-	    return key._reactInternalInstance;
-	  },
-
-	  has: function(key) {
-	    return key._reactInternalInstance !== undefined;
-	  },
-
-	  set: function(key, value) {
-	    key._reactInternalInstance = value;
-	  }
-
-	};
-
-	module.exports = ReactInstanceMap;
-
-
-/***/ },
 /* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5086,10 +5130,10 @@
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(16);
 	var ReactErrorUtils = __webpack_require__(43);
-	var ReactInstanceMap = __webpack_require__(41);
-	var ReactLifeCycle = __webpack_require__(40);
-	var ReactPropTypeLocations = __webpack_require__(36);
-	var ReactPropTypeLocationNames = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(30);
+	var ReactLifeCycle = __webpack_require__(29);
+	var ReactPropTypeLocations = __webpack_require__(38);
+	var ReactPropTypeLocationNames = __webpack_require__(39);
 	var ReactUpdateQueue = __webpack_require__(28);
 
 	var assign = __webpack_require__(18);
@@ -6109,7 +6153,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(16);
-	var ReactElementValidator = __webpack_require__(35);
+	var ReactElementValidator = __webpack_require__(37);
 
 	var mapObject = __webpack_require__(46);
 
@@ -7098,7 +7142,7 @@
 	var DOMChildrenOperations = __webpack_require__(63);
 	var DOMPropertyOperations = __webpack_require__(48);
 	var ReactMount = __webpack_require__(72);
-	var ReactPerf = __webpack_require__(31);
+	var ReactPerf = __webpack_require__(33);
 
 	var invariant = __webpack_require__(12);
 	var setInnerHTML = __webpack_require__(71);
@@ -8778,15 +8822,15 @@
 	var ReactBrowserEventEmitter = __webpack_require__(73);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(16);
-	var ReactElementValidator = __webpack_require__(35);
+	var ReactElementValidator = __webpack_require__(37);
 	var ReactEmptyComponent = __webpack_require__(81);
-	var ReactInstanceHandles = __webpack_require__(25);
-	var ReactInstanceMap = __webpack_require__(41);
+	var ReactInstanceHandles = __webpack_require__(24);
+	var ReactInstanceMap = __webpack_require__(30);
 	var ReactMarkupChecksum = __webpack_require__(82);
-	var ReactPerf = __webpack_require__(31);
-	var ReactReconciler = __webpack_require__(32);
+	var ReactPerf = __webpack_require__(33);
+	var ReactReconciler = __webpack_require__(34);
 	var ReactUpdateQueue = __webpack_require__(28);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 
 	var emptyObject = __webpack_require__(19);
 	var containsNode = __webpack_require__(84);
@@ -10850,7 +10894,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(16);
-	var ReactInstanceMap = __webpack_require__(41);
+	var ReactInstanceMap = __webpack_require__(30);
 
 	var invariant = __webpack_require__(12);
 
@@ -11187,7 +11231,7 @@
 
 	var ReactCompositeComponent = __webpack_require__(89);
 	var ReactEmptyComponent = __webpack_require__(81);
-	var ReactNativeComponent = __webpack_require__(38);
+	var ReactNativeComponent = __webpack_require__(40);
 
 	var assign = __webpack_require__(18);
 	var invariant = __webpack_require__(12);
@@ -11329,15 +11373,15 @@
 	var ReactContext = __webpack_require__(17);
 	var ReactCurrentOwner = __webpack_require__(22);
 	var ReactElement = __webpack_require__(16);
-	var ReactElementValidator = __webpack_require__(35);
-	var ReactInstanceMap = __webpack_require__(41);
-	var ReactLifeCycle = __webpack_require__(40);
-	var ReactNativeComponent = __webpack_require__(38);
-	var ReactPerf = __webpack_require__(31);
-	var ReactPropTypeLocations = __webpack_require__(36);
-	var ReactPropTypeLocationNames = __webpack_require__(37);
-	var ReactReconciler = __webpack_require__(32);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactElementValidator = __webpack_require__(37);
+	var ReactInstanceMap = __webpack_require__(30);
+	var ReactLifeCycle = __webpack_require__(29);
+	var ReactNativeComponent = __webpack_require__(40);
+	var ReactPerf = __webpack_require__(33);
+	var ReactPropTypeLocations = __webpack_require__(38);
+	var ReactPropTypeLocationNames = __webpack_require__(39);
+	var ReactReconciler = __webpack_require__(34);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 	var emptyObject = __webpack_require__(19);
@@ -12423,7 +12467,7 @@
 	  __webpack_require__(52);
 	var ReactMount = __webpack_require__(72);
 	var ReactMultiChild = __webpack_require__(93);
-	var ReactPerf = __webpack_require__(31);
+	var ReactPerf = __webpack_require__(33);
 
 	var assign = __webpack_require__(18);
 	var escapeTextContentForBrowser = __webpack_require__(51);
@@ -12929,7 +12973,7 @@
 	var ReactComponentEnvironment = __webpack_require__(90);
 	var ReactMultiChildUpdateTypes = __webpack_require__(69);
 
-	var ReactReconciler = __webpack_require__(32);
+	var ReactReconciler = __webpack_require__(34);
 	var ReactChildReconciler = __webpack_require__(94);
 
 	/**
@@ -13360,7 +13404,7 @@
 
 	'use strict';
 
-	var ReactReconciler = __webpack_require__(32);
+	var ReactReconciler = __webpack_require__(34);
 
 	var flattenChildren = __webpack_require__(95);
 	var instantiateReactComponent = __webpack_require__(88);
@@ -13578,7 +13622,7 @@
 	var ReactElement = __webpack_require__(16);
 	var ReactEventListener = __webpack_require__(131);
 	var ReactInjection = __webpack_require__(134);
-	var ReactInstanceHandles = __webpack_require__(25);
+	var ReactInstanceHandles = __webpack_require__(24);
 	var ReactMount = __webpack_require__(72);
 	var ReactReconcileTransaction = __webpack_require__(135);
 	var SelectEventPlugin = __webpack_require__(141);
@@ -14801,7 +14845,7 @@
 	var EventPluginHub = __webpack_require__(74);
 	var EventPropagators = __webpack_require__(98);
 	var ExecutionEnvironment = __webpack_require__(56);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 	var SyntheticEvent = __webpack_require__(102);
 
 	var isEventSupported = __webpack_require__(80);
@@ -15962,7 +16006,7 @@
 	'use strict';
 
 	var ReactCurrentOwner = __webpack_require__(22);
-	var ReactInstanceMap = __webpack_require__(41);
+	var ReactInstanceMap = __webpack_require__(30);
 	var ReactMount = __webpack_require__(72);
 
 	var invariant = __webpack_require__(12);
@@ -16036,8 +16080,8 @@
 
 	'use strict';
 
-	var ReactUpdates = __webpack_require__(29);
-	var Transaction = __webpack_require__(39);
+	var ReactUpdates = __webpack_require__(31);
+	var Transaction = __webpack_require__(41);
 
 	var assign = __webpack_require__(18);
 	var emptyFunction = __webpack_require__(21);
@@ -16464,7 +16508,7 @@
 	var ReactClass = __webpack_require__(42);
 	var ReactElement = __webpack_require__(16);
 	var ReactMount = __webpack_require__(72);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 	var invariant = __webpack_require__(12);
@@ -16798,7 +16842,7 @@
 
 	var ReactElement = __webpack_require__(16);
 	var ReactFragment = __webpack_require__(15);
-	var ReactPropTypeLocationNames = __webpack_require__(37);
+	var ReactPropTypeLocationNames = __webpack_require__(39);
 
 	var emptyFunction = __webpack_require__(21);
 
@@ -17209,7 +17253,7 @@
 	var ReactBrowserComponentMixin = __webpack_require__(115);
 	var ReactClass = __webpack_require__(42);
 	var ReactElement = __webpack_require__(16);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 
@@ -17392,7 +17436,7 @@
 	var ReactBrowserComponentMixin = __webpack_require__(115);
 	var ReactClass = __webpack_require__(42);
 	var ReactElement = __webpack_require__(16);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 	var invariant = __webpack_require__(12);
@@ -17533,9 +17577,9 @@
 	var EventListener = __webpack_require__(132);
 	var ExecutionEnvironment = __webpack_require__(56);
 	var PooledClass = __webpack_require__(14);
-	var ReactInstanceHandles = __webpack_require__(25);
+	var ReactInstanceHandles = __webpack_require__(24);
 	var ReactMount = __webpack_require__(72);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactUpdates = __webpack_require__(31);
 
 	var assign = __webpack_require__(18);
 	var getEventTarget = __webpack_require__(103);
@@ -17859,11 +17903,11 @@
 	var ReactClass = __webpack_require__(42);
 	var ReactEmptyComponent = __webpack_require__(81);
 	var ReactBrowserEventEmitter = __webpack_require__(73);
-	var ReactNativeComponent = __webpack_require__(38);
+	var ReactNativeComponent = __webpack_require__(40);
 	var ReactDOMComponent = __webpack_require__(92);
-	var ReactPerf = __webpack_require__(31);
-	var ReactRootIndex = __webpack_require__(26);
-	var ReactUpdates = __webpack_require__(29);
+	var ReactPerf = __webpack_require__(33);
+	var ReactRootIndex = __webpack_require__(25);
+	var ReactUpdates = __webpack_require__(31);
 
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -17900,12 +17944,12 @@
 
 	'use strict';
 
-	var CallbackQueue = __webpack_require__(30);
+	var CallbackQueue = __webpack_require__(32);
 	var PooledClass = __webpack_require__(14);
 	var ReactBrowserEventEmitter = __webpack_require__(73);
 	var ReactInputSelection = __webpack_require__(136);
 	var ReactPutListenerQueue = __webpack_require__(140);
-	var Transaction = __webpack_require__(39);
+	var Transaction = __webpack_require__(41);
 
 	var assign = __webpack_require__(18);
 
@@ -18892,17 +18936,17 @@
 	var EventConstants = __webpack_require__(10);
 	var EventPluginUtils = __webpack_require__(9);
 	var EventPropagators = __webpack_require__(98);
-	var SyntheticClipboardEvent = __webpack_require__(146);
+	var SyntheticClipboardEvent = __webpack_require__(145);
 	var SyntheticEvent = __webpack_require__(102);
-	var SyntheticFocusEvent = __webpack_require__(147);
-	var SyntheticKeyboardEvent = __webpack_require__(148);
+	var SyntheticFocusEvent = __webpack_require__(146);
+	var SyntheticKeyboardEvent = __webpack_require__(147);
 	var SyntheticMouseEvent = __webpack_require__(110);
-	var SyntheticDragEvent = __webpack_require__(145);
+	var SyntheticDragEvent = __webpack_require__(150);
 	var SyntheticTouchEvent = __webpack_require__(151);
 	var SyntheticUIEvent = __webpack_require__(111);
 	var SyntheticWheelEvent = __webpack_require__(152);
 
-	var getEventCharCode = __webpack_require__(149);
+	var getEventCharCode = __webpack_require__(148);
 
 	var invariant = __webpack_require__(12);
 	var keyOf = __webpack_require__(44);
@@ -19315,49 +19359,6 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule SyntheticDragEvent
-	 * @typechecks static-only
-	 */
-
-	'use strict';
-
-	var SyntheticMouseEvent = __webpack_require__(110);
-
-	/**
-	 * @interface DragEvent
-	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
-	 */
-	var DragEventInterface = {
-	  dataTransfer: null
-	};
-
-	/**
-	 * @param {object} dispatchConfig Configuration used to dispatch this event.
-	 * @param {string} dispatchMarker Marker identifying the event target.
-	 * @param {object} nativeEvent Native browser event.
-	 * @extends {SyntheticUIEvent}
-	 */
-	function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent) {
-	  SyntheticMouseEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent);
-	}
-
-	SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
-
-	module.exports = SyntheticDragEvent;
-
-
-/***/ },
-/* 146 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
 	 * @providesModule SyntheticClipboardEvent
 	 * @typechecks static-only
 	 */
@@ -19396,7 +19397,7 @@
 
 
 /***/ },
-/* 147 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19439,7 +19440,7 @@
 
 
 /***/ },
-/* 148 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19458,8 +19459,8 @@
 
 	var SyntheticUIEvent = __webpack_require__(111);
 
-	var getEventCharCode = __webpack_require__(149);
-	var getEventKey = __webpack_require__(150);
+	var getEventCharCode = __webpack_require__(148);
+	var getEventKey = __webpack_require__(149);
 	var getEventModifierState = __webpack_require__(112);
 
 	/**
@@ -19530,7 +19531,7 @@
 
 
 /***/ },
-/* 149 */
+/* 148 */
 /***/ function(module, exports) {
 
 	/**
@@ -19586,7 +19587,7 @@
 
 
 /***/ },
-/* 150 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19603,7 +19604,7 @@
 
 	'use strict';
 
-	var getEventCharCode = __webpack_require__(149);
+	var getEventCharCode = __webpack_require__(148);
 
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -19692,6 +19693,49 @@
 	}
 
 	module.exports = getEventKey;
+
+
+/***/ },
+/* 150 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule SyntheticDragEvent
+	 * @typechecks static-only
+	 */
+
+	'use strict';
+
+	var SyntheticMouseEvent = __webpack_require__(110);
+
+	/**
+	 * @interface DragEvent
+	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
+	 */
+	var DragEventInterface = {
+	  dataTransfer: null
+	};
+
+	/**
+	 * @param {object} dispatchConfig Configuration used to dispatch this event.
+	 * @param {string} dispatchMarker Marker identifying the event target.
+	 * @param {object} nativeEvent Native browser event.
+	 * @extends {SyntheticUIEvent}
+	 */
+	function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent) {
+	  SyntheticMouseEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent);
+	}
+
+	SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
+
+	module.exports = SyntheticDragEvent;
 
 
 /***/ },
@@ -19995,7 +20039,7 @@
 	var DOMProperty = __webpack_require__(49);
 	var ReactDefaultPerfAnalysis = __webpack_require__(156);
 	var ReactMount = __webpack_require__(72);
-	var ReactPerf = __webpack_require__(31);
+	var ReactPerf = __webpack_require__(33);
 
 	var performanceNow = __webpack_require__(157);
 
@@ -20536,7 +20580,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(16);
-	var ReactInstanceHandles = __webpack_require__(25);
+	var ReactInstanceHandles = __webpack_require__(24);
 	var ReactMarkupChecksum = __webpack_require__(82);
 	var ReactServerRenderingTransaction =
 	  __webpack_require__(160);
@@ -20622,9 +20666,9 @@
 	'use strict';
 
 	var PooledClass = __webpack_require__(14);
-	var CallbackQueue = __webpack_require__(30);
+	var CallbackQueue = __webpack_require__(32);
 	var ReactPutListenerQueue = __webpack_require__(140);
-	var Transaction = __webpack_require__(39);
+	var Transaction = __webpack_require__(41);
 
 	var assign = __webpack_require__(18);
 	var emptyFunction = __webpack_require__(21);
@@ -20977,18 +21021,496 @@
 	module.exports = __webpack_require__.p + "f74f15bc9c84b5302ca644dabc169fb0.png"
 
 /***/ },
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(170);
+	var React = __webpack_require__(6);
+
+	var Slider = React.createClass({displayName: "Slider",
+
+		propTypes: {
+			data: React.PropTypes.array.isRequired,
+			showImage: React.PropTypes.bool,
+			showNav: React.PropTypes.bool,
+			showText: React.PropTypes.bool,
+			updateItem: React.PropTypes.func
+		},
+
+		getDefaultProps: function() {
+			return {
+				showImage: true,
+				showNav: true,
+				showText: true
+			};
+		},
+
+		getInitialState: function() {
+			return {
+				index: 0,
+				offset: 0,
+				step: 0,
+				slideTime: 30,
+				triggerLimit: 0.1,
+				startX: -1
+			};
+		},
+
+		getNextIndex: function () {
+			return (this.state.index + 1 + this.props.data.length) % this.props.data.length;
+		},
+
+		getPrevIndex: function () {
+			return (this.state.index - 1 + this.props.data.length) % this.props.data.length;
+		},
+
+		onImgTouchStart: function(e) {
+			if (this.props.data.length > 1) {
+				//e.preventDefault();
+				this.setState({startX: e.touches[0].clientX});
+			}
+		},
+		onImgTouchMove: function(e) {
+			if (this.state.startX >= 0) {
+				if (this.props.data.length <= 1) return; 
+				var offset = e.touches[0].clientX - this.state.startX;
+				this.setState({offset: offset});
+			}
+		},
+		onImgTouchEnd: function() {
+			var width = this.getDOMNode().clientWidth,
+				limit = width * this.state.triggerLimit,
+				speed = Math.round(width / this.state.slideTime),
+				offsetAbs = Math.abs(this.state.offset);
+			if (offsetAbs >= limit) {
+				var step = this.state.offset / offsetAbs * speed;
+			} else {
+				var step = -this.state.offset / offsetAbs * speed;
+			}
+			this.setState({step: step, startX : -1});
+		},
+
+		handleNavClick: function(e){
+			if (this.state.offset === 0) {
+				var el = e.target;
+				var index = parseInt(el.getAttribute('data-index'));
+				this.setState({index: index});
+			}
+		},
+
+		handleImgurlError: function(e) {
+			var el = e.target;
+			var index = parseInt(el.getAttribute('data-index'));
+			var item = this.props.data[index];
+			this.updateItem(item);
+		},
+
+		handleItemClick: function(e) {
+			var el = e.target;
+			var id = parseInt(el.getAttribute('data-id'));
+			if (id) {
+				location.href = './node.html?id=' + id;
+			}
+		},
+
+		updateItem: function(item) {
+			if (this.props.updateItem) {
+				this.props.updateItem(item);
+			}
+		},
+
+		resolveSliding: function() {
+			var offset = this.state.offset + this.state.step,
+				width = this.getDOMNode().clientWidth,
+				speed = Math.round(width / this.state.slideTime),
+				index = this.state.index,
+				step = this.state.step;
+			if (offset > -speed && offset < speed) {
+				offset = 0;
+				step = 0;
+			} else if (offset >= width) {
+				offset = 0;
+				step = 0;
+				index = this.getPrevIndex();
+			} else if (offset <= -width) {
+				offset = 0;
+				step = 0;
+				index = this.getNextIndex();
+			}
+			this.setState({offset: offset, index: index, step: step});
+		},
+
+		componentDidUpdate: function() {
+			if (this.state.step && this.state.startX < 0) {
+				requestAnimationFrame(this.resolveSliding);
+			}
+		},
+
+		render: function() {
+			var self = this,
+				imgConStyle = {left: this.state.offset + 'px'};
+			return (
+			React.createElement("div", {className: "slider"}, 
+				 this.props.showImage && 
+				React.createElement("div", {className: "img-view"}, 
+					React.createElement("div", {className: "img-con", 
+						style: imgConStyle, 
+						onTouchStart: this.onImgTouchStart, 
+						onTouchMove: this.onImgTouchMove, 
+						onTouchEnd: this.onImgTouchEnd}, 
+						
+						 this.props.data.map(function(item, i) {
+							var additionClass = '';
+							if (self.state.index === i) {
+								additionClass = ' current';
+							} else if (self.props.data.length <= 1) {
+								additionClass = '';
+							} else if (self.state.offset > 0 && self.getPrevIndex() === i) {
+								additionClass = ' prev';
+							} else if (self.state.offset < 0 && self.getNextIndex() === i) {
+								additionClass = ' next';
+							}
+							var imgStyle = {backgroundImage: 'url(' + item.imgurl + ')'};
+							return (
+								React.createElement("div", {style: imgStyle, key: i, 
+									className: 'img-item'+additionClass, 
+									"data-id": item.id, 
+									onClick: self.handleItemClick}, 
+									
+									React.createElement("img", {className: "hide", src: item.imgurl, "data-index": i, 
+										onError: self.handleImgurlError})
+								)
+							);
+						})
+					)
+				), 
+				
+
+				 this.props.showNav && 
+				React.createElement("div", {className: "nav-view"}, 
+					 this.props.data.map(function(item, i) {
+						return (React.createElement("p", {key: i, "data-index": i, onClick: self.handleNavClick, 
+							className: i === self.state.index ? 'current' : ''}))
+					})
+				), 
+				
+
+				 this.props.showText &&
+				React.createElement("div", {className: "text-view"}, 
+					 this.props.data.map(function(item, i) {
+						return (
+						React.createElement("div", {key: i, className: i === self.state.index ? 'current' : ''}, 
+							React.createElement("h3", null, item.title)
+						)
+						);
+					})
+				)
+				
+			)
+			);
+		}
+	});
+
+	module.exports = Slider;
+
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(171);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".slider {\n  width: 100%;\n  position: relative;\n  background-color: #ccc; }\n  .slider .img-view, .slider .text-view {\n    width: 100%;\n    overflow: hidden; }\n  .slider .img-view .img-con {\n    position: relative;\n    width: 100%;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    display: none;\n    background-size: cover;\n    background-position: center;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item.current, .slider .img-view .img-item.prev, .slider .img-view .img-item.next {\n    display: block; }\n  .slider .img-view .img-item.prev {\n    left: -100%; }\n  .slider .img-view .img-item.next {\n    left: 100%; }\n  .slider .img-view .img-item.current {\n    z-index: 1; }\n  .slider .text-view {\n    background-color: rgba(0, 0, 0, 0.5);\n    color: white;\n    z-index: 1;\n    height: 60px;\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n    .slider .text-view div {\n      z-index: 0;\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      padding-top: 20px;\n      opacity: 0;\n      display: none\\9;\n      font-size: 14px;\n      line-height: 25px; }\n    .slider .text-view div.current {\n      opacity: 1;\n      z-index: 1;\n      display: block\\9; }\n    .slider .text-view h3 {\n      text-align: center;\n      font-size: 18px;\n      line-height: 40px;\n      font-weight: bold;\n      height: 40px;\n      text-overflow: ellipsis; }\n  .slider .nav-view {\n    z-index: 2;\n    position: absolute;\n    width: 100%;\n    height: 10px;\n    bottom: 45px;\n    text-align: center; }\n    .slider .nav-view p {\n      display: inline-block;\n      width: 10px;\n      height: 10px;\n      border-radius: 50%;\n      cursor: pointer;\n      background-color: white;\n      margin: 5px; }\n    .slider .nav-view p.current {\n      background-color: red; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(173);
+	var React = __webpack_require__(6);
+
+	var Entry = React.createClass({displayName: "Entry",
+
+		propTypes: {
+			name: React.PropTypes.string.isRequired,
+			icon: React.PropTypes.string.isRequired,
+			link: React.PropTypes.string.isRequired
+		},
+
+		render: function() {
+			return (
+			React.createElement("a", {href: this.props.link}, 
+				React.createElement("div", {className: "entry"}, 
+					React.createElement("img", {className: "photo", src: this.props.icon})
+				)
+			)
+			)
+		}
+
+	});
+
+	module.exports = Entry;
+
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(174);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".entry {\n  width: 100%;\n  margin: 20px 0; }\n  .entry .photo {\n    width: 100%; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(176);
+	var React = __webpack_require__(6);
+
+	var Footer = React.createClass({displayName: "Footer",
+
+		render: function(){
+			return (
+				React.createElement("div", {className: "footer"}, 
+					React.createElement("p", {className: "center-text"}, "ycmoca@moca-yinchuan.com"), 
+					React.createElement("p", {className: "center-text"}, "0951-8426106"), 
+					React.createElement("p", {className: "center-text"}, "宁夏银川市兴庆区禾乐路12号 邮编：750101"), 
+					React.createElement("p", {className: "center-text"}, "版权所有©银川当代美术馆")
+				)
+			)
+		}
+
+	});
+
+	module.exports = Footer;
+
+
+/***/ },
 /* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(177);
-	var assign = __webpack_require__(182);
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(177);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./footer.sass", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./footer.sass");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".footer {\n  margin-bottom: 20px; }\n  .footer p {\n    font-size: 13px;\n    color: #666;\n    text-align: center;\n    line-height: 30px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(179);
+	var EventEmitter = __webpack_require__(186).EventEmitter;
+	var MocaConstants = __webpack_require__(187);
+	var assign = __webpack_require__(185);
+	var Request = __webpack_require__(188);
+	var NodeParser = __webpack_require__(195);
+
+	var CHANGE_EVENT = 'change';
+
+	var _frontData = {
+		sliderData: [],
+		entries: [{
+			name: '展览',
+			icon: __webpack_require__(189),
+			link: './exhibition.html'
+		},{
+			name: '研究典藏',
+			icon: __webpack_require__(190),
+			link: './collection.html'
+		},{
+			name: '公共教育',
+			icon: __webpack_require__(191),
+			link: './education.html'
+		},{
+			name: '关于美术馆',
+			icon: __webpack_require__(192),
+			link: './about.html'
+		},{
+			name: '参观指南',
+			icon: __webpack_require__(193),
+			link: './visitorGuide.html'
+		}]
+	};
+
+	function fetchList() {
+		return Request.getData('m_front_cn.json').then(parseList);
+	}
+
+	function fetchDetail(id) {
+		return Request.getData('node/' + id + '.json').then(parseDetail);
+	}
+
+	function parseList(data) {
+		_frontData.sliderData = data.map(function(item){
+			return {
+				title: item.node_title,
+				text: item.body.replace(/^<[^>]*>$/, ''),
+				imgurl: encodeURI(/src="([^"]*)"/.exec(item.field_image)[1]),
+				type: item.node_type,
+				id: item.nid
+			};
+		});
+		return true;
+	}
+
+	function parseDetail(data) {
+		var col = NodeParser.parse(data, ['imgurl']);
+		_frontData.sliderData.map(function(item, i){
+			if(item.id === data.nid) {
+				item.imgurl = col.imgurl;
+				item._detail = true;
+			}
+		});
+		return true;
+	}
+
+	var FrontStore = assign({}, EventEmitter.prototype, {
+
+		getData: function() {
+			return _frontData;
+		},
+
+		emitChange: function() {
+			this.emit(CHANGE_EVENT);
+		},
+
+		addChangeListener: function(callback) {
+			this.on(CHANGE_EVENT, callback);
+		},
+
+		removeChangeListener: function(callback) {
+			this.removeListener(CHANGE_EVENT, callback);
+		},
+
+		dispatcherIndex: AppDispatcher.register(function(payload) {
+			var action = payload.action;
+			
+			switch(action.actionType) {
+
+				case MocaConstants.FRONT_FETCH_LIST:
+					fetchList().then(function(){
+						FrontStore.emitChange();
+					});
+					break;
+
+				case MocaConstants.FRONT_FETCH_DETAIL:
+					fetchDetail(action.id).then(function(){
+						FrontStore.emitChange();
+					});
+					break;
+			
+			}
+
+			return true;
+		
+		})
+
+	});
+
+	module.exports = FrontStore;
+
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(180);
+	var assign = __webpack_require__(185);
 
 	var AppDispatcher = assign({}, Dispatcher.prototype, {
 
@@ -21010,11 +21532,11 @@
 
 
 /***/ },
-/* 177 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Promise = window.Promise || __webpack_require__(178).Promise;
-	var assign = __webpack_require__(182);
+	var Promise = window.Promise || __webpack_require__(181).Promise;
+	var assign = __webpack_require__(185);
 
 	var _callbacks = [];
 	var _promises = [];
@@ -21075,7 +21597,7 @@
 
 
 /***/ },
-/* 178 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, global, module) {/*!
@@ -21209,7 +21731,7 @@
 	    function lib$es6$promise$asap$$attemptVertx() {
 	      try {
 	        var r = require;
-	        var vertx = __webpack_require__(180);
+	        var vertx = __webpack_require__(183);
 	        lib$es6$promise$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	        return lib$es6$promise$asap$$useVertxTimer();
 	      } catch(e) {
@@ -22034,7 +22556,7 @@
 	    };
 
 	    /* global define:true module:true window: true */
-	    if ("function" === 'function' && __webpack_require__(181)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(184)['amd']) {
 	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return lib$es6$promise$umd$$ES6Promise; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = lib$es6$promise$umd$$ES6Promise;
@@ -22046,10 +22568,10 @@
 	}).call(this);
 
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }()), __webpack_require__(179)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }()), __webpack_require__(182)(module)))
 
 /***/ },
-/* 179 */
+/* 182 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -22065,20 +22587,20 @@
 
 
 /***/ },
-/* 180 */
+/* 183 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 181 */
+/* 184 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 182 */
+/* 185 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -22123,86 +22645,7 @@
 
 
 /***/ },
-/* 183 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		FRONT_FETCH: 0,
-		COLLECTION_FETCH_LIST: 1,
-		COLLECTION_FETCH_DETAIL: 2,
-
-		PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
-	};
-
-
-/***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(185);
-	var React = __webpack_require__(6);
-
-	var Footer = React.createClass({displayName: "Footer",
-
-		render: function(){
-			return (
-				React.createElement("div", {className: "footer"}, 
-					React.createElement("p", {className: "center-text"}, "ycmoca@moca-yinchuan.com"), 
-					React.createElement("p", {className: "center-text"}, "0951-8426106"), 
-					React.createElement("p", {className: "center-text"}, "宁夏银川市兴庆区禾乐路12号 邮编：750101"), 
-					React.createElement("p", {className: "center-text"}, "版权所有©银川当代美术馆")
-				)
-			)
-		}
-
-	});
-
-	module.exports = Footer;
-
-
-/***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(186);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./footer.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./footer.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 186 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".footer {\n  margin-bottom: 20px; }\n  .footer p {\n    font-size: 13px;\n    color: #666;\n    text-align: center;\n    line-height: 30px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 187 */,
-/* 188 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -22509,10 +22952,26 @@
 
 
 /***/ },
-/* 189 */
+/* 187 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		FRONT_FETCH_LIST: 0,
+		FRONT_FETCH_DETAIL: 1,
+		COLLECTION_FETCH_LIST: 2,
+		COLLECTION_FETCH_DETAIL: 3,
+		EXHIBITION_FETCH_LIST: 4,
+		EXHIBITION_FETCH_DETAIL: 5,
+
+		PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
+	};
+
+
+/***/ },
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Promise = window.Promise || __webpack_require__(178).Promise;
+	var Promise = window.Promise || __webpack_require__(181).Promise;
 	var realPath = '../admin/?q=service/',
 		mockPath = './datamock/';
 
@@ -22559,460 +23018,157 @@
 
 
 /***/ },
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(194);
-	var React = __webpack_require__(6);
-
-	var Entry = React.createClass({displayName: "Entry",
-
-		propTypes: {
-			name: React.PropTypes.string.isRequired,
-			icon: React.PropTypes.string.isRequired,
-			link: React.PropTypes.string.isRequired
-		},
-
-		render: function() {
-			return (
-			React.createElement("a", {href: this.props.link}, 
-				React.createElement("div", {className: "entry"}, 
-					React.createElement("img", {className: "photo", src: this.props.icon})
-				)
-			)
-			)
-		}
-
-	});
-
-	module.exports = Entry;
-
-
-/***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(195);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./entry.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".entry {\n  width: 100%;\n  margin: 20px 0; }\n  .entry .photo {\n    width: 100%; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(197);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./index.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0; }\n\n@font-face {\n  font-family: 'IcoMoon-Free';\n  src: url(" + __webpack_require__(4) + ") format(\"truetype\");\n  font-weight: normal;\n  font-style: normal; }\n\n.icon {\n  font-family: 'IcoMoon-Free';\n  speak: none;\n  font-style: normal;\n  font-weight: normal;\n  font-variant: normal;\n  text-transform: none;\n  line-height: 1;\n  /* Enable Ligatures ================ */\n  -webkit-font-feature-settings: \"liga\";\n  -moz-font-feature-settings: \"liga=1\";\n  -moz-font-feature-settings: \"liga\";\n  -ms-font-feature-settings: \"liga\" 1;\n  -o-font-feature-settings: \"liga\";\n  font-feature-settings: \"liga\";\n  /* Better Font Rendering =========== */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-home:before {\n  content: \"\\E900\"; }\n\n.icon-home2:before {\n  content: \"\\E901\"; }\n\n.icon-home3:before {\n  content: \"\\E902\"; }\n\n.icon-office:before {\n  content: \"\\E903\"; }\n\n.icon-newspaper:before {\n  content: \"\\E904\"; }\n\n.icon-pencil:before {\n  content: \"\\E905\"; }\n\n.icon-pencil2:before {\n  content: \"\\E906\"; }\n\n.icon-quill:before {\n  content: \"\\E907\"; }\n\n.icon-pen:before {\n  content: \"\\E908\"; }\n\n.icon-blog:before {\n  content: \"\\E909\"; }\n\n.icon-eyedropper:before {\n  content: \"\\E90A\"; }\n\n.icon-droplet:before {\n  content: \"\\E90B\"; }\n\n.icon-paint-format:before {\n  content: \"\\E90C\"; }\n\n.icon-image:before {\n  content: \"\\E90D\"; }\n\n.icon-images:before {\n  content: \"\\E90E\"; }\n\n.icon-camera:before {\n  content: \"\\E90F\"; }\n\n.icon-headphones:before {\n  content: \"\\E910\"; }\n\n.icon-music:before {\n  content: \"\\E911\"; }\n\n.icon-play:before {\n  content: \"\\E912\"; }\n\n.icon-film:before {\n  content: \"\\E913\"; }\n\n.icon-video-camera:before {\n  content: \"\\E914\"; }\n\n.icon-dice:before {\n  content: \"\\E915\"; }\n\n.icon-pacman:before {\n  content: \"\\E916\"; }\n\n.icon-spades:before {\n  content: \"\\E917\"; }\n\n.icon-clubs:before {\n  content: \"\\E918\"; }\n\n.icon-diamonds:before {\n  content: \"\\E919\"; }\n\n.icon-bullhorn:before {\n  content: \"\\E91A\"; }\n\n.icon-connection:before {\n  content: \"\\E91B\"; }\n\n.icon-podcast:before {\n  content: \"\\E91C\"; }\n\n.icon-feed:before {\n  content: \"\\E91D\"; }\n\n.icon-mic:before {\n  content: \"\\E91E\"; }\n\n.icon-book:before {\n  content: \"\\E91F\"; }\n\n.icon-books:before {\n  content: \"\\E920\"; }\n\n.icon-library:before {\n  content: \"\\E921\"; }\n\n.icon-file-text:before {\n  content: \"\\E922\"; }\n\n.icon-profile:before {\n  content: \"\\E923\"; }\n\n.icon-file-empty:before {\n  content: \"\\E924\"; }\n\n.icon-files-empty:before {\n  content: \"\\E925\"; }\n\n.icon-file-text2:before {\n  content: \"\\E926\"; }\n\n.icon-file-picture:before {\n  content: \"\\E927\"; }\n\n.icon-file-music:before {\n  content: \"\\E928\"; }\n\n.icon-file-play:before {\n  content: \"\\E929\"; }\n\n.icon-file-video:before {\n  content: \"\\E92A\"; }\n\n.icon-file-zip:before {\n  content: \"\\E92B\"; }\n\n.icon-copy:before {\n  content: \"\\E92C\"; }\n\n.icon-paste:before {\n  content: \"\\E92D\"; }\n\n.icon-stack:before {\n  content: \"\\E92E\"; }\n\n.icon-folder:before {\n  content: \"\\E92F\"; }\n\n.icon-folder-open:before {\n  content: \"\\E930\"; }\n\n.icon-folder-plus:before {\n  content: \"\\E931\"; }\n\n.icon-folder-minus:before {\n  content: \"\\E932\"; }\n\n.icon-folder-download:before {\n  content: \"\\E933\"; }\n\n.icon-folder-upload:before {\n  content: \"\\E934\"; }\n\n.icon-price-tag:before {\n  content: \"\\E935\"; }\n\n.icon-price-tags:before {\n  content: \"\\E936\"; }\n\n.icon-barcode:before {\n  content: \"\\E937\"; }\n\n.icon-qrcode:before {\n  content: \"\\E938\"; }\n\n.icon-ticket:before {\n  content: \"\\E939\"; }\n\n.icon-cart:before {\n  content: \"\\E93A\"; }\n\n.icon-coin-dollar:before {\n  content: \"\\E93B\"; }\n\n.icon-coin-euro:before {\n  content: \"\\E93C\"; }\n\n.icon-coin-pound:before {\n  content: \"\\E93D\"; }\n\n.icon-coin-yen:before {\n  content: \"\\E93E\"; }\n\n.icon-credit-card:before {\n  content: \"\\E93F\"; }\n\n.icon-calculator:before {\n  content: \"\\E940\"; }\n\n.icon-lifebuoy:before {\n  content: \"\\E941\"; }\n\n.icon-phone:before {\n  content: \"\\E942\"; }\n\n.icon-phone-hang-up:before {\n  content: \"\\E943\"; }\n\n.icon-address-book:before {\n  content: \"\\E944\"; }\n\n.icon-envelop:before {\n  content: \"\\E945\"; }\n\n.icon-pushpin:before {\n  content: \"\\E946\"; }\n\n.icon-location:before {\n  content: \"\\E947\"; }\n\n.icon-location2:before {\n  content: \"\\E948\"; }\n\n.icon-compass:before {\n  content: \"\\E949\"; }\n\n.icon-compass2:before {\n  content: \"\\E94A\"; }\n\n.icon-map:before {\n  content: \"\\E94B\"; }\n\n.icon-map2:before {\n  content: \"\\E94C\"; }\n\n.icon-history:before {\n  content: \"\\E94D\"; }\n\n.icon-clock:before {\n  content: \"\\E94E\"; }\n\n.icon-clock2:before {\n  content: \"\\E94F\"; }\n\n.icon-alarm:before {\n  content: \"\\E950\"; }\n\n.icon-bell:before {\n  content: \"\\E951\"; }\n\n.icon-stopwatch:before {\n  content: \"\\E952\"; }\n\n.icon-calendar:before {\n  content: \"\\E953\"; }\n\n.icon-printer:before {\n  content: \"\\E954\"; }\n\n.icon-keyboard:before {\n  content: \"\\E955\"; }\n\n.icon-display:before {\n  content: \"\\E956\"; }\n\n.icon-laptop:before {\n  content: \"\\E957\"; }\n\n.icon-mobile:before {\n  content: \"\\E958\"; }\n\n.icon-mobile2:before {\n  content: \"\\E959\"; }\n\n.icon-tablet:before {\n  content: \"\\E95A\"; }\n\n.icon-tv:before {\n  content: \"\\E95B\"; }\n\n.icon-drawer:before {\n  content: \"\\E95C\"; }\n\n.icon-drawer2:before {\n  content: \"\\E95D\"; }\n\n.icon-box-add:before {\n  content: \"\\E95E\"; }\n\n.icon-box-remove:before {\n  content: \"\\E95F\"; }\n\n.icon-download:before {\n  content: \"\\E960\"; }\n\n.icon-upload:before {\n  content: \"\\E961\"; }\n\n.icon-floppy-disk:before {\n  content: \"\\E962\"; }\n\n.icon-drive:before {\n  content: \"\\E963\"; }\n\n.icon-database:before {\n  content: \"\\E964\"; }\n\n.icon-undo:before {\n  content: \"\\E965\"; }\n\n.icon-redo:before {\n  content: \"\\E966\"; }\n\n.icon-undo2:before {\n  content: \"\\E967\"; }\n\n.icon-redo2:before {\n  content: \"\\E968\"; }\n\n.icon-forward:before {\n  content: \"\\E969\"; }\n\n.icon-reply:before {\n  content: \"\\E96A\"; }\n\n.icon-bubble:before {\n  content: \"\\E96B\"; }\n\n.icon-bubbles:before {\n  content: \"\\E96C\"; }\n\n.icon-bubbles2:before {\n  content: \"\\E96D\"; }\n\n.icon-bubble2:before {\n  content: \"\\E96E\"; }\n\n.icon-bubbles3:before {\n  content: \"\\E96F\"; }\n\n.icon-bubbles4:before {\n  content: \"\\E970\"; }\n\n.icon-user:before {\n  content: \"\\E971\"; }\n\n.icon-users:before {\n  content: \"\\E972\"; }\n\n.icon-user-plus:before {\n  content: \"\\E973\"; }\n\n.icon-user-minus:before {\n  content: \"\\E974\"; }\n\n.icon-user-check:before {\n  content: \"\\E975\"; }\n\n.icon-user-tie:before {\n  content: \"\\E976\"; }\n\n.icon-quotes-left:before {\n  content: \"\\E977\"; }\n\n.icon-quotes-right:before {\n  content: \"\\E978\"; }\n\n.icon-hour-glass:before {\n  content: \"\\E979\"; }\n\n.icon-spinner:before {\n  content: \"\\E97A\"; }\n\n.icon-spinner2:before {\n  content: \"\\E97B\"; }\n\n.icon-spinner3:before {\n  content: \"\\E97C\"; }\n\n.icon-spinner4:before {\n  content: \"\\E97D\"; }\n\n.icon-spinner5:before {\n  content: \"\\E97E\"; }\n\n.icon-spinner6:before {\n  content: \"\\E97F\"; }\n\n.icon-spinner7:before {\n  content: \"\\E980\"; }\n\n.icon-spinner8:before {\n  content: \"\\E981\"; }\n\n.icon-spinner9:before {\n  content: \"\\E982\"; }\n\n.icon-spinner10:before {\n  content: \"\\E983\"; }\n\n.icon-spinner11:before {\n  content: \"\\E984\"; }\n\n.icon-binoculars:before {\n  content: \"\\E985\"; }\n\n.icon-search:before {\n  content: \"\\E986\"; }\n\n.icon-zoom-in:before {\n  content: \"\\E987\"; }\n\n.icon-zoom-out:before {\n  content: \"\\E988\"; }\n\n.icon-enlarge:before {\n  content: \"\\E989\"; }\n\n.icon-shrink:before {\n  content: \"\\E98A\"; }\n\n.icon-enlarge2:before {\n  content: \"\\E98B\"; }\n\n.icon-shrink2:before {\n  content: \"\\E98C\"; }\n\n.icon-key:before {\n  content: \"\\E98D\"; }\n\n.icon-key2:before {\n  content: \"\\E98E\"; }\n\n.icon-lock:before {\n  content: \"\\E98F\"; }\n\n.icon-unlocked:before {\n  content: \"\\E990\"; }\n\n.icon-wrench:before {\n  content: \"\\E991\"; }\n\n.icon-equalizer:before {\n  content: \"\\E992\"; }\n\n.icon-equalizer2:before {\n  content: \"\\E993\"; }\n\n.icon-cog:before {\n  content: \"\\E994\"; }\n\n.icon-cogs:before {\n  content: \"\\E995\"; }\n\n.icon-hammer:before {\n  content: \"\\E996\"; }\n\n.icon-magic-wand:before {\n  content: \"\\E997\"; }\n\n.icon-aid-kit:before {\n  content: \"\\E998\"; }\n\n.icon-bug:before {\n  content: \"\\E999\"; }\n\n.icon-pie-chart:before {\n  content: \"\\E99A\"; }\n\n.icon-stats-dots:before {\n  content: \"\\E99B\"; }\n\n.icon-stats-bars:before {\n  content: \"\\E99C\"; }\n\n.icon-stats-bars2:before {\n  content: \"\\E99D\"; }\n\n.icon-trophy:before {\n  content: \"\\E99E\"; }\n\n.icon-gift:before {\n  content: \"\\E99F\"; }\n\n.icon-glass:before {\n  content: \"\\E9A0\"; }\n\n.icon-glass2:before {\n  content: \"\\E9A1\"; }\n\n.icon-mug:before {\n  content: \"\\E9A2\"; }\n\n.icon-spoon-knife:before {\n  content: \"\\E9A3\"; }\n\n.icon-leaf:before {\n  content: \"\\E9A4\"; }\n\n.icon-rocket:before {\n  content: \"\\E9A5\"; }\n\n.icon-meter:before {\n  content: \"\\E9A6\"; }\n\n.icon-meter2:before {\n  content: \"\\E9A7\"; }\n\n.icon-hammer2:before {\n  content: \"\\E9A8\"; }\n\n.icon-fire:before {\n  content: \"\\E9A9\"; }\n\n.icon-lab:before {\n  content: \"\\E9AA\"; }\n\n.icon-magnet:before {\n  content: \"\\E9AB\"; }\n\n.icon-bin:before {\n  content: \"\\E9AC\"; }\n\n.icon-bin2:before {\n  content: \"\\E9AD\"; }\n\n.icon-briefcase:before {\n  content: \"\\E9AE\"; }\n\n.icon-airplane:before {\n  content: \"\\E9AF\"; }\n\n.icon-truck:before {\n  content: \"\\E9B0\"; }\n\n.icon-road:before {\n  content: \"\\E9B1\"; }\n\n.icon-accessibility:before {\n  content: \"\\E9B2\"; }\n\n.icon-target:before {\n  content: \"\\E9B3\"; }\n\n.icon-shield:before {\n  content: \"\\E9B4\"; }\n\n.icon-power:before {\n  content: \"\\E9B5\"; }\n\n.icon-switch:before {\n  content: \"\\E9B6\"; }\n\n.icon-power-cord:before {\n  content: \"\\E9B7\"; }\n\n.icon-clipboard:before {\n  content: \"\\E9B8\"; }\n\n.icon-list-numbered:before {\n  content: \"\\E9B9\"; }\n\n.icon-list:before {\n  content: \"\\E9BA\"; }\n\n.icon-list2:before {\n  content: \"\\E9BB\"; }\n\n.icon-tree:before {\n  content: \"\\E9BC\"; }\n\n.icon-menu:before {\n  content: \"\\E9BD\"; }\n\n.icon-menu2:before {\n  content: \"\\E9BE\"; }\n\n.icon-menu3:before {\n  content: \"\\E9BF\"; }\n\n.icon-menu4:before {\n  content: \"\\E9C0\"; }\n\n.icon-cloud:before {\n  content: \"\\E9C1\"; }\n\n.icon-cloud-download:before {\n  content: \"\\E9C2\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\E9C3\"; }\n\n.icon-cloud-check:before {\n  content: \"\\E9C4\"; }\n\n.icon-download2:before {\n  content: \"\\E9C5\"; }\n\n.icon-upload2:before {\n  content: \"\\E9C6\"; }\n\n.icon-download3:before {\n  content: \"\\E9C7\"; }\n\n.icon-upload3:before {\n  content: \"\\E9C8\"; }\n\n.icon-sphere:before {\n  content: \"\\E9C9\"; }\n\n.icon-earth:before {\n  content: \"\\E9CA\"; }\n\n.icon-link:before {\n  content: \"\\E9CB\"; }\n\n.icon-flag:before {\n  content: \"\\E9CC\"; }\n\n.icon-attachment:before {\n  content: \"\\E9CD\"; }\n\n.icon-eye:before {\n  content: \"\\E9CE\"; }\n\n.icon-eye-plus:before {\n  content: \"\\E9CF\"; }\n\n.icon-eye-minus:before {\n  content: \"\\E9D0\"; }\n\n.icon-eye-blocked:before {\n  content: \"\\E9D1\"; }\n\n.icon-bookmark:before {\n  content: \"\\E9D2\"; }\n\n.icon-bookmarks:before {\n  content: \"\\E9D3\"; }\n\n.icon-sun:before {\n  content: \"\\E9D4\"; }\n\n.icon-contrast:before {\n  content: \"\\E9D5\"; }\n\n.icon-brightness-contrast:before {\n  content: \"\\E9D6\"; }\n\n.icon-star-empty:before {\n  content: \"\\E9D7\"; }\n\n.icon-star-half:before {\n  content: \"\\E9D8\"; }\n\n.icon-star-full:before {\n  content: \"\\E9D9\"; }\n\n.icon-heart:before {\n  content: \"\\E9DA\"; }\n\n.icon-heart-broken:before {\n  content: \"\\E9DB\"; }\n\n.icon-man:before {\n  content: \"\\E9DC\"; }\n\n.icon-woman:before {\n  content: \"\\E9DD\"; }\n\n.icon-man-woman:before {\n  content: \"\\E9DE\"; }\n\n.icon-happy:before {\n  content: \"\\E9DF\"; }\n\n.icon-happy2:before {\n  content: \"\\E9E0\"; }\n\n.icon-smile:before {\n  content: \"\\E9E1\"; }\n\n.icon-smile2:before {\n  content: \"\\E9E2\"; }\n\n.icon-tongue:before {\n  content: \"\\E9E3\"; }\n\n.icon-tongue2:before {\n  content: \"\\E9E4\"; }\n\n.icon-sad:before {\n  content: \"\\E9E5\"; }\n\n.icon-sad2:before {\n  content: \"\\E9E6\"; }\n\n.icon-wink:before {\n  content: \"\\E9E7\"; }\n\n.icon-wink2:before {\n  content: \"\\E9E8\"; }\n\n.icon-grin:before {\n  content: \"\\E9E9\"; }\n\n.icon-grin2:before {\n  content: \"\\E9EA\"; }\n\n.icon-cool:before {\n  content: \"\\E9EB\"; }\n\n.icon-cool2:before {\n  content: \"\\E9EC\"; }\n\n.icon-angry:before {\n  content: \"\\E9ED\"; }\n\n.icon-angry2:before {\n  content: \"\\E9EE\"; }\n\n.icon-evil:before {\n  content: \"\\E9EF\"; }\n\n.icon-evil2:before {\n  content: \"\\E9F0\"; }\n\n.icon-shocked:before {\n  content: \"\\E9F1\"; }\n\n.icon-shocked2:before {\n  content: \"\\E9F2\"; }\n\n.icon-baffled:before {\n  content: \"\\E9F3\"; }\n\n.icon-baffled2:before {\n  content: \"\\E9F4\"; }\n\n.icon-confused:before {\n  content: \"\\E9F5\"; }\n\n.icon-confused2:before {\n  content: \"\\E9F6\"; }\n\n.icon-neutral:before {\n  content: \"\\E9F7\"; }\n\n.icon-neutral2:before {\n  content: \"\\E9F8\"; }\n\n.icon-hipster:before {\n  content: \"\\E9F9\"; }\n\n.icon-hipster2:before {\n  content: \"\\E9FA\"; }\n\n.icon-wondering:before {\n  content: \"\\E9FB\"; }\n\n.icon-wondering2:before {\n  content: \"\\E9FC\"; }\n\n.icon-sleepy:before {\n  content: \"\\E9FD\"; }\n\n.icon-sleepy2:before {\n  content: \"\\E9FE\"; }\n\n.icon-frustrated:before {\n  content: \"\\E9FF\"; }\n\n.icon-frustrated2:before {\n  content: \"\\EA00\"; }\n\n.icon-crying:before {\n  content: \"\\EA01\"; }\n\n.icon-crying2:before {\n  content: \"\\EA02\"; }\n\n.icon-point-up:before {\n  content: \"\\EA03\"; }\n\n.icon-point-right:before {\n  content: \"\\EA04\"; }\n\n.icon-point-down:before {\n  content: \"\\EA05\"; }\n\n.icon-point-left:before {\n  content: \"\\EA06\"; }\n\n.icon-warning:before {\n  content: \"\\EA07\"; }\n\n.icon-notification:before {\n  content: \"\\EA08\"; }\n\n.icon-question:before {\n  content: \"\\EA09\"; }\n\n.icon-plus:before {\n  content: \"\\EA0A\"; }\n\n.icon-minus:before {\n  content: \"\\EA0B\"; }\n\n.icon-info:before {\n  content: \"\\EA0C\"; }\n\n.icon-cancel-circle:before {\n  content: \"\\EA0D\"; }\n\n.icon-blocked:before {\n  content: \"\\EA0E\"; }\n\n.icon-cross:before {\n  content: \"\\EA0F\"; }\n\n.icon-checkmark:before {\n  content: \"\\EA10\"; }\n\n.icon-checkmark2:before {\n  content: \"\\EA11\"; }\n\n.icon-spell-check:before {\n  content: \"\\EA12\"; }\n\n.icon-enter:before {\n  content: \"\\EA13\"; }\n\n.icon-exit:before {\n  content: \"\\EA14\"; }\n\n.icon-play2:before {\n  content: \"\\EA15\"; }\n\n.icon-pause:before {\n  content: \"\\EA16\"; }\n\n.icon-stop:before {\n  content: \"\\EA17\"; }\n\n.icon-previous:before {\n  content: \"\\EA18\"; }\n\n.icon-next:before {\n  content: \"\\EA19\"; }\n\n.icon-backward:before {\n  content: \"\\EA1A\"; }\n\n.icon-forward2:before {\n  content: \"\\EA1B\"; }\n\n.icon-play3:before {\n  content: \"\\EA1C\"; }\n\n.icon-pause2:before {\n  content: \"\\EA1D\"; }\n\n.icon-stop2:before {\n  content: \"\\EA1E\"; }\n\n.icon-backward2:before {\n  content: \"\\EA1F\"; }\n\n.icon-forward3:before {\n  content: \"\\EA20\"; }\n\n.icon-first:before {\n  content: \"\\EA21\"; }\n\n.icon-last:before {\n  content: \"\\EA22\"; }\n\n.icon-previous2:before {\n  content: \"\\EA23\"; }\n\n.icon-next2:before {\n  content: \"\\EA24\"; }\n\n.icon-eject:before {\n  content: \"\\EA25\"; }\n\n.icon-volume-high:before {\n  content: \"\\EA26\"; }\n\n.icon-volume-medium:before {\n  content: \"\\EA27\"; }\n\n.icon-volume-low:before {\n  content: \"\\EA28\"; }\n\n.icon-volume-mute:before {\n  content: \"\\EA29\"; }\n\n.icon-volume-mute2:before {\n  content: \"\\EA2A\"; }\n\n.icon-volume-increase:before {\n  content: \"\\EA2B\"; }\n\n.icon-volume-decrease:before {\n  content: \"\\EA2C\"; }\n\n.icon-loop:before {\n  content: \"\\EA2D\"; }\n\n.icon-loop2:before {\n  content: \"\\EA2E\"; }\n\n.icon-infinite:before {\n  content: \"\\EA2F\"; }\n\n.icon-shuffle:before {\n  content: \"\\EA30\"; }\n\n.icon-arrow-up-left:before {\n  content: \"\\EA31\"; }\n\n.icon-arrow-up:before {\n  content: \"\\EA32\"; }\n\n.icon-arrow-up-right:before {\n  content: \"\\EA33\"; }\n\n.icon-arrow-right:before {\n  content: \"\\EA34\"; }\n\n.icon-arrow-down-right:before {\n  content: \"\\EA35\"; }\n\n.icon-arrow-down:before {\n  content: \"\\EA36\"; }\n\n.icon-arrow-down-left:before {\n  content: \"\\EA37\"; }\n\n.icon-arrow-left:before {\n  content: \"\\EA38\"; }\n\n.icon-arrow-up-left2:before {\n  content: \"\\EA39\"; }\n\n.icon-arrow-up2:before {\n  content: \"\\EA3A\"; }\n\n.icon-arrow-up-right2:before {\n  content: \"\\EA3B\"; }\n\n.icon-arrow-right2:before {\n  content: \"\\EA3C\"; }\n\n.icon-arrow-down-right2:before {\n  content: \"\\EA3D\"; }\n\n.icon-arrow-down2:before {\n  content: \"\\EA3E\"; }\n\n.icon-arrow-down-left2:before {\n  content: \"\\EA3F\"; }\n\n.icon-arrow-left2:before {\n  content: \"\\EA40\"; }\n\n.icon-circle-up:before {\n  content: \"\\EA41\"; }\n\n.icon-circle-right:before {\n  content: \"\\EA42\"; }\n\n.icon-circle-down:before {\n  content: \"\\EA43\"; }\n\n.icon-circle-left:before {\n  content: \"\\EA44\"; }\n\n.icon-tab:before {\n  content: \"\\EA45\"; }\n\n.icon-move-up:before {\n  content: \"\\EA46\"; }\n\n.icon-move-down:before {\n  content: \"\\EA47\"; }\n\n.icon-sort-alpha-asc:before {\n  content: \"\\EA48\"; }\n\n.icon-sort-alpha-desc:before {\n  content: \"\\EA49\"; }\n\n.icon-sort-numeric-asc:before {\n  content: \"\\EA4A\"; }\n\n.icon-sort-numberic-desc:before {\n  content: \"\\EA4B\"; }\n\n.icon-sort-amount-asc:before {\n  content: \"\\EA4C\"; }\n\n.icon-sort-amount-desc:before {\n  content: \"\\EA4D\"; }\n\n.icon-command:before {\n  content: \"\\EA4E\"; }\n\n.icon-shift:before {\n  content: \"\\EA4F\"; }\n\n.icon-ctrl:before {\n  content: \"\\EA50\"; }\n\n.icon-opt:before {\n  content: \"\\EA51\"; }\n\n.icon-checkbox-checked:before {\n  content: \"\\EA52\"; }\n\n.icon-checkbox-unchecked:before {\n  content: \"\\EA53\"; }\n\n.icon-radio-checked:before {\n  content: \"\\EA54\"; }\n\n.icon-radio-checked2:before {\n  content: \"\\EA55\"; }\n\n.icon-radio-unchecked:before {\n  content: \"\\EA56\"; }\n\n.icon-crop:before {\n  content: \"\\EA57\"; }\n\n.icon-make-group:before {\n  content: \"\\EA58\"; }\n\n.icon-ungroup:before {\n  content: \"\\EA59\"; }\n\n.icon-scissors:before {\n  content: \"\\EA5A\"; }\n\n.icon-filter:before {\n  content: \"\\EA5B\"; }\n\n.icon-font:before {\n  content: \"\\EA5C\"; }\n\n.icon-ligature:before {\n  content: \"\\EA5D\"; }\n\n.icon-ligature2:before {\n  content: \"\\EA5E\"; }\n\n.icon-text-height:before {\n  content: \"\\EA5F\"; }\n\n.icon-text-width:before {\n  content: \"\\EA60\"; }\n\n.icon-font-size:before {\n  content: \"\\EA61\"; }\n\n.icon-bold:before {\n  content: \"\\EA62\"; }\n\n.icon-underline:before {\n  content: \"\\EA63\"; }\n\n.icon-italic:before {\n  content: \"\\EA64\"; }\n\n.icon-strikethrough:before {\n  content: \"\\EA65\"; }\n\n.icon-omega:before {\n  content: \"\\EA66\"; }\n\n.icon-sigma:before {\n  content: \"\\EA67\"; }\n\n.icon-page-break:before {\n  content: \"\\EA68\"; }\n\n.icon-superscript:before {\n  content: \"\\EA69\"; }\n\n.icon-subscript:before {\n  content: \"\\EA6A\"; }\n\n.icon-superscript2:before {\n  content: \"\\EA6B\"; }\n\n.icon-subscript2:before {\n  content: \"\\EA6C\"; }\n\n.icon-text-color:before {\n  content: \"\\EA6D\"; }\n\n.icon-pagebreak:before {\n  content: \"\\EA6E\"; }\n\n.icon-clear-formatting:before {\n  content: \"\\EA6F\"; }\n\n.icon-table:before {\n  content: \"\\EA70\"; }\n\n.icon-table2:before {\n  content: \"\\EA71\"; }\n\n.icon-insert-template:before {\n  content: \"\\EA72\"; }\n\n.icon-pilcrow:before {\n  content: \"\\EA73\"; }\n\n.icon-ltr:before {\n  content: \"\\EA74\"; }\n\n.icon-rtl:before {\n  content: \"\\EA75\"; }\n\n.icon-section:before {\n  content: \"\\EA76\"; }\n\n.icon-paragraph-left:before {\n  content: \"\\EA77\"; }\n\n.icon-paragraph-center:before {\n  content: \"\\EA78\"; }\n\n.icon-paragraph-right:before {\n  content: \"\\EA79\"; }\n\n.icon-paragraph-justify:before {\n  content: \"\\EA7A\"; }\n\n.icon-indent-increase:before {\n  content: \"\\EA7B\"; }\n\n.icon-indent-decrease:before {\n  content: \"\\EA7C\"; }\n\n.icon-share:before {\n  content: \"\\EA7D\"; }\n\n.icon-new-tab:before {\n  content: \"\\EA7E\"; }\n\n.icon-embed:before {\n  content: \"\\EA7F\"; }\n\n.icon-embed2:before {\n  content: \"\\EA80\"; }\n\n.icon-terminal:before {\n  content: \"\\EA81\"; }\n\n.icon-share2:before {\n  content: \"\\EA82\"; }\n\n.icon-mail:before {\n  content: \"\\EA83\"; }\n\n.icon-mail2:before {\n  content: \"\\EA84\"; }\n\n.icon-mail3:before {\n  content: \"\\EA85\"; }\n\n.icon-mail4:before {\n  content: \"\\EA86\"; }\n\n.icon-google:before {\n  content: \"\\EA87\"; }\n\n.icon-google-plus:before {\n  content: \"\\EA88\"; }\n\n.icon-google-plus2:before {\n  content: \"\\EA89\"; }\n\n.icon-google-plus3:before {\n  content: \"\\EA8A\"; }\n\n.icon-google-drive:before {\n  content: \"\\EA8B\"; }\n\n.icon-facebook:before {\n  content: \"\\EA8C\"; }\n\n.icon-facebook2:before {\n  content: \"\\EA8D\"; }\n\n.icon-facebook3:before {\n  content: \"\\EA8E\"; }\n\n.icon-ello:before {\n  content: \"\\EA8F\"; }\n\n.icon-instagram:before {\n  content: \"\\EA90\"; }\n\n.icon-twitter:before {\n  content: \"\\EA91\"; }\n\n.icon-twitter2:before {\n  content: \"\\EA92\"; }\n\n.icon-twitter3:before {\n  content: \"\\EA93\"; }\n\n.icon-feed2:before {\n  content: \"\\EA94\"; }\n\n.icon-feed3:before {\n  content: \"\\EA95\"; }\n\n.icon-feed4:before {\n  content: \"\\EA96\"; }\n\n.icon-youtube:before {\n  content: \"\\EA97\"; }\n\n.icon-youtube2:before {\n  content: \"\\EA98\"; }\n\n.icon-youtube3:before {\n  content: \"\\EA99\"; }\n\n.icon-youtube4:before {\n  content: \"\\EA9A\"; }\n\n.icon-twitch:before {\n  content: \"\\EA9B\"; }\n\n.icon-vimeo:before {\n  content: \"\\EA9C\"; }\n\n.icon-vimeo2:before {\n  content: \"\\EA9D\"; }\n\n.icon-vimeo3:before {\n  content: \"\\EA9E\"; }\n\n.icon-lanyrd:before {\n  content: \"\\EA9F\"; }\n\n.icon-flickr:before {\n  content: \"\\EAA0\"; }\n\n.icon-flickr2:before {\n  content: \"\\EAA1\"; }\n\n.icon-flickr3:before {\n  content: \"\\EAA2\"; }\n\n.icon-flickr4:before {\n  content: \"\\EAA3\"; }\n\n.icon-picassa:before {\n  content: \"\\EAA4\"; }\n\n.icon-picassa2:before {\n  content: \"\\EAA5\"; }\n\n.icon-dribbble:before {\n  content: \"\\EAA6\"; }\n\n.icon-dribbble2:before {\n  content: \"\\EAA7\"; }\n\n.icon-dribbble3:before {\n  content: \"\\EAA8\"; }\n\n.icon-forrst:before {\n  content: \"\\EAA9\"; }\n\n.icon-forrst2:before {\n  content: \"\\EAAA\"; }\n\n.icon-deviantart:before {\n  content: \"\\EAAB\"; }\n\n.icon-deviantart2:before {\n  content: \"\\EAAC\"; }\n\n.icon-steam:before {\n  content: \"\\EAAD\"; }\n\n.icon-steam2:before {\n  content: \"\\EAAE\"; }\n\n.icon-dropbox:before {\n  content: \"\\EAAF\"; }\n\n.icon-onedrive:before {\n  content: \"\\EAB0\"; }\n\n.icon-github:before {\n  content: \"\\EAB1\"; }\n\n.icon-github2:before {\n  content: \"\\EAB2\"; }\n\n.icon-github3:before {\n  content: \"\\EAB3\"; }\n\n.icon-github4:before {\n  content: \"\\EAB4\"; }\n\n.icon-github5:before {\n  content: \"\\EAB5\"; }\n\n.icon-wordpress:before {\n  content: \"\\EAB6\"; }\n\n.icon-wordpress2:before {\n  content: \"\\EAB7\"; }\n\n.icon-joomla:before {\n  content: \"\\EAB8\"; }\n\n.icon-blogger:before {\n  content: \"\\EAB9\"; }\n\n.icon-blogger2:before {\n  content: \"\\EABA\"; }\n\n.icon-tumblr:before {\n  content: \"\\EABB\"; }\n\n.icon-tumblr2:before {\n  content: \"\\EABC\"; }\n\n.icon-yahoo:before {\n  content: \"\\EABD\"; }\n\n.icon-tux:before {\n  content: \"\\EABE\"; }\n\n.icon-apple:before {\n  content: \"\\EABF\"; }\n\n.icon-finder:before {\n  content: \"\\EAC0\"; }\n\n.icon-android:before {\n  content: \"\\EAC1\"; }\n\n.icon-windows:before {\n  content: \"\\EAC2\"; }\n\n.icon-windows8:before {\n  content: \"\\EAC3\"; }\n\n.icon-soundcloud:before {\n  content: \"\\EAC4\"; }\n\n.icon-soundcloud2:before {\n  content: \"\\EAC5\"; }\n\n.icon-skype:before {\n  content: \"\\EAC6\"; }\n\n.icon-reddit:before {\n  content: \"\\EAC7\"; }\n\n.icon-linkedin:before {\n  content: \"\\EAC8\"; }\n\n.icon-linkedin2:before {\n  content: \"\\EAC9\"; }\n\n.icon-lastfm:before {\n  content: \"\\EACA\"; }\n\n.icon-lastfm2:before {\n  content: \"\\EACB\"; }\n\n.icon-delicious:before {\n  content: \"\\EACC\"; }\n\n.icon-stumbleupon:before {\n  content: \"\\EACD\"; }\n\n.icon-stumbleupon2:before {\n  content: \"\\EACE\"; }\n\n.icon-stackoverflow:before {\n  content: \"\\EACF\"; }\n\n.icon-pinterest:before {\n  content: \"\\EAD0\"; }\n\n.icon-pinterest2:before {\n  content: \"\\EAD1\"; }\n\n.icon-xing:before {\n  content: \"\\EAD2\"; }\n\n.icon-xing2:before {\n  content: \"\\EAD3\"; }\n\n.icon-flattr:before {\n  content: \"\\EAD4\"; }\n\n.icon-foursquare:before {\n  content: \"\\EAD5\"; }\n\n.icon-paypal:before {\n  content: \"\\EAD6\"; }\n\n.icon-paypal2:before {\n  content: \"\\EAD7\"; }\n\n.icon-paypal3:before {\n  content: \"\\EAD8\"; }\n\n.icon-yelp:before {\n  content: \"\\EAD9\"; }\n\n.icon-file-pdf:before {\n  content: \"\\EADA\"; }\n\n.icon-file-openoffice:before {\n  content: \"\\EADB\"; }\n\n.icon-file-word:before {\n  content: \"\\EADC\"; }\n\n.icon-file-excel:before {\n  content: \"\\EADD\"; }\n\n.icon-libreoffice:before {\n  content: \"\\EADE\"; }\n\n.icon-html5:before {\n  content: \"\\EADF\"; }\n\n.icon-html52:before {\n  content: \"\\EAE0\"; }\n\n.icon-css3:before {\n  content: \"\\EAE1\"; }\n\n.icon-git:before {\n  content: \"\\EAE2\"; }\n\n.icon-svg:before {\n  content: \"\\EAE3\"; }\n\n.icon-codepen:before {\n  content: \"\\EAE4\"; }\n\n.icon-chrome:before {\n  content: \"\\EAE5\"; }\n\n.icon-firefox:before {\n  content: \"\\EAE6\"; }\n\n.icon-IE:before {\n  content: \"\\EAE7\"; }\n\n.icon-opera:before {\n  content: \"\\EAE8\"; }\n\n.icon-safari:before {\n  content: \"\\EAE9\"; }\n\n.icon-IcoMoon:before {\n  content: \"\\EAEA\"; }\n\n.slider {\n  margin-top: 70px; }\n\n.entries {\n  width: 100%; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(199);
-	var React = __webpack_require__(6);
-
-	var Slider = React.createClass({displayName: "Slider",
-
-		propTypes: {
-			data: React.PropTypes.array.isRequired,
-			showImage: React.PropTypes.bool,
-			showNav: React.PropTypes.bool,
-			showText: React.PropTypes.bool
-		},
-
-		getDefaultProps: function() {
-			return {
-				showImage: true,
-				showNav: true,
-				showText: true
-			};
-		},
-
-		getInitialState: function() {
-			return {
-				index: 0,
-				offset: 0,
-				step: 0,
-				slideTime: 30,
-				triggerLimit: 0.1,
-				startX: -1
-			};
-		},
-
-		getNextIndex: function () {
-			return (this.state.index + 1 + this.props.data.length) % this.props.data.length;
-		},
-
-		getPrevIndex: function () {
-			return (this.state.index - 1 + this.props.data.length) % this.props.data.length;
-		},
-
-		onImgTouchStart: function(e) {
-			if (this.props.data.length > 1) {
-				e.preventDefault();
-				this.setState({startX: e.touches[0].clientX});
-			}
-		},
-		onImgTouchMove: function(e) {
-			if (this.state.startX >= 0) {
-				if (this.props.data.length <= 1) return; 
-				var offset = e.touches[0].clientX - this.state.startX;
-				this.setState({offset: offset});
-			}
-		},
-		onImgTouchEnd: function() {
-			var width = this.getDOMNode().clientWidth,
-				limit = width * this.state.triggerLimit,
-				speed = Math.round(width / this.state.slideTime),
-				offsetAbs = Math.abs(this.state.offset);
-			if (offsetAbs >= limit) {
-				var step = this.state.offset / offsetAbs * speed;
-			} else {
-				var step = -this.state.offset / offsetAbs * speed;
-			}
-			this.setState({step: step, startX : -1});
-		},
-
-		onNavClick: function(i){
-			if (this.state.offset === 0) {
-				this.setState({index: i});
-			}
-		},
-
-		resolveSliding: function() {
-			var offset = this.state.offset + this.state.step,
-				width = this.getDOMNode().clientWidth,
-				speed = Math.round(width / this.state.slideTime),
-				index = this.state.index,
-				step = this.state.step;
-			if (offset > -speed && offset < speed) {
-				offset = 0;
-				step = 0;
-			} else if (offset >= width) {
-				offset = 0;
-				step = 0;
-				index = this.getPrevIndex();
-			} else if (offset <= -width) {
-				offset = 0;
-				step = 0;
-				index = this.getNextIndex();
-			}
-			this.setState({offset: offset, index: index, step: step});
-		},
-
-		componentDidUpdate: function() {
-			if (this.state.step && this.state.startX < 0) {
-				requestAnimationFrame(this.resolveSliding);
-			}
-		},
-
-		render: function() {
-			var self = this,
-				imgConStyle = {left: this.state.offset + 'px'};
-			return (
-			React.createElement("div", {className: "slider"}, 
-				 this.props.showImage && 
-				React.createElement("div", {className: "img-view"}, 
-					React.createElement("div", {className: "img-con", 
-						style: imgConStyle, 
-						onTouchStart: this.onImgTouchStart, 
-						onTouchMove: this.onImgTouchMove, 
-						onTouchEnd: this.onImgTouchEnd}, 
-						
-						 this.props.data.map(function(item, i) {
-							var additionClass = '';
-							if (self.state.index === i) {
-								additionClass = ' current';
-							} else if (self.props.data.length <= 1) {
-								additionClass = '';
-							} else if (self.state.offset > 0 && self.getPrevIndex() === i) {
-								additionClass = ' prev';
-							} else if (self.state.offset < 0 && self.getNextIndex() === i) {
-								additionClass = ' next';
-							}
-							var imgStyle = {backgroundImage: 'url(' + item.imgurl + ')'};
-							return (React.createElement("div", {style: imgStyle, key: i, 
-								className: 'img-item'+additionClass}));
-						})
-					)
-				), 
-				
-
-				 this.props.showNav && 
-				React.createElement("div", {className: "nav-view"}, 
-					 this.props.data.map(function(item, i) {
-						return (React.createElement("p", {key: i, onClick: function(){self.onNavClick(i);}, 
-							className: i === self.state.index ? 'current' : ''}))
-					})
-				), 
-				
-
-				 this.props.showText &&
-				React.createElement("div", {className: "text-view"}, 
-					 this.props.data.map(function(item, i) {
-						return (
-						React.createElement("div", {key: i, className: i === self.state.index ? 'current' : ''}, 
-							React.createElement("h3", null, item.title)
-						)
-						);
-					})
-				)
-				
-			)
-			);
-		}
-	});
-
-	module.exports = Slider;
-
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(200);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./slider.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".slider {\n  width: 100%;\n  position: relative;\n  background-color: #ccc; }\n  .slider .img-view, .slider .text-view {\n    width: 100%;\n    overflow: hidden; }\n  .slider .img-view .img-con {\n    position: relative;\n    width: 100%;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    display: none;\n    background-size: cover;\n    background-position: center;\n    padding-bottom: 75%; }\n  .slider .img-view .img-item.current, .slider .img-view .img-item.prev, .slider .img-view .img-item.next {\n    display: block; }\n  .slider .img-view .img-item.prev {\n    left: -100%; }\n  .slider .img-view .img-item.next {\n    left: 100%; }\n  .slider .img-view .img-item.current {\n    z-index: 1; }\n  .slider .text-view {\n    background-color: rgba(0, 0, 0, 0.5);\n    color: white;\n    z-index: 1;\n    height: 60px;\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n    .slider .text-view div {\n      z-index: 0;\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      padding-top: 20px;\n      opacity: 0;\n      display: none\\9;\n      font-size: 14px;\n      line-height: 25px; }\n    .slider .text-view div.current {\n      opacity: 1;\n      z-index: 1;\n      display: block\\9; }\n    .slider .text-view h3 {\n      text-align: center;\n      font-size: 18px;\n      line-height: 40px;\n      font-weight: bold;\n      height: 40px;\n      text-overflow: ellipsis; }\n  .slider .nav-view {\n    z-index: 2;\n    position: absolute;\n    width: 100%;\n    height: 10px;\n    bottom: 45px;\n    text-align: center; }\n    .slider .nav-view p {\n      display: inline-block;\n      width: 10px;\n      height: 10px;\n      border-radius: 50%;\n      cursor: pointer;\n      background-color: white;\n      margin: 5px; }\n    .slider .nav-view p.current {\n      background-color: red; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var AppDispatcher = __webpack_require__(176);
-	var EventEmitter = __webpack_require__(188).EventEmitter;
-	var MocaConstants = __webpack_require__(183);
-	var assign = __webpack_require__(182);
-	var Request = __webpack_require__(189);
-
-	var CHANGE_EVENT = 'change';
-
-	var _frontData = {
-		sliderData: [],
-		entries: [{
-			name: '展览',
-			icon: __webpack_require__(202),
-			link: './exhibition.html'
-		},{
-			name: '研究典藏',
-			icon: __webpack_require__(203),
-			link: './collection.html'
-		},{
-			name: '公共教育',
-			icon: __webpack_require__(204),
-			link: './education.html'
-		},{
-			name: '关于美术馆',
-			icon: __webpack_require__(205),
-			link: './about.html'
-		},{
-			name: '参观指南',
-			icon: __webpack_require__(206),
-			link: './visitorGuide.html'
-		}]
-	};
-
-	function fetch() {
-		return Request.getData('m_front_cn.json').then(parse);
-	}
-
-	function parse(data) {
-		_frontData.sliderData = data.map(function(item){
-			return {
-				title: item.node_title,
-				text: item.body.replace(/^<[^>]*>$/, ''),
-				imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
-				type: item.node_type,
-				id: item.nid
-			};
-		});
-		return true;
-	}
-
-	var FrontStore = assign({}, EventEmitter.prototype, {
-
-		getData: function() {
-			return _frontData;
-		},
-
-		emitChange: function() {
-			this.emit(CHANGE_EVENT);
-		},
-
-		addChangeListener: function(callback) {
-			this.on(CHANGE_EVENT, callback);
-		},
-
-		removeChangeListener: function(callback) {
-			this.removeListener(CHANGE_EVENT, callback);
-		},
-
-		dispatcherIndex: AppDispatcher.register(function(payload) {
-			var action = payload.action;
-			
-			switch(action.actionType) {
-
-				case MocaConstants.FRONT_FETCH:
-					fetch().then(function(){
-						FrontStore.emitChange();
-					});
-			
-			}
-
-			return true;
-		
-		})
-
-	});
-
-	module.exports = FrontStore;
-
-
-/***/ },
-/* 202 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "f05ae2834b8c73c34c85cecd8eb9b06d.png"
 
 /***/ },
-/* 203 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "17a15bc380e7fa9c9c494fbdb85a102e.png"
 
 /***/ },
-/* 204 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "7b295fd34a8eeed431087d47c7abbf1f.png"
 
 /***/ },
-/* 205 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "609ed83400ac9384fa8f36c98065d9e5.png"
 
 /***/ },
-/* 206 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "6bf1302a539d8fe77d6a42aaca92de92.png"
 
 /***/ },
-/* 207 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(176);
-	var MocaConstants = __webpack_require__(183);
+	var AppDispatcher = __webpack_require__(179);
+	var MocaConstants = __webpack_require__(187);
 
 	var FrontAction = {
 
-		fetch: function() {
+		fetchList: function() {
 			AppDispatcher.handleViewAction({
-				actionType: MocaConstants.FRONT_FETCH
+				actionType: MocaConstants.FRONT_FETCH_LIST
+			});
+		},
+
+		fetchDetail: function(id) {
+			AppDispatcher.handleViewAction({
+				actionType: MocaConstants.FRONT_FETCH_DETAIL,
+				id: id
 			});
 		}
+
 	};
 
 	module.exports = FrontAction;
+
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var MocaConstants = __webpack_require__(187);
+
+	var mapping = {
+		title: 0,
+		imgurl: 1,
+		body: 2,
+		date: 3,
+		locate: 4,
+		organizer: 5,
+		photos: 6
+	};
+
+	var parsers = [
+		// 0 title parser
+		function (oriData) {
+			return oriData.title;
+		},
+		// 1 imgurl parser
+		function (oriData) {
+			var imgurl = '';
+			try {
+				imgurl = encodeURI(oriData.field_image.und[0].uri)
+					.replace('public://', MocaConstants.PUBLIC_IMG_BASE);
+			} catch(e) { }
+			return imgurl;
+		},
+		// 2 body parser
+		function (oriData) {
+			var body = '';
+			try {
+				body = oriData.body.und[0].value;
+			} catch(e) { }
+			return body;
+		},
+		// 3 date parser
+		function (oriData) {
+			var date = '';
+			try {
+				date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+			} catch(e) { }
+			try {
+				date += ' - ' 
+					+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+			} catch(e) { }
+			return date;
+		},
+		//4 locate parser
+		function (oriData) {
+			var locate = '';
+			try {
+				locate = oriData.field_location.und[0].value;
+			} catch(e) { }
+			return locate;
+		},
+		// 5 organizer parser
+		function (oriData) {
+			var organizer = '';
+			try {
+				organizer = oriData.field_organizer.und[0].value;
+			} catch(e) { }
+			return organizer;
+		},
+		// 6 photos parser
+		function (oriData) {
+			var photos = {
+				index: [],
+				data: {}
+			};
+			try {
+				oriData.field_photos.und.map(function(item, i) {
+					var imgurl = encodeURI(item.uri.replace('public://', MocaConstants.PUBLIC_IMG_BASE));
+					photos.index.push(i);
+					photos.data[i] = {imgurl:imgurl};
+				});
+			} catch(e) { }
+			return photos;
+		}
+	];
+
+	var NodeParser = {
+		parse: function(oriData, attrs) {
+			return attrs.map(function(attr){
+				return parsers[mapping[attr]](oriData);
+			}).reduce(function(pre, cur, i){
+				pre[attrs[i]] = cur;
+				return pre;
+			}, {});
+		}
+	};
+
+	module.exports = NodeParser;
 
 
 /***/ }

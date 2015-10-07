@@ -1,13 +1,13 @@
 require('../../sass/gallery.sass');
 var React = require('react');
-var CollectionAction = require('../actions/collectionAction');
 
 var Gallery = React.createClass({
 
 	propTypes: {
 		data: React.PropTypes.array.isRequired,
 		initIndex: React.PropTypes.number.isRequired,
-		handleClose: React.PropTypes.func.isRequired
+		handleClose: React.PropTypes.func.isRequired,
+		handleRender: React.PropTypes.func
 	},
 
 	getInitialState: function() {
@@ -17,9 +17,9 @@ var Gallery = React.createClass({
 		};
 	},
 
-	updateOnNeed: function(item) {
-		if (!item._detail) {
-			CollectionAction.fetchDetail(item.id);
+	handleRender: function(item) {
+		if (this.props.handleRender) {
+			this.props.handleRender(item);
 		}
 	},
 
@@ -43,13 +43,13 @@ var Gallery = React.createClass({
 			maxHeight: (document.body.clientHeight - 100) + 'px'
 		};
 		var self = this;
-		this.updateOnNeed(item);
+		this.handleRender(item);
 		return (
 			<div className='gallery'>
 				<div className='bar top'>{item.title}</div>
 				<div className='content' style={contentStyle} onClick={this.switchContent}>
 					{function() {
-						if (self.state.showText) {
+						if (self.state.showText && item.body) {
 							return <div className='textContent'>{item.body}</div>
 						} else {
 							return <img className='imgContent' src={item.imgurl}/>

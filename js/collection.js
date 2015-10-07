@@ -16,7 +16,10 @@ var Collection = React.createClass({
 		return (
 			<div>
 				<Header/>
-				<Shelf index={this.state.shelfIndex} data={this.state.shelfData}></Shelf>
+				<Shelf index={this.state.shelfIndex}
+					data={this.state.shelfData}
+					updateItem={this.updateItem}>
+				</Shelf>
 				<Footer/>
 			</div>
 		)
@@ -32,8 +35,13 @@ var Collection = React.createClass({
 
 	_onChange: function() {
 		this.setState(CollectionStore.getData());
-	}
+	},
 
+	updateItem: function(item) {
+		if (!item._detail) {
+			CollectionAction.fetchDetail(item.id);
+		}
+	}
 
 });
 

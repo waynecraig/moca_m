@@ -7,7 +7,8 @@ var Slider = React.createClass({
 		data: React.PropTypes.array.isRequired,
 		showImage: React.PropTypes.bool,
 		showNav: React.PropTypes.bool,
-		showText: React.PropTypes.bool
+		showText: React.PropTypes.bool,
+		updateItem: React.PropTypes.func
 	},
 
 	getDefaultProps: function() {
@@ -39,7 +40,7 @@ var Slider = React.createClass({
 
 	onImgTouchStart: function(e) {
 		if (this.props.data.length > 1) {
-			e.preventDefault();
+			//e.preventDefault();
 			this.setState({startX: e.touches[0].clientX});
 		}
 	},
@@ -63,9 +64,32 @@ var Slider = React.createClass({
 		this.setState({step: step, startX : -1});
 	},
 
-	onNavClick: function(i){
+	handleNavClick: function(e){
 		if (this.state.offset === 0) {
-			this.setState({index: i});
+			var el = e.target;
+			var index = parseInt(el.getAttribute('data-index'));
+			this.setState({index: index});
+		}
+	},
+
+	handleImgurlError: function(e) {
+		var el = e.target;
+		var index = parseInt(el.getAttribute('data-index'));
+		var item = this.props.data[index];
+		this.updateItem(item);
+	},
+
+	handleItemClick: function(e) {
+		var el = e.target;
+		var id = parseInt(el.getAttribute('data-id'));
+		if (id) {
+			location.href = './node.html?id=' + id;
+		}
+	},
+
+	updateItem: function(item) {
+		if (this.props.updateItem) {
+			this.props.updateItem(item);
 		}
 	},
 
@@ -121,8 +145,16 @@ var Slider = React.createClass({
 							additionClass = ' next';
 						}
 						var imgStyle = {backgroundImage: 'url(' + item.imgurl + ')'};
-						return (<div style={imgStyle} key={i} 
-							className={'img-item'+additionClass}/>);
+						return (
+							<div style={imgStyle} key={i} 
+								className={'img-item'+additionClass}
+								data-id={item.id}
+								onClick={self.handleItemClick}>
+								
+								<img className='hide' src={item.imgurl} data-index={i}
+									onError={self.handleImgurlError}/>
+							</div>
+						);
 					})}
 				</div>
 			</div>
@@ -131,7 +163,7 @@ var Slider = React.createClass({
 			{ this.props.showNav && 
 			<div className='nav-view'>
 				{ this.props.data.map(function(item, i) {
-					return (<p key={i} onClick={function(){self.onNavClick(i);}}
+					return (<p key={i} data-index={i} onClick={self.handleNavClick}
 						className={i === self.state.index ? 'current' : ''}></p>)
 				})}
 			</div>
