@@ -7,13 +7,6 @@ var ExhibitionAction = {
 		AppDispatcher.handleViewAction({
 			actionType: MocaConstants.EXHIBITION_FETCH_LIST
 		});
-	},
-
-	fetchDetail: function(id) {
-		AppDispatcher.handleViewAction({
-			actionType: MocaConstants.EXHIBITION_FETCH_DETAIL,
-			id: id
-		});
 	}
 };
 

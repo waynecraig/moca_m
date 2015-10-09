@@ -48,10 +48,9 @@
 	var React = __webpack_require__(6);
 	var Header = __webpack_require__(162);
 	var List = __webpack_require__(169);
-	var Detail = __webpack_require__(172);
-	var Footer = __webpack_require__(181);
-	var ExhibitionStore = __webpack_require__(184);
-	var ExhibitionAction = __webpack_require__(195);
+	var Footer = __webpack_require__(172);
+	var ExhibitionStore = __webpack_require__(175);
+	var ExhibitionAction = __webpack_require__(186);
 
 	var Exhibition = React.createClass({displayName: "Exhibition",
 
@@ -20907,13 +20906,13 @@
 				},{
 					name: '公共教育',
 					iconClass: '',
-					url: 'education.html'
+					url: 'activity.html'
 				},{
 					name: '关于美术馆',
 					iconClass: '',
 					url: 'about.html'
 				},{
-					name: '参数指南',
+					name: '参观指南',
 					iconClass: '',
 					url: 'visitorGuide.html'
 				},{
@@ -21029,7 +21028,6 @@
 		},
 
 		render: function() {
-			console.log(this.props.list);
 			var self = this;
 			return (
 				React.createElement("ul", {className: "list"}, 
@@ -21038,7 +21036,7 @@
 							backgroundImage: 'url(' + self.props.objs[id].imgurl + ')'
 						};
 						return (
-							React.createElement("li", null, 
+							React.createElement("li", {key: id}, 
 								React.createElement("div", {className: "cover", 
 									style: coverStyle, 
 									onClick: self.handleClick, 
@@ -21104,377 +21102,6 @@
 
 	__webpack_require__(173);
 	var React = __webpack_require__(6);
-	var Shelf = __webpack_require__(175);
-
-	var Detail = React.createClass({displayName: "Detail",
-		
-		propTypes: {
-			data: React.PropTypes.object.isRequired
-		},
-
-		render: function() {
-			return (
-				React.createElement("div", {className: "detail"}, 
-					React.createElement("img", {className: "cover", src: this.props.data.imgurl}), 
-					React.createElement("h3", null, this.props.data.title), 
-					React.createElement("div", {className: "info"}, 
-						React.createElement("p", null, "展览时间：", this.props.data.date), 
-						React.createElement("p", null, "地点：", this.props.data.locate), 
-						React.createElement("p", null, "策展人：", this.props.data.organizer)
-					), 
-					React.createElement("div", {className: "content"}, 
-						this.props.data.body
-					), 
-					this.props.data.photos && 
-						React.createElement(Shelf, {index: this.props.data.photos.index, 
-							data: this.props.data.photos.data})
-				)
-			)
-		}
-
-	});
-
-	module.exports = Detail;
-
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(174);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./detail.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./detail.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".detail {\n  padding: 0 20px; }\n  .detail .cover {\n    width: 100%; }\n  .detail h3 {\n    margin: 15px 0;\n    color: #00bbb3;\n    font-size: 17px; }\n  .detail .info {\n    color: #999;\n    font-size: 13px;\n    line-height: 30px; }\n  .detail .content {\n    margin: 15px 0;\n    color: #000;\n    font-size: 14px;\n    line-height: 30px; }\n  .detail .shelf {\n    padding: 20px 10px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(176);
-	var React = __webpack_require__(6);
-	var Gallery = __webpack_require__(178);
-
-	var Shelf = React.createClass({displayName: "Shelf",
-
-		propTypes: {
-			index: React.PropTypes.array.isRequired,
-			data: React.PropTypes.object.isRequired,
-			updateItem: React.PropTypes.func
-		},
-
-		getInitialState: function() {
-			return {
-				focus: [],
-				showDetail: false,
-				detailIndex: 0
-			};
-		},
-
-		handleNavClick: function(e) {
-			var el = e.target;
-			var level = el.getAttribute('data-level');
-			var text = el.innerHTML;
-			var focus = this.state.focus;
-			focus[level] = text;
-			this.setState({focus: focus});
-		},
-
-		handleItemClick: function(e) {
-			var el = e.target;
-			var index = parseInt(el.getAttribute('data-index'));
-			this.setState({detailIndex: index, showDetail: true});
-		},
-
-		handleImgurlError: function(e) {
-			var el = e.target;
-			var id = parseInt(el.getAttribute('data-id'));
-			var item = this.props.data[id];
-			this.updateItem(item);
-		},
-
-		closeDetail: function() {
-			this.setState({showDetail: false});
-		},
-
-		updateItem: function(item) {
-			if (this.props.updateItem) {
-				this.props.updateItem(item);
-			}
-		},
-
-		render: function() {
-			var d = this.props.index;
-			var navs = [];
-			var level = 0;
-			var self = this;
-			while(d[0] && d[0].nav) {
-				navs.push(d.map(function(item, i){
-					if (self.state.focus[level]) {
-						if (self.state.focus[level] === item.nav) {
-							d = item.subs;
-						}
-					} else {
-						if (i === 0) {
-							d = item.subs;
-						}
-					}
-					return item.nav;
-				}));
-				level++;
-			}
-			return (
-				React.createElement("div", {className: "shelf"}, 
-					navs.map(function(nav, level){
-						return (
-							React.createElement("ul", {key: level, className: "nav"}, 
-								nav.map(function(text, i){
-									return (
-										React.createElement("li", {key: i, "data-level": level, 
-											onClick: self.handleNavClick, 
-											className: (self.state.focus[level] || nav[0]) === text ? 
-													'active' : null}, 
-											text
-										)
-									)
-								})
-							)
-						)
-					}), 
-					React.createElement("ul", {className: "items"}, 
-						d.map(function(item, i){
-							var obj = self.props.data[item];
-							var style = {
-								backgroundImage: 'url(' + obj.imgurl + ')'
-							};
-							return (
-								React.createElement("li", {key: i}, 
-									React.createElement("div", {style: style, "data-index": i, onClick: self.handleItemClick}, 
-										!obj._detail && function(){
-											return React.createElement("img", {className: "hide", src: obj.imgurl, "data-id": obj.id, 
-												onError: self.handleImgurlError})
-										}()
-									)
-								)
-							)
-						})
-					), 
-					function(){
-						if (self.state.showDetail) {
-							var galleryData = d.map(function(item){
-								return self.props.data[item]
-							});
-							return (
-								React.createElement(Gallery, {
-									data: galleryData, 
-									initIndex: self.state.detailIndex, 
-									handleClose: self.closeDetail, 
-									handleRender: self.updateItem})
-							)
-						}
-					}()
-				)
-			)
-		}
-	});
-
-	module.exports = Shelf;
-
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(177);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./shelf.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./shelf.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".shelf {\n  padding: 50px 40px 40px 40px; }\n  .shelf ul {\n    display: -webkit-flex;\n    display: flex;\n    -webkit-justify-content: space-between;\n    justify-content: space-between;\n    list-style: none; }\n    .shelf ul li {\n      display: inline-block; }\n  .shelf .nav {\n    margin-bottom: 10px; }\n    .shelf .nav li {\n      -webkit-flex: 1;\n      flex: 1;\n      color: #000;\n      background-color: #fff;\n      font-size: 13px;\n      line-height: 25px;\n      text-align: center; }\n    .shelf .nav li.active {\n      color: #fff;\n      background-color: #00bbb3; }\n  .shelf .items {\n    -webkit-flex-wrap: wrap;\n    flex-wrap: wrap; }\n    .shelf .items li {\n      width: 78px;\n      margin-top: 20px; }\n      .shelf .items li div {\n        width: 100%;\n        height: 0;\n        padding: 50% 0;\n        background-size: cover;\n        background-position: center; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 178 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(179);
-	var React = __webpack_require__(6);
-
-	var Gallery = React.createClass({displayName: "Gallery",
-
-		propTypes: {
-			data: React.PropTypes.array.isRequired,
-			initIndex: React.PropTypes.number.isRequired,
-			handleClose: React.PropTypes.func.isRequired,
-			handleRender: React.PropTypes.func
-		},
-
-		getInitialState: function() {
-			return {
-				offset: 0,
-				showText: false
-			};
-		},
-
-		handleRender: function(item) {
-			if (this.props.handleRender) {
-				this.props.handleRender(item);
-			}
-		},
-
-		handlePrev: function() {
-			this.setState({offset: this.state.offset - 1});
-		},
-
-		handleNext: function() {
-			this.setState({offset: this.state.offset + 1});
-		},
-
-		switchContent: function() {
-			this.setState({showText: !this.state.showText});
-		},
-
-		render: function() {
-			var item = this.props.data[this.props.initIndex + this.state.offset] || {};
-			var noPrev = this.props.data.length === 0 || (this.props.initIndex+this.state.offset) === 0;
-			var noNext = this.props.data.length - 1 <= (this.props.initIndex+this.state.offset);
-			var contentStyle = {
-				maxHeight: (document.body.clientHeight - 100) + 'px'
-			};
-			var self = this;
-			this.handleRender(item);
-			return (
-				React.createElement("div", {className: "gallery"}, 
-					React.createElement("div", {className: "bar top"}, item.title), 
-					React.createElement("div", {className: "content", style: contentStyle, onClick: this.switchContent}, 
-						function() {
-							if (self.state.showText && item.body) {
-								return React.createElement("div", {className: "textContent"}, item.body)
-							} else {
-								return React.createElement("img", {className: "imgContent", src: item.imgurl})
-							}
-						}()
-					), 
-					React.createElement("div", {className: "bar bottom"}, 
-						React.createElement("span", {className: "icon icon-cross close", 
-							onClick: this.props.handleClose}), 
-						React.createElement("span", {className: 'icon icon-arrow-left prev'+(noPrev ? ' disable' : ''), 
-							onClick: noPrev ? undefined : this.handlePrev}), 
-						React.createElement("span", {className: 'icon icon-arrow-right next'+(noNext ? ' disable' : ''), 
-							onClick: noNext ? undefined : this.handleNext})
-					)
-				)
-			)
-		}
-	});
-
-	module.exports = Gallery;
-
-
-/***/ },
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(180);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./gallery.sass", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js?indentedSyntax!./gallery.sass");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 180 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".gallery {\n  display: -webkit-flex;\n  display: flex;\n  -webkit-flex-direction: column;\n  flex-direction: column;\n  -webkit-justify-content: space-between;\n  justify-content: space-between;\n  -webkit-align-items: center;\n  align-items: center;\n  position: fixed;\n  z-index: 20;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  background: #0d0d0d; }\n  .gallery .content {\n    width: 100%;\n    overflow: auto; }\n    .gallery .content .imgContent {\n      width: 100%; }\n    .gallery .content .textContent {\n      color: white;\n      padding: 20px; }\n  .gallery .bar {\n    width: 100%;\n    height: 50px;\n    text-align: center;\n    line-height: 50px;\n    background: linear-gradient(#0d0d0d, #000000);\n    box-shadow: 0 1px 1px 1px #212121, inset 0 1px 1px 1px black;\n    color: white;\n    font-size: 14px; }\n  .gallery .bottom {\n    display: -webkit-flex;\n    display: flex;\n    -webkit-justify-content: space-around;\n    justify-content: space-around;\n    -webkit-align-items: center;\n    align-items: center; }\n    .gallery .bottom .close {\n      -webkit-flex: 2;\n      flex: 2; }\n    .gallery .bottom .prev, .gallery .bottom .next {\n      -webkit-flex: 1;\n      flex: 1; }\n    .gallery .bottom .disable {\n      color: #333; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(182);
-	var React = __webpack_require__(6);
 
 	var Footer = React.createClass({displayName: "Footer",
 
@@ -21495,13 +21122,13 @@
 
 
 /***/ },
-/* 182 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(183);
+	var content = __webpack_require__(174);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -21521,7 +21148,7 @@
 	}
 
 /***/ },
-/* 183 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -21535,14 +21162,14 @@
 
 
 /***/ },
-/* 184 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(185);
-	var EventEmitter = __webpack_require__(192).EventEmitter;
-	var MocaConstants = __webpack_require__(193);
-	var assign = __webpack_require__(191);
-	var Request = __webpack_require__(194);
+	var AppDispatcher = __webpack_require__(176);
+	var EventEmitter = __webpack_require__(183).EventEmitter;
+	var MocaConstants = __webpack_require__(184);
+	var assign = __webpack_require__(182);
+	var Request = __webpack_require__(185);
 
 	var CHANGE_EVENT = 'change';
 
@@ -21562,8 +21189,9 @@
 
 	function parseCommonList(data) {
 		return data.map(function(item){
+			var imgurl = /src="([^"]*)"/.exec(item.field_image);
 			var obj = {
-				imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
+				imgurl: imgurl ? imgurl[1] : '',
 				id: item.nid,
 				title: item.node_title,
 				date: parseDate(item)
@@ -21574,15 +21202,15 @@
 	}
 
 	function parseDate(item) {
-		var e = /(\d\d\d\d\-\d\d\-\d\d).*(\d\d\d\d\-\d\d\-\d\d)?/;
-		var r = item.field_date.match(e);
-		if (r) {
-			r.shift();
-			if (!r[1]) {
-				r[1] = r[0];
-			}
+		var e = /\d\d\d\d\-\d\d\-\d\d/g;
+		var r = [];
+		var m;
+		while((m = e.exec(item.field_date)) !== null) {
+			r.push(m[0]);
+		}
+		if (r.length) {
 			return r.map(function(s) {
-				return s.replace('-', '.');	
+				return s.replace(/\-/g, '.');	
 			}).join(' - ');
 		} else {
 			return '';
@@ -21630,11 +21258,11 @@
 
 
 /***/ },
-/* 185 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(186);
-	var assign = __webpack_require__(191);
+	var Dispatcher = __webpack_require__(177);
+	var assign = __webpack_require__(182);
 
 	var AppDispatcher = assign({}, Dispatcher.prototype, {
 
@@ -21656,11 +21284,11 @@
 
 
 /***/ },
-/* 186 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Promise = window.Promise || __webpack_require__(187).Promise;
-	var assign = __webpack_require__(191);
+	var Promise = window.Promise || __webpack_require__(178).Promise;
+	var assign = __webpack_require__(182);
 
 	var _callbacks = [];
 	var _promises = [];
@@ -21721,7 +21349,7 @@
 
 
 /***/ },
-/* 187 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, global, module) {/*!
@@ -21855,7 +21483,7 @@
 	    function lib$es6$promise$asap$$attemptVertx() {
 	      try {
 	        var r = require;
-	        var vertx = __webpack_require__(189);
+	        var vertx = __webpack_require__(180);
 	        lib$es6$promise$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	        return lib$es6$promise$asap$$useVertxTimer();
 	      } catch(e) {
@@ -22680,7 +22308,7 @@
 	    };
 
 	    /* global define:true module:true window: true */
-	    if ("function" === 'function' && __webpack_require__(190)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(181)['amd']) {
 	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return lib$es6$promise$umd$$ES6Promise; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = lib$es6$promise$umd$$ES6Promise;
@@ -22692,10 +22320,10 @@
 	}).call(this);
 
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }()), __webpack_require__(188)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }()), __webpack_require__(179)(module)))
 
 /***/ },
-/* 188 */
+/* 179 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -22711,20 +22339,20 @@
 
 
 /***/ },
-/* 189 */
+/* 180 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 190 */
+/* 181 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 191 */
+/* 182 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -22769,7 +22397,7 @@
 
 
 /***/ },
-/* 192 */
+/* 183 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -23076,7 +22704,7 @@
 
 
 /***/ },
-/* 193 */
+/* 184 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23085,17 +22713,19 @@
 		COLLECTION_FETCH_LIST: 2,
 		COLLECTION_FETCH_DETAIL: 3,
 		EXHIBITION_FETCH_LIST: 4,
-		EXHIBITION_FETCH_DETAIL: 5,
+		NODE_FETCH: 5,
+		ACTIVITY_FETCH_LIST: 6,
+		ACTIVITY_FETCH_DETAIL: 7,
 
 		PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
 	};
 
 
 /***/ },
-/* 194 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Promise = window.Promise || __webpack_require__(187).Promise;
+	var Promise = window.Promise || __webpack_require__(178).Promise;
 	var realPath = '../admin/?q=service/',
 		mockPath = './datamock/';
 
@@ -23142,24 +22772,17 @@
 
 
 /***/ },
-/* 195 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(185);
-	var MocaConstants = __webpack_require__(193);
+	var AppDispatcher = __webpack_require__(176);
+	var MocaConstants = __webpack_require__(184);
 
 	var ExhibitionAction = {
 		
 		fetchList: function() {
 			AppDispatcher.handleViewAction({
 				actionType: MocaConstants.EXHIBITION_FETCH_LIST
-			});
-		},
-
-		fetchDetail: function(id) {
-			AppDispatcher.handleViewAction({
-				actionType: MocaConstants.EXHIBITION_FETCH_DETAIL,
-				id: id
 			});
 		}
 	};

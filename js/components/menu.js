@@ -27,13 +27,13 @@ var Menu = React.createClass({
 			},{
 				name: '公共教育',
 				iconClass: '',
-				url: 'education.html'
+				url: 'activity.html'
 			},{
 				name: '关于美术馆',
 				iconClass: '',
 				url: 'about.html'
 			},{
-				name: '参数指南',
+				name: '参观指南',
 				iconClass: '',
 				url: 'visitorGuide.html'
 			},{

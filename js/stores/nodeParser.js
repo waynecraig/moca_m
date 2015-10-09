@@ -28,7 +28,7 @@ var parsers = [
 	function (oriData) {
 		var body = '';
 		try {
-			body = oriData.body.und[0].value;
+			body = oriData.body.und[0].value.replace(/<[^>]*>/g, '');
 		} catch(e) { }
 		return body;
 	},
@@ -36,11 +36,11 @@ var parsers = [
 	function (oriData) {
 		var date = '';
 		try {
-			date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+			date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/\-/g, '.');
 		} catch(e) { }
 		try {
 			date += ' - ' 
-				+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+				+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/-/g, '.');
 		} catch(e) { }
 		return date;
 	},

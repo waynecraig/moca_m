@@ -17,7 +17,6 @@ var List = React.createClass({
 	},
 
 	render: function() {
-		console.log(this.props.list);
 		var self = this;
 		return (
 			<ul className='list'>
@@ -26,7 +25,7 @@ var List = React.createClass({
 						backgroundImage: 'url(' + self.props.objs[id].imgurl + ')'
 					};
 					return (
-						<li>
+						<li key={id}>
 							<div className='cover' 
 								style={coverStyle} 
 								onClick={self.handleClick}

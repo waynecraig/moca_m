@@ -20,7 +20,7 @@ var _frontData = {
 	},{
 		name: '公共教育',
 		icon: require('../../img/nav_03.png'),
-		link: './education.html'
+		link: './activity.html'
 	},{
 		name: '关于美术馆',
 		icon: require('../../img/nav_04.png'),

@@ -20912,13 +20912,13 @@
 				},{
 					name: '公共教育',
 					iconClass: '',
-					url: 'education.html'
+					url: 'activity.html'
 				},{
 					name: '关于美术馆',
 					iconClass: '',
 					url: 'about.html'
 				},{
-					name: '参数指南',
+					name: '参观指南',
 					iconClass: '',
 					url: 'visitorGuide.html'
 				},{
@@ -23000,7 +23000,9 @@
 		COLLECTION_FETCH_LIST: 2,
 		COLLECTION_FETCH_DETAIL: 3,
 		EXHIBITION_FETCH_LIST: 4,
-		EXHIBITION_FETCH_DETAIL: 5,
+		NODE_FETCH: 5,
+		ACTIVITY_FETCH_LIST: 6,
+		ACTIVITY_FETCH_DETAIL: 7,
 
 		PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
 	};
@@ -23090,7 +23092,7 @@
 		function (oriData) {
 			var body = '';
 			try {
-				body = oriData.body.und[0].value;
+				body = oriData.body.und[0].value.replace(/<[^>]*>/g, '');
 			} catch(e) { }
 			return body;
 		},
@@ -23098,11 +23100,11 @@
 		function (oriData) {
 			var date = '';
 			try {
-				date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+				date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/\-/g, '.');
 			} catch(e) { }
 			try {
 				date += ' - ' 
-					+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+					+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/-/g, '.');
 			} catch(e) { }
 			return date;
 		},

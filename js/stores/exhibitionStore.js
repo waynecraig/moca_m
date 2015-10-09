@@ -22,8 +22,9 @@ function parseList(data) {
 
 function parseCommonList(data) {
 	return data.map(function(item){
+		var imgurl = /src="([^"]*)"/.exec(item.field_image);
 		var obj = {
-			imgurl: /src="([^"]*)"/.exec(item.field_image)[1],
+			imgurl: imgurl ? imgurl[1] : '',
 			id: item.nid,
 			title: item.node_title,
 			date: parseDate(item)
@@ -34,15 +35,15 @@ function parseCommonList(data) {
 }
 
 function parseDate(item) {
-	var e = /(\d\d\d\d\-\d\d\-\d\d).*(\d\d\d\d\-\d\d\-\d\d)?/;
-	var r = item.field_date.match(e);
-	if (r) {
-		r.shift();
-		if (!r[1]) {
-			r[1] = r[0];
-		}
+	var e = /\d\d\d\d\-\d\d\-\d\d/g;
+	var r = [];
+	var m;
+	while((m = e.exec(item.field_date)) !== null) {
+		r.push(m[0]);
+	}
+	if (r.length) {
 		return r.map(function(s) {
-			return s.replace('-', '.');	
+			return s.replace(/\-/g, '.');	
 		}).join(' - ');
 	} else {
 		return '';

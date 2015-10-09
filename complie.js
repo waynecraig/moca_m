@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Promise = require('es6-promise').Promise;
 
-var pages = ['index', 'collection', 'exhibition', 'node'];
+var pages = ['index', 'collection', 'exhibition', 'node', 'activity'];
 
 function runWebpack(config) {
 	return new Promise(function(resolve, reject) {

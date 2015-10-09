@@ -2,7 +2,6 @@ require('../sass/exhibition.sass');
 var React = require('react');
 var Header = require('./components/header');
 var List = require('./components/list');
-var Detail = require('./components/detail');
 var Footer = require('./components/footer');
 var ExhibitionStore = require('./stores/exhibitionStore');
 var ExhibitionAction = require('./actions/exhibitionAction');

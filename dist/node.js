@@ -20912,13 +20912,13 @@
 				},{
 					name: '公共教育',
 					iconClass: '',
-					url: 'education.html'
+					url: 'activity.html'
 				},{
 					name: '关于美术馆',
 					iconClass: '',
 					url: 'about.html'
 				},{
-					name: '参数指南',
+					name: '参观指南',
 					iconClass: '',
 					url: 'visitorGuide.html'
 				},{
@@ -21022,23 +21022,40 @@
 	var Detail = React.createClass({displayName: "Detail",
 		
 		propTypes: {
-			data: React.PropTypes.object.isRequired
+			data: React.PropTypes.object.isRequired,
+			hideTitle: React.PropTypes.bool
 		},
 
 		render: function() {
 			return (
 				React.createElement("div", {className: "detail"}, 
-					React.createElement("img", {className: "cover", src: this.props.data.imgurl}), 
-					React.createElement("h3", null, this.props.data.title), 
+					!!this.props.data.imgurl && React.createElement("img", {className: "cover", src: this.props.data.imgurl}), 
+					!this.props.hideTitle && React.createElement("h3", {className: "title"}, this.props.data.title), 
 					React.createElement("div", {className: "info"}, 
-						React.createElement("p", null, "展览时间：", this.props.data.date), 
-						React.createElement("p", null, "地点：", this.props.data.locate), 
-						React.createElement("p", null, "策展人：", this.props.data.organizer)
+						!!this.props.data.date && React.createElement("p", null, "时间：", this.props.data.date), 
+						!!this.props.data.locate && React.createElement("p", null, "地点：", this.props.data.locate), 
+						!!this.props.data.organizer && React.createElement("p", null, "策展人：", this.props.data.organizer)
 					), 
-					React.createElement("div", {className: "content"}, 
-						this.props.data.body
-					), 
-					this.props.data.photos && 
+					!!this.props.data.body && function(body, photos) {
+						var imgIndex = photos && photos.index;
+						var imgData = photos && photos.data;
+						body = body.split('\n');
+						return (
+							React.createElement("div", {className: "content"}, 
+								body.map(function(line, i){
+									var r = line.match(/\[img\-(\d+)\]/);
+									if (r && imgIndex && imgData) {
+										var n = parseInt(r[1]);
+										photos._inlineImg = true;
+										return React.createElement("img", {key: i, src: imgData[imgIndex[n]].imgurl})
+									} else {
+										return React.createElement("p", {key: i}, line)
+									}
+								})
+							)
+						)
+					}(this.props.data.body, this.props.data.photos), 
+					!!this.props.data.photos && !this.props.data.photos._inlineImg &&
 						React.createElement(Shelf, {index: this.props.data.photos.index, 
 							data: this.props.data.photos.data})
 				)
@@ -21085,7 +21102,7 @@
 
 
 	// module
-	exports.push([module.id, ".detail {\n  padding: 0 20px; }\n  .detail .cover {\n    width: 100%; }\n  .detail h3 {\n    margin: 15px 0;\n    color: #00bbb3;\n    font-size: 17px; }\n  .detail .info {\n    color: #999;\n    font-size: 13px;\n    line-height: 30px; }\n  .detail .content {\n    margin: 15px 0;\n    color: #000;\n    font-size: 14px;\n    line-height: 30px; }\n  .detail .shelf {\n    padding: 20px 10px; }\n", ""]);
+	exports.push([module.id, ".detail {\n  padding: 0 20px; }\n  .detail .cover {\n    width: 100%; }\n  .detail .title {\n    margin: 15px 0;\n    color: #00bbb3;\n    font-size: 17px; }\n  .detail .info {\n    margin-top: 15px;\n    color: #999;\n    font-size: 13px;\n    line-height: 30px; }\n  .detail .content {\n    margin: 15px 0;\n    color: #000;\n    font-size: 14px;\n    line-height: 30px; }\n    .detail .content img {\n      width: 100%; }\n    .detail .content p {\n      margin-bottom: 10px; }\n  .detail .shelf {\n    padding: 20px 10px; }\n", ""]);
 
 	// exports
 
@@ -22970,7 +22987,9 @@
 		COLLECTION_FETCH_LIST: 2,
 		COLLECTION_FETCH_DETAIL: 3,
 		EXHIBITION_FETCH_LIST: 4,
-		EXHIBITION_FETCH_DETAIL: 5,
+		NODE_FETCH: 5,
+		ACTIVITY_FETCH_LIST: 6,
+		ACTIVITY_FETCH_DETAIL: 7,
 
 		PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
 	};
@@ -23060,7 +23079,7 @@
 		function (oriData) {
 			var body = '';
 			try {
-				body = oriData.body.und[0].value;
+				body = oriData.body.und[0].value.replace(/<[^>]*>/g, '');
 			} catch(e) { }
 			return body;
 		},
@@ -23068,11 +23087,11 @@
 		function (oriData) {
 			var date = '';
 			try {
-				date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+				date = oriData.field_date.und[0].value.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/\-/g, '.');
 			} catch(e) { }
 			try {
 				date += ' - ' 
-					+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace('-', '.');
+					+ oriData.field_date.und[0].value2.match(/\d{4}\-\d{2}\-\d{2}/)[0].replace(/-/g, '.');
 			} catch(e) { }
 			return date;
 		},
