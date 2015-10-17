@@ -22314,13 +22314,21 @@
 				var client = new XMLHttpRequest();
 				client.open("GET", url);
 				client.onreadystatechange = handler;
+				try {
 				client.responseType = "json";
+				} catch(e) {} // android not surpport
 				client.setRequestHeader("Accept", "application/json");
 				client.send();
 
 				function handler() {
 					if (this.readyState === this.DONE) {
-						if (this.status === 200) { resolve(this.response); }
+						if (this.status === 200) {
+							if (typeof this.response === 'string') {
+								resolve(JSON.parse(this.response));
+							} else {
+								resolve(this.response);
+							}
+						}
 						else { reject(this); }
 					}
 				};
