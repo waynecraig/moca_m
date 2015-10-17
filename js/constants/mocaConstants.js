@@ -7,6 +7,10 @@ module.exports = {
 	NODE_FETCH: 5,
 	ACTIVITY_FETCH_LIST: 6,
 	ACTIVITY_FETCH_DETAIL: 7,
+	ABOUT_FETCH_LIST: 8,
+	ABOUT_FETCH_DETAIL: 9,
+	VISITORGUIDE_FETCH_DATA: 10,
+	EXHIBITION_FETCH_LIST: 11,
 
 	PUBLIC_IMG_BASE: 'http://moca-yinchuan.com/admin/sites/default/files/'
 };

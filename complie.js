@@ -2,7 +2,8 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Promise = require('es6-promise').Promise;
 
-var pages = ['index', 'collection', 'exhibition', 'node', 'activity'];
+var pages = ['index', 'collection', 'exhibition', 'node', 'activity', 'about', 'visitorguide', 'news'];
+//var pages = ['visitorguide'];
 
 function runWebpack(config) {
 	return new Promise(function(resolve, reject) {
@@ -42,6 +43,10 @@ function getConfigs(pages) {
 					{
 						test: /\.(sass)$/,
 						loader: "style!css!sass?indentedSyntax"
+					},
+					{
+						test: /\.(css)$/,
+						loader: "style-loader!css-loader"
 					},
 					{
 						test: /\.(jpe?g|png|gif|svg)$/i,

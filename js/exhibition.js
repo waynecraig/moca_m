@@ -1,5 +1,6 @@
 require('../sass/exhibition.sass');
 var React = require('react');
+var render = require('react-dom').render;
 var Header = require('./components/header');
 var List = require('./components/list');
 var Footer = require('./components/footer');
@@ -40,5 +41,5 @@ var Exhibition = React.createClass({
 });
 
 var exhibition = <Exhibition/>;
-React.render(exhibition, document.body);
+render(exhibition, document.getElementById('moca'));
 ExhibitionAction.fetchList();

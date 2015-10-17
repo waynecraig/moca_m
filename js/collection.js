@@ -1,5 +1,6 @@
 require('../sass/collection.sass');
 var React = require('react');
+var render = require('react-dom').render;
 var Header = require('./components/header');
 var Shelf = require('./components/shelf');
 var Footer = require('./components/footer');
@@ -46,5 +47,5 @@ var Collection = React.createClass({
 });
 
 var collection = <Collection/>;
-React.render(collection, document.body);
+render(collection, document.getElementById('moca'));
 CollectionAction.fetchList();

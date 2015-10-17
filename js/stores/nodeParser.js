@@ -7,7 +7,8 @@ var mapping = {
 	date: 3,
 	locate: 4,
 	organizer: 5,
-	photos: 6
+	photos: 6,
+	type: 7
 };
 
 var parsers = [
@@ -74,6 +75,10 @@ var parsers = [
 			});
 		} catch(e) { }
 		return photos;
+	},
+	// 7 type parse
+	function (oriData) {
+		return oriData.type;
 	}
 ];
 

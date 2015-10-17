@@ -1,5 +1,6 @@
 require('../sass/activity.sass');
 var React = require('react');
+var render = require('react-dom').render;
 var Header = require('./components/header');
 var ExpandList = require('./components/expandList');
 var Footer = require('./components/footer');
@@ -73,5 +74,5 @@ var Activity = React.createClass({
 });
 
 var activity = <Activity/>;
-React.render(activity, document.body);
+render(activity, document.getElementById('moca'));
 ActivityAction.fetchList();

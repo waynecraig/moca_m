@@ -21,6 +21,10 @@ var Menu = React.createClass({
 				iconClass: '',
 				url: 'exhibition.html'
 			},{
+				name: '新闻',
+				iconClass: '',
+				url: 'news.html'
+			},{
 				name: '研究典藏',
 				iconClass: '',
 				url: 'collection.html'
@@ -35,11 +39,7 @@ var Menu = React.createClass({
 			},{
 				name: '参观指南',
 				iconClass: '',
-				url: 'visitorGuide.html'
-			},{
-				name: '联系方式',
-				iconClass: '',
-				url: 'contact.html'
+				url: 'visitorguide.html'
 			}].map(function(item){
 				if (url.indexOf(item.url) !== -1) {
 					item.tailClass = 'active';

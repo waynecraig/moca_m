@@ -27,7 +27,9 @@ var ExpandList = React.createClass({
 					return (
 						<li key={id} className='expand-item'>
 							<h3 data-id={id} className='item-title' onClick={self.handleClick}>
-								<span className='mark'>+</span>
+								<span className={'mark icon icon-' + 
+									(self.props.objs[id].showDetail ? 'minus' : 'plus')}>
+								</span>
 								<span className='content'>{self.props.objs[id].title}</span>	
 							</h3>
 							{ self.props.objs[id].showDetail && 

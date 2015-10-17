@@ -1,5 +1,6 @@
 require('../sass/index.sass');
 var React = require('react');
+var render = require('react-dom').render;
 var Header = require('./components/header');
 var Slider = require('./components/slider');
 var Entry = require('./components/entry');
@@ -55,5 +56,5 @@ var Index = React.createClass({
 });
 
 var index = <Index/>;
-React.render(index, document.body);
+render(index, document.getElementById('moca'));
 FrontAction.fetchList();

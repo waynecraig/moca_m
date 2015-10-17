@@ -16,8 +16,11 @@ function fetch(id) {
 }
 
 function parseDetail(data) {
-	_nodeData.node = NodeParser.parse(data, 
-		['title', 'imgurl', 'body', 'date', 'locate', 'organizer', 'photos']);
+	var attrs = ['imgurl', 'title', 'body', 'date', 'locate', 'organizer', 'photos'];
+	if (data.type === 'news') {
+		attrs.shift();
+	}
+	_nodeData.node = NodeParser.parse(data, attrs);
 	return true;
 }
 

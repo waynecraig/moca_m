@@ -1,5 +1,6 @@
 require('../sass/node.sass');
 var React = require('react');
+var render = require('react-dom').render;
 var Header = require('./components/header');
 var Detail = require('./components/detail');
 var Footer = require('./components/footer');
@@ -46,5 +47,5 @@ var Node = React.createClass({
 var query = location.search.match(/id=(\d+)/);
 var id = query && query[1] || 0;
 var node = <Node id={id}/>;
-React.render(node, document.body);
+render(node, document.getElementById('moca'));
 NodeAction.fetch(id);

@@ -25,14 +25,21 @@ var List = React.createClass({
 						backgroundImage: 'url(' + self.props.objs[id].imgurl + ')'
 					};
 					return (
-						<li key={id}>
+						<li key={id} className='item'>
 							<div className='cover' 
 								style={coverStyle} 
 								onClick={self.handleClick}
 								data-id={id}/>
-							<h4 onClick={self.handleClick}
-								data-id={id}>{self.props.objs[id].title}</h4>
-							<p>展览时间: {self.props.objs[id].date}</p>
+							<div className='content'>
+								<h4 onClick={self.handleClick}
+									data-id={id}>{self.props.objs[id].title}</h4>
+								{self.props.objs[id].date && 
+									<p>展览时间: {self.props.objs[id].date}</p>}
+								{self.props.objs[id].createTime && 
+									<p>{self.props.objs[id].createTime}</p>}
+								{self.props.objs[id].body && 
+									<p>{self.props.objs[id].body}</p>}
+							</div>
 						</li>
 					)
 				})}

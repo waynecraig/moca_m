@@ -28,7 +28,7 @@ var _frontData = {
 	},{
 		name: '参观指南',
 		icon: require('../../img/nav_05.png'),
-		link: './visitorGuide.html'
+		link: './visitorguide.html'
 	}]
 };
 
